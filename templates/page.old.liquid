@@ -1,3 +1,5 @@
+{% comment %} 旧的 Page，左侧导航不固定，随页面滚动。 {% endcomment %}
+
 {% assign sub_pages = page.children_in_list %}
 {% assign sub_pages_size = sub_pages | size %}
 {% assign screen_width = site.settings.screen_width.value |  default: 'max-w-screen-xl' %}
