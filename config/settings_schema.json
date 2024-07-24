@@ -3,7 +3,7 @@
     "name": "theme_info",
     "theme_name": "wiki",
     "theme_label": "t:theme_label",
-    "theme_version": "1.1.0",
+    "theme_version": "v1.0.1",
     "theme_scope": "wiki",
     "theme_author": "Baklib",
     "theme_description": "t:theme_description",
@@ -73,7 +73,20 @@
         "id": "screen_width",
         "type": "radio",
         "label": "页面宽度设置",
-        "choices": [{"label":"窄（max-width: 1024px）","value":"max-w-screen-lg"},{"label":"适中（max-width: 1280px;）","value":"max-w-screen-xl"},{"label":"宽（max-width: 1536px;）","value":"max-w-screen-2xl"}],
+        "choices": [
+          {
+            "label": "窄（max-width: 1024px）",
+            "value": "max-w-screen-lg"
+          },
+          {
+            "label": "适中（max-width: 1280px;）",
+            "value": "max-w-screen-xl"
+          },
+          {
+            "label": "宽（max-width: 1536px;）",
+            "value": "max-w-screen-2xl"
+          }
+        ],
         "default": "max-w-screen-xl"
       },
       {
