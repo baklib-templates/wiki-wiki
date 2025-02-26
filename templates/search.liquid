@@ -41,7 +41,7 @@
 
 
       {% if search.keywords or search.tag %}
-        {% paginate_tag search.pages, as: 'items', per: 20 %}
+        {% paginate_tag search.pages, as: 'items', per: 4 %}
           {% assign extends_size = search.extends | size %}
           {% assign items_size = items | size %}
           {% assign total_size = extends_size | plus: items_size %}
