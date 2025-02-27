@@ -13,7 +13,7 @@
   </head>
 
   <body class="flex flex-col min-h-screen {% unless search.keywords or search.tag %}items-center justify-center{% endunless %}">
-    <header class="flex items-center justify-center space-x-2 py-8">
+    <header class="flex justify-center items-center py-8 space-x-2">
       {% if site.favicon_url %}
         <a href="{{ site.index_path }}"><img src="{{site.favicon_url}}" class="w-24 h-24"></a>
       {% endif %}
@@ -28,7 +28,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </button>
-            <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md outline outline-1 transition duration-300 ease-in-out focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
+            <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md transition duration-300 ease-in-out outline outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
           </div>
         {% endform_tag %}
       </section>
@@ -46,8 +46,8 @@
           {% assign items_size = items | size %}
           {% assign total_size = extends_size | plus: items_size %}
           {% assign top_5_paths = items | map: 'path' | limit: 5 | join: ',' %}
-          <section class="flex flex-1 gap-6 items-start mx-auto mt-8 w-full max-w-7xl">
-            <div class="flex-1">
+          <section class="flex-1 flex flex-col md:flex-row gap-6 items-start mx-auto mt-8 w-full max-w-7xl">
+            <div class="flex-1 order-2 md:order-1">
               <turbo-frame id="frame--search-results">
                 {% if total_size > 0 %}
                   <ul class="space-y-3">
@@ -64,10 +64,10 @@
                       {% endfor %}
                     {% endif %}
                     {% for page in items %}
-                      <li class="p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
+                      <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
                         <div class="flex gap-1">
                           <div class="shrink-0 pt-[1px]">
-                            <span class="inline-flex items-center justify-center text-xs w-5 h-5 rounded-full bg-primary-100 -ml-1">{{ forloop.index }}</span>
+                            <span class="inline-flex justify-center items-center -ml-1 w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
                           </div>
                           <div>
                             <div class="flex-1">
@@ -81,8 +81,8 @@
                             {% unless page.highlighted_search_content == empty %}
                               <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
                             {% endunless %}
-                            <div class="flex items-center justify-between mt-2">
-                              <div class="breadcrumbs hidden overflow-x-auto md:block text-sm">
+                            <div class="flex justify-between items-center mt-2">
+                              <div class="hidden overflow-x-auto text-sm breadcrumbs md:block">
                                 {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
                               </div>
                             </div>
@@ -91,7 +91,7 @@
                       </li>
                     {% endfor %}
                   </ul>
-                  <div class="px-3 my-8 flex justify-center">
+                  <div class="flex justify-center px-3 my-8">
                     {% render 'paginate', paginate: paginate %}
                   </div>
                   <script>
@@ -126,7 +126,7 @@
                 {% endif %}
               </turbo-frame>
             </div>
-            <div class="flex-grow-0 w-96 hidden" id="js--ai-search-completion-container">
+            <div class="flex-grow-0 w-full order-1 md:order-2 md:w-96 hidden" id="js--ai-search-completion-container">
               <div
                 class="p-2 rounded bg-primary-50 chat-container"
                 id="js--ai-search-completion"
@@ -141,7 +141,7 @@
                   </div>
                   <span>AI 搜索</span>
                 </div>
-                <div data-ai-search-completion-target="response" class="ai-response prose max-h-[50vh] overflow-y-auto px-4 pb-4 -mx-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                <div data-ai-search-completion-target="response" class="ai-response prose max-h-48 md:max-h-[50vh] overflow-y-auto px-4 pb-4 -mx-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                   <!-- 消息将在这里显示 -->
                 </div>
                 <div data-ai-search-completion-target="completed" class="hidden opacity-100 transition-opacity duration-300 text-gray-400 text-sm p-2">
