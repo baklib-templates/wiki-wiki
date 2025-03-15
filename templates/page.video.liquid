@@ -7,7 +7,7 @@
   <main class="min-h-screen mx-auto {{ screen_width }} relative px-4">
     {% if page.settings.show_list %}
       {% paginate_tag pages, per: 50 %}
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style="padding-bottom: 3rem">
           {% for item in pages %}
             <div class="">
               <div class="bg-white shadow-lg rounded-lg overflow-hidden">
