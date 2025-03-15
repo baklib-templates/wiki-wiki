@@ -1,12 +1,12 @@
 <!-- 提供视频链接，Card显示视频列表 -->
-{% assign pages = page.children_in_list | limit: 200 %}
+{% assign pages = page.children_in_list | limit: 50 %}
 {% assign screen_width = site.settings.screen_width.value |  default: 'max-w-screen-xl' %}
 {% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
 
 <turbo-frame id="main-content" data-turbo-action="advance">
   <main class="min-h-screen mx-auto {{ screen_width }} relative px-4">
     {% if page.settings.show_list %}
-      {% paginate_tag pages, per: 20 %}
+      {% paginate_tag pages, per: 50 %}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {% for item in pages %}
             <div class="">
