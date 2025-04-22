@@ -88,7 +88,7 @@
                         <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold ">{{ card_page.link_text }}</h3>
                       </div>
                     </header>
-                    <!-- Content -->  
+                    <!-- Content -->
                     <div class="h-12 md:h-44">
                       <span class="hidden md:flex text-gray-500 dark:text-gray-300">{{ card_page.settings.description }}</span>
                       <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-12 md:h-40"/></div>
@@ -97,7 +97,7 @@
             </div>
           </a>
         {% endfor %}
-      </div>      
+      </div>
     </div>
   </section>
 
@@ -140,7 +140,7 @@
               </div>
             </a>
           {% endfor %}
-        </div>      
+        </div>
       </div>
     </section>
   {% endif %}
@@ -151,7 +151,7 @@
     <section class="bg-transparent py-4">
       <div class="mx-auto {{ screen_width }} px-4 sm:px-6">
         <div class="pt-4 pb-4">
-          
+
           <div class="flex items-center h-8 mb-2 text-xl md:text-2xl font-semibold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
             <span>{{ 'generic.newest_pages' | t }}</span>
@@ -186,7 +186,7 @@
     <section class="bg-transparent">
       <div class="mx-auto {{ screen_width }} px-4 mt-8 sm:px-6">
         <div class="pt-4 pb-8 mt-8 lg:mt-14 lg:pb-12">
-          
+
           <div class="flex items-center h-8 mb-4 text-xl md:text-2xl font-semibold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
             <span>{{ 'generic.hot_pages' | t }}</span>
@@ -228,11 +228,11 @@
 
 {% schema %}
   {
-    "name": "Docs Center",
-    "description": "Ideal for feature-rich product user manuals",
-    "thumb_url": "images/theme/index-docs.png",
+    "name": "t:schema.templates.index.docs.name",
+    "description": "t:schema.templates.index.docs.description",
+    "thumb_url": "images/schema/${lang}/index-docs.png",
     "preview_image_urls": [
-      "images/theme/index-docs.png"
+      "images/schema/${lang}/index-docs.png"
     ],
     "sub_page_templates": ["page"],
     "settings": [
