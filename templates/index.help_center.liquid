@@ -11,12 +11,12 @@
 <div class="mx-auto max-w-screen-2xl"></div>
 
 <!-- Feature One Section -->
-{% assign site_features_one = site.settings.features_one | strip %}
-{% if site_features_one %}
+{% if site.settings.features_one %}
   <section class="mx-auto {{ screen_width }} px-4 sm:px-6">
-    {{ site_features_one }}
+    {{ site.settings.features_one }}
   </section>
 {% endif %}
+
 
 <section class="relative bg-slate-100 dark:bg-slate-900">
   <!-- Hero Section -->
