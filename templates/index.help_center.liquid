@@ -11,9 +11,10 @@
 <div class="mx-auto max-w-screen-2xl"></div>
 
 <!-- Feature One Section -->
-{% if site.settings.features_one %}
+{% assign site_features_one = site.settings.features_one | strip %}
+{% if site_features_one %}
   <section class="mx-auto {{ screen_width }} px-4 sm:px-6">
-    {{ site.settings.features_one }}
+    {{ site_features_one }}
   </section>
 {% endif %}
 
