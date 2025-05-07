@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Baklib Theme Settings Schema",
+  "type": "array",
+  "description": "Baklib 主题 settings_schema.json 配置文件结构，详见 theme-dev.md。第一个元素为 theme_info，申明主题元信息。其余为普通分组。",
+  "items": {
+    "oneOf": [
+      {
+        "title": "主题元信息（theme_info）",
+        "type": "object",
+        "properties": {
+          "name": { "const": "theme_info", "description": "必须为 theme_info，代表主题元信息分组。" },
+          "theme_name": { "type": "string", "description": "主题英文名/唯一标识，建议唯一。" },
+          "theme_label": { "type": "string", "description": "主题显示名，建议国际化 key。" },
+          "theme_version": { "type": "string", "description": "主题版本号。" },
+          "theme_scope": { "type": "string", "description": "主题适用范围，如 wiki/community/cms。" },
+          "theme_author": { "type": "string", "description": "主题作者。" },
+          "theme_description": { "type": "string", "description": "主题描述，建议国际化 key。" },
+          "theme_documentation_url": { "type": "string", "description": "主题文档链接。" },
+          "theme_support_url": { "type": "string", "description": "主题支持链接。" },
+          "theme_demo_url": { "type": "string", "description": "主题演示链接。" },
+          "theme_thumb_url": { "type": "string", "description": "主题缩略图路径。" },
+          "theme_preview_images": {
+            "type": "array",
+            "description": "主题预览图数组。",
+            "items": { "type": "string" }
+          },
+          "theme_languages": {
+            "type": "array",
+            "description": "主题支持的语言数组。",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string", "description": "语言显示名。" },
+                "value": { "type": "string", "description": "语言代码。" }
+              },
+              "required": ["name", "value"],
+              "additionalProperties": false
+            }
+          },
+          "recommendations": {
+            "type": "object",
+            "description": "主题推荐配置，如配色方案等。",
+            "properties": {
+              "color_schemas": {
+                "type": "object",
+                "description": "推荐配色方案。",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string", "description": "配色名称。" },
+                    "colors": {
+                      "type": "object",
+                      "description": "配色变量。",
+                      "additionalProperties": { "type": "string" }
+                    }
+                  },
+                  "required": ["name", "colors"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "required": ["name", "theme_name", "theme_label", "theme_version", "theme_scope", "theme_author", "theme_description", "theme_thumb_url"],
+        "additionalProperties": false
+      },
+      {
+        "title": "普通分组",
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "not": {"const": "theme_info"}, "description": "分组名/分组 key，推荐用国际化 key。" },
+          "settings": {
+            "type": "array",
+            "description": "本分组下的字段数组。",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string", "description": "字段唯一标识。" },
+                "type": { "type": "string", "description": "字段类型。" },
+                "label": { "type": "string", "description": "字段显示名称。" },
+                "info": { "type": "string", "description": "字段说明。" },
+                "default": { "description": "默认值。" },
+                "required": { "type": "boolean", "description": "是否必填。" },
+                "readonly": { "type": "boolean", "description": "是否只读。" },
+                "multiple": { "type": "boolean", "description": "是否多选。" },
+                "choices": {
+                  "type": "array",
+                  "description": "选项数组。radio/select/tag_picker 类型必填。",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": { "type": "string", "description": "选项显示名。" },
+                      "value": { "description": "选项值。" }
+                    },
+                    "required": ["label", "value"],
+                    "additionalProperties": false
+                  }
+                },
+                "ratio": { "type": "string", "description": "图片宽高比。" },
+                "width": { "type": "number", "description": "图片宽度/输入框宽度。" },
+                "rows": { "type": "number", "description": "多行文本/HTML 字段的行数。" },
+                "when": { "type": "string", "description": "字段显示条件。" },
+                "placeholder": { "type": "string", "description": "占位符。" }
+              },
+              "required": ["id", "type", "label"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["name", "settings"],
+        "additionalProperties": false
+      }
+    ]
+  }
+}

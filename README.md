@@ -62,8 +62,18 @@ Knowledge base template deployed by Baklib WIKI.
 
 ## 开发
 
-```bash
-npm run dev
+```shell
+# 安装 npm 包
+yarn install
+# 执行此命令，可在实时把 src 目录的 js/css 代码编译到 assets 目录
+yarn dev
+```
+
+
+```shell
+# 安装 guard-livereload，浏览器安装 livereload 插件，可实现代码改动，浏览器页面自动刷新
+bundle install
+bundle exec guard
 ```
 
 ### 安装配置TailwindCSS

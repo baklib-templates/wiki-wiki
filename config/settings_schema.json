@@ -24,7 +24,7 @@
       },
       {
         "name": "English",
-        "value": "en-US"
+        "value": "en"
       }
     ],
     "recommendations": {
@@ -61,7 +61,7 @@
         "id": "logo_url",
         "type": "image_picker",
         "ratio": "3:1",
-        "width": 150,
+        "width": 240,
         "label": "t:schema.generic.settings.logo_url.label",
         "info": "t:schema.generic.settings.logo_url.info"
       },
@@ -83,34 +83,23 @@
         "type": "radio",
         "label": "t:schema.generic.settings.screen_width.label",
         "choices": [
-          { "label": "t:schema.generic.settings.screen_width.choices.narrow", "value":"max-w-screen-lg" },
-          { "label": "t:schema.generic.settings.screen_width.choices.medium", "value":"max-w-screen-xl" },
-          { "label": "t:schema.generic.settings.screen_width.choices.wide", "value":"max-w-screen-2xl" }
+          { "label": "t:schema.generic.settings.screen_width.choices.narrow", "value":"1024px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.medium", "value":"1280px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.wide", "value":"1536px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.full", "value":"100%" }
         ],
-        "default": "max-w-screen-xl"
+        "default": "1280px"
       },
       {
-        "id": "page_bg_type",
-        "type": "radio",
-        "label": "t:schema.generic.settings.page_bg_type.label",
-        "choices": [
-          { "label": "t:schema.generic.settings.page_bg_type.choices.no_bg", "value": "0" },
-          { "label": "t:schema.generic.settings.page_bg_type.choices.primary_secondary", "value": "1" },
-          { "label": "t:schema.generic.settings.page_bg_type.choices.primary", "value": "2" }
-        ],
-        "default": "0",
-        "info": "t:schema.generic.settings.page_bg_type.info"
-      },
-      {
-        "id": "is_allow_published_at",
+        "id": "show_published_at",
         "type": "checkbox",
-        "label": "t:schema.generic.settings.is_allow_published_at.label",
+        "label": "t:schema.generic.settings.show_published_at.label",
         "default": true
       },
       {
-        "id": "is_allow_author",
+        "id": "show_author",
         "type": "checkbox",
-        "label": "t:schema.generic.settings.is_allow_author.label",
+        "label": "t:schema.generic.settings.show_author.label",
         "default": true
       }
     ]

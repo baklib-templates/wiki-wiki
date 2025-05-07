@@ -5,7 +5,34 @@
     "index": {
       "docs": {
         "name": "文档中心",
-        "description": "理想的产品用户手册"
+        "description": "理想的产品用户手册",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景样式",
+            "info": "选择背景样式后，背景色和背景图会根据选择的内容进行展示",
+            "choices": {
+              "none": "无背景",
+              "color": "颜色背景",
+              "image": "图片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建议高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景图",
+            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "选择背景色后，背景色会根据选择的内容进行展示"
+          },
+          "hero_slogan": {
+            "label": "标语",
+            "info": "标语会显示在背景图上方"
+          }
+        }
       },
       "help_center": {
         "name": "帮助中心",
@@ -40,23 +67,15 @@
         "choices": {
           "narrow": "窄（1024像素）",
           "medium": "适中（1280像素）",
-          "wide": "宽（1536像素）"
+          "wide": "宽（1536像素）",
+          "full": "满屏"
         }
       },
-      "page_bg_type": {
-        "label": "页面背景类型",
-        "choices": {
-          "no_bg": "无背景色",
-          "primary_secondary": "主色 + 第二色渐变",
-          "primary": "主色渐变"
-        },
-        "info": "主色和第二色跟随站点【主题颜色】设置的 primary/secondary 颜色"
-      },
-      "is_allow_published_at": {
+      "show_published_at": {
         "label": "显示发布时间",
         "default": true
       },
-      "is_allow_author": {
+      "show_author": {
         "label": "显示作者",
         "default": true
       }

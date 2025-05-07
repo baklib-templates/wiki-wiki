@@ -1,0 +1,534 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Baklib 主题（Liquid 模板）开发文档
+
+## 1. 什么是主题/模板？
+
+Baklib 主题（Theme）是基于 [Liquid](https://shopify.github.io/liquid/) 模板引擎的页面渲染方案。主题决定了站点的页面结构、样式、交互和内容展示方式。每个主题由一组模板文件、片段、资源和配置组成，支持高度自定义和动态扩展。
+
+## 2. 主题目录结构与文件命名规范
+
+每个主题位于 `themes/` 目录下，按类型分为 `wiki`、`community`、`cms` 等子目录。每个主题下通常包含如下结构：
+
+```
+themes/
+  wiki/
+    demo_wiki/
+      assets/         # 静态资源（css/js/images）
+      config/         # 配置文件（如 settings_schema.json）
+      layout/         # 布局文件（如 theme.liquid）
+      locales/        # 多语言翻译
+      snippets/       # 片段文件（可复用的 UI 单元）
+      src/            # 前端源码
+      statics/        # 静态页面
+      templates/      # 页面模板（如 page.liquid、index.liquid）
+```
+
+- **模板文件**：`templates/` 下的 `.liquid` 文件，决定页面结构。
+- **片段文件**：`snippets/` 下的 `_xxx.liquid`，可被模板 `render` 引用。
+- **布局文件**：`layout/theme.liquid`，全局页面骨架，插槽为 `{{ content_for_layout }}`。
+- **资源文件**：`assets/` 下的 css/js/image。
+- **配置文件**：`config/settings_schema.json`，定义主题可配置项。
+
+### 文件命名规范
+- 模板文件：如 `page.liquid`、`index.liquid`、`search.liquid`。
+- 片段文件：以 `_` 开头，如 `_header.liquid`、`_footer.liquid`。
+- 布局文件：`theme.liquid`。
+- 配置文件：`settings_schema.json`。
+
+## 3. 文件内容规范与 schema 说明
+
+### 模板文件（如 page.liquid）
+- 支持标准 HTML + Liquid 语法。
+- 推荐每个模板文件底部添加 `{% schema %} ... {% endschema %}`，描述该模板的元信息和可配置项。
+- 示例：
+
+```liquid
+{% schema %}
+  {
+    "name": "Page",
+    "description": "内容页模板",
+    "thumb_url": "images/theme/page.png",
+    "settings": [
+      { "id": "show_list", "type": "checkbox", "default": false, "label": "栏目" },
+      { "id": "title", "type": "text", "readonly": true, "label": "标题" },
+      { "id": "tags", "type": "tag_picker", "multiple": true, "label": "标签" },
+      { "id": "description", "type": "textarea", "label": "描述" },
+      { "id": "icon", "type": "image_picker", "label": "图标" },
+      { "id": "content", "type": "richtext", "label": "正文" }
+    ]
+  }
+{% endschema %}
+```
+
+### 配置文件（settings_schema.json）
+- 定义主题全局可配置项，支持分组、类型、默认值、说明等。
+- 支持的类型有：`text`、`checkbox`、`radio`、`image_picker`、`html`、`tag_picker`、`richtext` 等。
+- 示例片段：
+
+```json
+{
+  "id": "logo_url",
+  "type": "image_picker",
+  "label": "Logo",
+  "info": "页头显示的 logo 图片"
+}
+```
+
+## 4. 模板可用变量与对象
+
+模板渲染时，系统会自动注入一系列变量和对象，常用如下：
+
+### 站点对象 `site`
+- `site.name`：站点名称
+- `site.settings`：主题配置项（见 settings_schema.json）
+- `site.pages`：页面树（可通过路径索引，如 `site.pages['/']`）
+- `site.index_path`：首页路径
+- `site.favicon_url`：站点 favicon
+- `site.nav_tree_path`：导航树接口路径
+- `site.plugins`：插件相关对象（如 `site.plugins.feedback`）
+
+### 页面对象 `page`
+- `page.id`：页面 ID
+- `page.path`：页面路径
+- `page.link_text`：页面标题
+- `page.settings`：页面配置项（如 `title`、`tags`、`description`、`icon`、`content` 等）
+- `page.parent`：父级页面对象
+- `page.children_in_list`：子页面列表
+- `page.breadcrumb`：面包屑导航数组
+- `page.author`：作者对象（如 `page.author.name`、`page.author.avatar_url`）
+- `page.published_at`：发布时间
+- `page.prev_page`/`page.next_page`：前后页对象
+
+### 用户对象 `current_user`
+- `current_user.name`：当前登录用户名称
+- `current_user.image`：头像
+
+### 搜索对象 `search`
+- `search.pages`：搜索结果页面数组
+- `search.keywords`：搜索关键词
+- `search.page_number`：当前页码
+- `search.extends`：自定义结果集
+
+### 其他变量
+- `params`：当前请求参数（如 `params.q`）
+
+## 5. 可用标签与过滤器
+
+### 片段渲染标签
+- `{% render 'xxx', param1: value1 %}`：渲染 snippets 目录下的 `_xxx.liquid` 片段。
+
+### 表单相关标签
+- `{% form_tag 'feedback', page: page %} ... {% endform_tag %}`：渲染反馈表单。
+- `{% form_tag 'search' %} ... {% endform_tag %}`：渲染搜索表单。
+- `{% form_field_tag 'color', ... %}`：渲染颜色选择字段。
+
+### 分页标签
+- `{% paginate_tag search.pages, as: 'pages', per: 10 %} ... {% endpaginate_tag %}`：分页渲染。
+
+### 资源引用过滤器
+- `{{ 'images/logo.png' | asset_url }}`：获取资源 URL。
+- `{{ 'main.css' | asset_url | stylesheet_tag }}`：引用样式表。
+- `{{ 'main.js' | asset_url | script_tag }}`：引用脚本。
+
+### 国际化过滤器
+- `{{ 'generic.back' | t }}`：多语言翻译。
+
+### 其他常用过滤器
+- `date`：日期格式化，如 `{{ page.published_at | date: "%Y-%m-%d" }}`
+- `truncate`：字符串截断
+- `default`：默认值
+- `size`：数组长度
+- `order_by`：排序
+
+## 6. 动态表单与 settings_schema.json
+
+主题的可配置项和页面的可配置项，均通过动态表单（DynamicForm）机制实现。支持丰富的字段类型、校验、默认值、只读、必填、多选等。
+
+- 字段类型参考：
+  - `text`：文本
+  - `textarea`：多行文本
+  - `checkbox`：勾选框
+  - `radio`：单选
+  - `image_picker`：图片选择
+  - `tag_picker`：标签选择
+  - `richtext`：富文本
+  - `html`：自定义 HTML
+- 字段属性：
+  - `id`：唯一标识
+  - `label`：显示名称
+  - `default`：默认值
+  - `readonly`：只读
+  - `required`：必填
+  - `multiple`：多选
+  - `info`：说明
+
+## 7. 主题开发最佳实践与常见问题
+
+### 最佳实践
+- 合理拆分片段（snippets），提升复用性和可维护性。
+- 善用 schema 和 settings，提升主题的灵活性和可配置性。
+- 使用国际化过滤器 `t`，支持多语言。
+- 资源引用统一用 `asset_url`，避免路径硬编码。
+- 布局文件建议只做全局骨架，页面内容用 `{{ content_for_layout }}` 插槽。
+- 充分利用 `form_tag`、`form_field_tag` 等扩展标签，提升表单交互体验。
+
+### 常见问题
+- 变量未生效：请确认变量名拼写、作用域和注入时机。
+- 片段未渲染：请确认 `render` 标签参数和文件名。
+- 资源 404：请确认资源已放在 `assets/` 目录并正确引用。
+- 配置项未生效：请检查 `settings_schema.json` 或模板 schema 是否正确。
+
+---
+
+如需更多帮助，请访问 [Baklib 主题开发文档](https://help.baklib.cn/themes/wiki) 或联系技术支持。
+
+## 8. 自定义表单标签与字段
+
+Baklib 主题系统扩展了丰富的表单标签和字段类型，方便开发者在模板中灵活实现各种交互。
+
+### 8.1 表单标签（form_tag）
+
+| 表单类型                | 用途说明           | 常用参数（示例）         | 说明 |
+|------------------------|-------------------|-------------------------|------|
+| `feedback`             | 反馈表单           | `page: page`            | 用于页面底部反馈，自动带上页面信息 |
+| `search`               | 搜索表单           | 无/`class: '...'`       | 用于站点内搜索，输入框名为 `q` |
+| `sign_in_with_password`| 密码登录表单       | 无                      | 用户名/密码登录 |
+| `sign_in_with_baklib`  | Baklib 账号登录    | 无                      | 第三方登录 |
+| `sign_in_with_sso`     | SSO 单点登录       | `provider: 'sso'`       | 支持多种 SSO 方式 |
+| `sign_out`             | 退出登录表单       | 无                      | 退出当前用户 |
+| `page`                 | 新建页面表单       | 无                      | 用于创建新页面 |
+| `edit_page`            | 编辑页面表单       | `page: page`            | 编辑指定页面 |
+| `delete_page`          | 删除页面表单       | `page: page`            | 删除指定页面 |
+| `reply`                | 评论/回复表单      | `reply: reply`          | 用于页面评论、回复 |
+
+**用法示例：**
+```liquid
+{% form_tag 'feedback', page: page %}
+  ...表单内容...
+{% endform_tag %}
+
+{% form_tag 'search', class: 'w-full' %}
+  ...表单内容...
+{% endform_tag %}
+```
+
+- 所有表单标签都支持 `class`、`style` 等 HTML 属性参数。
+- 表单标签会自动处理 CSRF、method、action 等表单安全和路由细节。
+- 支持嵌套自定义内容和片段渲染。
+
+### 8.2 字段标签（form_field_tag）
+
+| 字段类型      | 用途说明         | 常用参数（示例）                      | 说明 |
+|--------------|-----------------|--------------------------------------|------|
+| `color`      | 颜色选择器       | `field_name, value, class: '...'`    | 支持取色器交互 |
+| `tag`        | 标签选择         | `field_name, value, multiple: true`  | 支持多选标签 |
+| `dam_image`  | 图片上传         | `field_name, value, width, height`   | 支持 DAM 资源管理 |
+| `dam_video`  | 视频上传         | `field_name, value, width, height`   | 支持 DAM 资源管理 |
+| `range`      | 范围滑块         | `field_name, value, min, max, step, unit` | 支持滑动选择数值 |
+| `richtext`   | 富文本编辑器     | `field_name, value, editable: true`  | 支持富文本内容编辑 |
+
+**用法示例：**
+```liquid
+{% form_field_tag 'color', 'page[theme_color]', page.settings.theme_color %}
+{% form_field_tag 'tag', 'page[tags]', page.settings.tags, multiple: true %}
+{% form_field_tag 'dam_image', 'page[cover_image]', page.settings.cover_image, width: 200, height: 100 %}
+{% form_field_tag 'range', 'page[score]', page.settings.score, min: 0, max: 100, step: 1, unit: '分' %}
+{% form_field_tag 'richtext', 'page[content]', page.settings.content %}
+```
+
+- 字段标签支持所有标准 HTML 属性参数。
+- 可与 `form_tag` 组合使用，实现复杂表单。
+
+## 9. settings_schema.json 文件内容规范（优化版）
+
+参考 `themes/wiki/wiki/config/settings_schema.json`，推荐如下结构和最佳实践：
+
+### 9.1 顶层结构
+- 文件为 JSON 数组，每个元素为一个分组（section）。
+- 每个分组包含 `name`（分组名/分组 key，推荐用国际化 key），`settings`（字段数组）等。
+- 支持主题元信息（如 theme_info），图片路径可用 `${lang}` 占位符，便于多语言切换。
+
+### 9.2 字段定义
+- `id`：字段唯一标识，必填。
+- `type`：字段类型，支持 `text`、`checkbox`、`radio`、`image_picker`、`html`、`tag_picker`、`richtext`、`color_background`、`range` 等。
+- `label`、`info`、`default`、`choices` 等全部推荐用 `t:` 前缀引用多语言 key，**key 命名规范为 `t:schema.<分组>.settings.<字段名>.label`**，如 `t:schema.generic.settings.logo_url.label`。
+- `choices`：单选/多选的选项数组，label 也推荐用国际化 key。
+- `when`：条件表达式，控制字段的显示（如 `"when": "hero_bg_type === '2'"`）。
+- 其他属性：如 `ratio`、`width`、`rows`、`multiple`、`readonly`、`required` 等。
+
+### 9.3 示例
+```json
+[
+  {
+    "name": "t:schema.generic.name",
+    "settings": [
+      {
+        "id": "logo_url",
+        "type": "image_picker",
+        "ratio": "3:1",
+        "width": 240,
+        "label": "t:schema.generic.settings.logo_url.label",
+        "info": "t:schema.generic.settings.logo_url.info"
+      },
+      {
+        "id": "screen_width",
+        "type": "radio",
+        "label": "t:schema.generic.settings.screen_width.label",
+        "choices": [
+          { "label": "t:schema.generic.settings.screen_width.choices.narrow", "value":"1024px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.medium", "value":"1280px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.wide", "value":"1536px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.full", "value":"100%" }
+        ],
+        "default": "1280px"
+      }
+    ]
+  }
+]
+```
+
+### 9.4 字段详细说明
+
+| 字段名         | 类型      | 是否必填 | 说明                                                         | 特殊格式/要求                         |
+|----------------|-----------|----------|--------------------------------------------------------------|--------------------------------------|
+| id             | string    | 是       | 字段唯一标识，建议小写字母+下划线                            | 必须唯一，正则：^[a-z][a-z0-9_]*$     |
+| type           | string    | 是       | 字段类型，如 text、checkbox、radio、image_picker 等           | 详见下表"支持的 type"                |
+| label          | string    | 是       | 字段显示名称，强烈建议国际化                                  | 建议用 t:schema.xxx.settings.xxx.label|
+| info           | string    | 否       | 字段说明，建议国际化                                          |                                        |
+| default        | any       | 否       | 默认值，类型需与 type 匹配                                    |                                        |
+| required       | boolean   | 否       | 是否必填，默认 false                                         |                                        |
+| readonly       | boolean   | 否       | 是否只读，默认 false                                         |                                        |
+| multiple       | boolean   | 否       | 是否多选，适用于 tag_picker、select 等                        |                                        |
+| choices        | array     | 部分必填 | radio/select/tag_picker 必填，选项数组                        | 每项需有 label（建议国际化）、value   |
+| ratio          | string    | 否       | 图片宽高比，适用于 image_picker                              | 如 "3:1"、"1:1"                     |
+| width          | number    | 否       | 图片宽度/输入框宽度等                                        | 单位 px                               |
+| rows           | number    | 否       | 多行文本/HTML 字段的行数                                     |                                        |
+| when           | string    | 否       | 字段显示条件，JS 表达式                                      | 依赖其他字段 id                       |
+| placeholder    | string    | 否       | 占位符，适用于 text/textarea/html 等                         |                                        |
+| min/max/step   | number    | 否       | 适用于 range/number 类型                                     |                                        |
+
+#### 支持的 type 及说明
+
+| type           | 说明                   | 典型用法/特殊要求           |
+|----------------|------------------------|-----------------------------|
+| text           | 单行文本               | default: string             |
+| textarea       | 多行文本               | rows: number                |
+| checkbox       | 勾选框                 | default: boolean            |
+| radio          | 单选                   | choices: array              |
+| select         | 下拉选择               | choices: array              |
+| image_picker   | 图片选择               | ratio/width                 |
+| tag_picker     | 标签选择               | choices/multiple            |
+| richtext       | 富文本编辑器           |                             |
+| html           | HTML 代码块            | rows/placeholder            |
+| color_background| 颜色选择/背景色        |                             |
+| range          | 滑块/数值范围选择      | min/max/step/unit           |
+
+> ⚠️ **注意**：如 type 为 radio/select/tag_picker，`choices` 字段为必填，且每个选项需有 label（建议国际化）和 value。
+
+## 10. 多语言文件内容规范
+
+主题的多语言文件位于 `locales/` 目录下，支持多种语言（如 `zh-CN.json`、`en.json`、`fr.json` 等）。
+
+### 10.1 主多语言文件
+- 文件为 JSON 格式，顶层为 key-value 结构。
+- 支持分组（如 `generic`、`buttons`、`feedback` 等），便于模板和 schema 引用。
+- 示例：
+```json
+{
+  "theme_label": "Wiki Demo",
+  "generic": {
+    "close": "关闭",
+    "back": "返回"
+  },
+  "buttons": {
+    "submit": "提交"
+  }
+}
+```
+
+### 10.2 schema 多语言文件
+- 文件名为 `xx.schema.json`，用于 settings_schema.json 的 label/info/default 等字段国际化。
+- 结构为多层嵌套，分为 `generic`/`page` > `settings` > 字段名。
+- 示例：
+```json
+{
+  "generic": {
+    "name": "站点基本信息设置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo",
+        "info": "页头显示的 logo 图片"
+      },
+      "company_name": {
+        "label": "公司名称",
+        "default": "Baklib.cn"
+      }
+    }
+  }
+}
+```
+
+### 10.3 国际化引用方法
+- 在 settings_schema.json、模板 schema、模板内容中，均可通过 `t:xxx` 方式引用多语言 key。
+- 例如：`"label": "t:schema.generic.settings.logo_url.label"` 会自动查找当前语言下的 schema 多语言文件。
+
+### 10.4 最佳实践
+- 建议所有用户可见的 label、info、default 等均使用国际化 key，便于多语言切换。
+- 多语言 key 命名建议分组、层级清晰，避免重复。
+
+## 11. 模板 schema 数据结构规范（推荐）
+
+每个模板文件底部建议包含 `{% schema %} ... {% endschema %}`，内容为 JSON 对象，推荐字段如下：
+
+- `name`：模板名称，推荐用国际化 key
+- `description`：模板描述，推荐用国际化 key
+- `thumb_url`：缩略图路径，支持 `${lang}` 占位符
+- `preview_image_urls`：预览图数组
+- `sub_page_templates`：可用的子页面模板
+- `settings`：本模板可配置项，结构与 settings_schema.json 字段一致，支持 `when` 条件
+
+### 字段国际化与动态条件
+- `label`、`info`、`choices` 等全部推荐用国际化 key
+- 支持 `when` 字段，控制字段的显示条件
+
+### 示例
+```liquid
+{% schema %}
+  {
+    "name": "t:schema.templates.index.docs.name",
+    "description": "t:schema.templates.index.docs.description",
+    "thumb_url": "images/schema/${lang}/index-docs.png",
+    "preview_image_urls": [
+      "images/schema/${lang}/index-docs.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.docs.settings.hero_bg_type.label",
+        "choices": [
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.none", "value": "0" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.color", "value": "1" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.image", "value": "2" }
+        ],
+        "default": "0",
+        "info": "t:schema.templates.index.docs.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "label": "t:schema.templates.index.docs.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.docs.settings.hero_image_url.info",
+        "when": "hero_bg_type === '2'"
+      }
+    ]
+  }
+{% endschema %}
+```
+
+---
+
+**最佳实践**
+- 所有分组名、字段 label、info、choices、description 等均用国际化 key，便于多语言主题开发。
+- 合理使用 `when` 字段实现动态表单配置。
+- 图片路径、thumb_url 推荐用 `${lang}` 占位符，便于多语言切换。
+
+## 12. 常见 schema 问题与校验建议
+
+在实际主题/模版开发中，settings_schema.json 常见问题包括：
+
+- 字段缺少 `label`，导致界面无显示名或国际化失效
+- 缺少 `info`、`default`、`required` 等辅助属性，影响表单体验和可维护性
+- `radio`、`select`、`tag_picker` 等类型缺少 `choices`，导致前端渲染异常
+- `label`、`info`、`choices` 未使用国际化 key，影响多语言支持
+- 字段类型与默认值、choices 不兼容（如 type 为 radio 但 default 不在 choices 内）
+- 忽略 `when` 字段，导致动态表单逻辑失效
+
+### 校验器行为
+
+系统内置的校验器（如 ThemeEngine::Validators::SettingsSchema）会自动校验：
+- 每个字段必须有 `id`、`type`、`label`（推荐国际化）
+- choices 类型字段必须有 `choices` 数组
+- 字段类型、默认值、choices 的兼容性
+- 分组 name 唯一且非空
+- settings 必须为数组
+
+### 开发建议
+
+- **强烈建议**每个字段都补全 `label`、`info`、`default`、`required`、`readonly`、`multiple` 等属性，并全部国际化
+- `choices` 的 label 也应国际化
+- 充分利用 `when` 字段实现动态表单
+- 开发主题时可用内置校验器或单元测试提前发现 schema 问题
+
+**示例（推荐字段齐全）：**
+```json
+{
+  "id": "blog_title",
+  "type": "text",
+  "label": "t:schema.generic.settings.blog_title.label",
+  "info": "t:schema.generic.settings.blog_title.info",
+  "default": "我的博客",
+  "required": true
+}
+```
+
+### 11.1 模板 schema 字段详细说明
+
+每个模板文件底部的 `{% schema %}` 区块为 JSON 对象，推荐字段如下：
+
+| 字段名               | 类型      | 是否必填 | 说明                                                         | 特殊格式/要求                         |
+|----------------------|-----------|----------|--------------------------------------------------------------|--------------------------------------|
+| name                 | string    | 是       | 模板名称，建议国际化 key                                      | 如 t:schema.templates.xxx.name        |
+| description          | string    | 否       | 模板描述，建议国际化 key                                      |                                        |
+| thumb_url            | string    | 否       | 模板缩略图路径                                               | 支持 ${lang} 占位符                   |
+| preview_image_urls   | array     | 否       | 预览图数组                                                   |                                        |
+| sub_page_templates   | array     | 否       | 可用的子页面模板                                             | 如 ["page"]                          |
+| settings             | array     | 否       | 本模板可配置项，结构与 settings_schema.json 字段一致          | 支持 when 条件                        |
+
+#### settings 字段说明（与 settings_schema.json 相同）
+详见上文 9.4 字段详细说明。
+
+**示例：**
+```liquid
+{% schema %}
+  {
+    "name": "t:schema.templates.index.docs.name",
+    "description": "t:schema.templates.index.docs.description",
+    "thumb_url": "images/schema/${lang}/index-docs.png",
+    "preview_image_urls": [
+      "images/schema/${lang}/index-docs.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.docs.settings.hero_bg_type.label",
+        "choices": [
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.none", "value": "0" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.color", "value": "1" },
+          {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.image", "value": "2" }
+        ],
+        "default": "0",
+        "info": "t:schema.templates.index.docs.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "label": "t:schema.templates.index.docs.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.docs.settings.hero_image_url.info",
+        "when": "hero_bg_type === '2'"
+      }
+    ]
+  }
+{% endschema %}
+```
+
+> ⚠️ **注意**：模板 schema 的 settings 字段结构、校验规则与 settings_schema.json 完全一致，详见 9.4 字段详细说明。

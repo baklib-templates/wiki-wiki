@@ -1,46 +1,45 @@
 {
-  "generic": {
-    "close": "关闭",
-    "back": "返回",
-    "back_to": "返回上一级",
-    "search": "搜索",
-    "popular_search": "热门搜索",
-    "search_result": "搜索结果",
-    "index": "首页",
-    "menu": "目录",
-    "articles": "篇文章",
-    "read_more": "阅读更多",
-    "404": "404 页面找不到",
-    "403": "403 无访问权限",
-    "empty": "内容为空",
-    "sub_page_list": "子页面列表",
-    "prev_page": "上一页",
-    "next_page": "下一页",
-    "copyright": "版权所有",
-    "published_at": "发布于",
-    "hot_pages": "热门话题",
-    "newest_pages": "最新文章",
-    "get_started_pages": "新手入门",
-    "recommend_pages": "专题推荐",
-    "channel_pages": "栏目导览",
-    "recent_pages": "最近文章",
-    "tags": "快捷标签"
+  "layout": {
+    "theme": {
+      "search_input_placeholder": "搜索...",
+      "search_tags_label": "热门标签"
+    }
   },
-  "placeholders": {
-    "search": "在站内搜索",
-    "input_password": "输入密码"
+  "snippets": {
+    "header": {
+      "search_placeholder": "搜索...",
+      "sign_in_button": "登录"
+    },
+    "feedback_form": {
+      "title": "提交反馈",
+      "message_label": "留言",
+      "message_placeholder": "请输入反馈内容",
+      "message_required": "反馈内容不能为空",
+      "submit": "提交",
+      "cancel": "取消"
+    },
+    "feedback_button": {
+      "title_posted": "感谢您的反馈",
+      "title_unposted": "提交反馈"
+    },
+    "page": {
+      "prev_page": "上一页",
+      "next_page": "下一页",
+      "no_prev_next_page": "无",
+      "page_toc": "页内目录"
+    }
   },
-  "buttons": {
-    "submit": "提交",
-    "login": "登录",
-    "sso_login": "SSO 登录",
-    "baklib_login": "Baklib 账号登录"
+  "templates": {
+    "index": {
+      "docs": {
+        "hero_slogan": "👋 What Can We Help?",
+        "channel_one_name": "新手入门",
+        "channel_two_name": "专题推荐"
+      }
+    }
   },
-  "prompts": {
-    "page_restricted": "本页面需要认证才可以被访问"
-  },
-  "feedback": {
-    "title": "提交反馈",
-    "input_placeholder": "请输入反馈内容"
+  "attributes": {
+    "published_at": "发布时间",
+    "feedback_created_at": "上次反馈于"
   }
 }
