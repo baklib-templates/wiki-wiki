@@ -44,5 +44,11 @@
   "feedback": {
     "title": "Submit Feedback",
     "input_placeholder": "Please input feedback"
+  },
+  "ai": {
+    "title": "AI Search",
+    "started": "Starting...",
+    "reading": "Reading content...",
+    "thinking": "Thinking..."
   }
 }
