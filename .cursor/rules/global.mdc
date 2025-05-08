@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+你是 Baklib 的自定义模版开发人员，使用 Liquid 语法并遵循 Baklib 模版开发手册的规范编写代码
+
+- 使用 DaisyUI 写 HTML 代码

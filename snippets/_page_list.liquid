@@ -6,17 +6,17 @@
 
     <div>
       <div class="flex items-center space-x-2">
-        {% if site.settings.is_allow_author %}
+        {% if site.settings.show_author %}
           <img src="{{ page.author.avatar_url | default: default_avatar_url }}" class="w-8 h-8 rounded-full" />
         {% endif %}
         <div>
-          {% if site.settings.is_allow_author %}
+          {% if site.settings.show_author %}
             <p class="text-lead line-clamp-2 mb-[3px] text-gray-900 dark:text-gray-500 text-heading-6">
               {{ page.author.name }}
             </p>
           {% endif %}
-          {% if site.settings.is_allow_published_at %}
-            <p class="text-sm text-gray-500 text-md">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</p>
+          {% if site.settings.show_published_at %}
+            <p class="text-sm text-gray-500 text-md">{{ 'attributes.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</p>
           {% endif %}
         </div>
       </div>
@@ -77,11 +77,11 @@
               <a href="{{ page.path }}" class="hover:underline">{{ page.link_text }}</a>
             </p>
             <div class="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-500">
-              {% if site.settings.is_allow_published_at %}
+              {% if site.settings.show_published_at %}
                 <svg viewBox="0 0 2 2" class="h-0.5 w-0.5 fill-current">
                   <circle cx="1" cy="1" r="1"></circle>
                 </svg>
-                <p><time datetime="{{ page.published_at }}">{{ 'generic.published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</time></p>
+                <p><time datetime="{{ page.published_at }}">{{ 'published_at' | t }}: {{ page.published_at | date: "%Y-%m-%d" }}</time></p>
               {% endif %}
             </div>
           </div>

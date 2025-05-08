@@ -6,8 +6,8 @@
     {% meta_tags %}
     {{ 'css/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
   </head>
-  <body class="bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-200" id="js-body" data-controller="theme">
-      <div class="mt-20">{{ content_for_layout }}</div>
-      {% render 'footer' %}
+  <body>
+    <div class="mt-20">{{ content_for_layout }}</div>
+    {% render 'footer' %}
   </body>
 </html>
