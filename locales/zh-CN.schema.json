@@ -7,6 +7,9 @@
       "header_name": "页头页尾导航菜单",
       "head_title": "Head HTML 配置",
       "settings": {
+        "logo_url": {
+          "label": "站点logo"
+        },
         "hero_image_url": {
           "label": "首页背景大图",
           "info": "用于部分主题首页的背景横幅，建议1900*600px的深色图片"
