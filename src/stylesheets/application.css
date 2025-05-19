@@ -226,90 +226,8 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer components {
-  /* #app {
-    display: grid;
-    grid-template-areas:
-      "header"
-      "main"
-      "footer";
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr;
-    min-height: 100vh;
-  } */
-
-  /* #header {
-    grid-area: header;
-    @apply max-w-[var(--max-content-width)] mx-auto;
-  }
-
-  #main {
-    grid-area: main;
-    @apply mx-auto w-full max-w-[var(--max-content-width)] px-4;
-  }
-
-  #footer {
-    grid-area: footer;
-  } */
-
-  .main-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    width: 100%;
-
-    /* 大屏幕时显示左侧导航 */
-    @apply lg:grid-cols-[var(--left-sidebar-width)_minmax(0,1fr)];
-
-    /* 当有右侧目录时的布局 */
-    &.has-toc {
-      @apply lg:grid-cols-[var(--left-sidebar-width)_minmax(0,1fr)_var(--right-sidebar-width)];
-    }
-  }
-
-  .left-sidebar {
-    @apply hidden lg:block;
-    width: var(--left-sidebar-width);
-  }
-
-  .main-content {
-    @apply min-w-0; /* 防止内容溢出 */
-  }
-
-  .right-sidebar {
-    @apply hidden lg:block;
-    width: var(--right-sidebar-width);
-  }
-
   .header-nav-icon-button {
     @apply inline-flex size-10 p-1 cursor-pointer items-center justify-center rounded-full hover:bg-base-200;
-  }
-
-  .ProseMirror .table-container {
-    @apply max-w-full overflow-x-auto;
-  }
-
-  .screen-container {
-    max-width: var(--screen-width);
-  }
-
-  .page-detail {
-    @apply relative grid grid-cols-1 gap-6 px-3;
-  }
-
-  .page-detail.page-detail--with-nav-tree {
-    @apply lg:grid-cols-[var(--left-sidebar-width)_minmax(0,1fr)];
-  }
-
-  .page-detail.page-detail--with-toc {
-    @apply lg:grid-cols-[minmax(0,1fr)_var(--right-sidebar-width)];
-  }
-
-  .page-detail.page-detail--with-nav-tree.page-detail--with-toc {
-    @apply lg:grid-cols-[var(--left-sidebar-width)_minmax(0,1fr)_var(--right-sidebar-width)];
-  }
-
-  [data-controller="nav-tree"] summary.menu-active {
-    @apply text-neutral-content bg-neutral
   }
 }
 
@@ -317,4 +235,20 @@
   .flex-col-container {
     @apply flex h-full flex-col;
   }
+}
+
+[data-controller="nav-tree"] summary.menu-active {
+  @apply text-neutral-content bg-neutral
+}
+
+#page-content.ProseMirror a {
+  @apply text-primary;
+}
+
+#page-content.ProseMirror .table-container {
+  @apply max-w-full overflow-x-auto;
+}
+
+#page-content.ProseMirror code {
+  @apply text-sm;
 }

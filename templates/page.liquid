@@ -1,39 +1,29 @@
-{% comment %} 左侧 NavBar只显示当前父级栏目，具体做法： nav_tree_path 添加一个 parent 参数即可。 {% endcomment %}
-{% unless page.parent.path == '/' %}
-    {% assign parent = page.parent %}
-{% else %}
-    {% assign parent = page %}
-{% endunless %}
-  
-  
-{%# page_list 内页列表点击 URL 不改变，需要添加 data-turbo-action="advance" %}
-<turbo-frame id="main-content" class="grid" data-turbo-action="advance">
-    <div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-[var(--left-sidebar-width)_1fr] gap-6 pt-4 [&.has-toc]:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)]" 
+
+<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-[var(--left-sidebar-width)_1fr] gap-6 pt-4 [&.has-toc]:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)]" 
     data-controller="toc"
     data-toc-header-selector-value=".js--header"
 >
-        <!-- 左侧导航树 -->
-        <aside class="hidden lg:block">
-            <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
-                {% render 'nav_tree', nav_tree: site.nav_tree %}
-            </div>
-        </aside>
-        <!-- 中间内容 -->
-        <turbo-frame id="frame--page-detail">
-            {% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
-            {% render 'page', page: page %}
-        </turbo-frame>
-        <!-- 右侧 TOC -->
-        <aside class="print:hidden hidden lg:block">
-            <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
-                <div class="menu">
-                    <div class="menu-title">{{ 'snippets.page.page_toc' | t }}</div>
-                    <div data-toc-target="links"></div>
-                </div>
-            </div>
-        </aside>
+    <!-- 左侧导航树 -->
+    <aside class="hidden lg:block">
+        <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
+            {% render 'nav_tree', nav_tree: site.nav_tree %}
+        </div>
+    </aside>
+    <!-- 中间内容 -->
+    <div>
+        {% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+        {% render 'page', page: page %}
     </div>
-</turbo-frame>
+    <!-- 右侧 TOC -->
+    <aside class="print:hidden hidden lg:block">
+        <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
+            <div class="menu">
+                <div class="menu-title">{{ 'snippets.page.page_toc' | t }}</div>
+                <div data-toc-target="links"></div>
+            </div>
+        </div>
+    </aside>
+</div>
   
 {% schema %}
 {

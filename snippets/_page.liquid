@@ -50,7 +50,7 @@
   {% endif %}
 
   {% # 内容 %}
-  <section class="ProseMirror !h-auto p-6" data-controller="images-viewer" data-toc-target="content">
+  <section id="page-content" class="ProseMirror !h-auto p-6" data-controller="images-viewer" data-toc-target="content">
     {{ page.settings.content }}
   </section>
 
@@ -64,34 +64,34 @@
     {% assign prev_page = page.prev_page %}
     {% assign next_page = page.next_page %}
 
-    <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-4 print:hidden">
-      <a href="{% if prev_page %}{{ prev_page.path }}{% else %}javascript:void(0){% endif %}" class="block flex-1 rounded-lg bg-base-200 p-3">
-        <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
-        <div class="text-base text-primary dark:text-primary-200">
-          <div class="flex items-center space-x-1 line-clamp-1">
-            {% if prev_page %}
+    <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-6 print:hidden">
+      {% if prev_page %}
+        <a href="{{ prev_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 line-clamp-1">
               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path></svg>
               <span class="line-clamp-1">{{ prev_page.link_text }}</span>
-            {% else %}
-              <span class="text-base-400 text-base-content/40">{{ 'snippets.page.no_prev_next_page' | t}}</span>
-            {% endif %}
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      {% else %}
+        <div class="flex-1"></div>
+      {% endif %}
       <!-- Next link -->
-      <a href="{% if next_page %}{{ next_page.path }}{% else %}javascript:void(0){% endif %}" class="block flex-1 rounded-lg bg-base-200 p-3">
-        <div class="mb-2 text-base-content/40 text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
-        <div class="text-base text-primary dark:text-primary-200">
-          <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
-            {% if next_page %}
+      {% if next_page %}
+        <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+          <div class="mb-2 text-base-content/40 text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
+          <div class="text-base text-primary dark:text-primary-200">
+            <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
               <span class="line-clamp-1">{{ next_page.link_text }}</span>
               <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z"></path></svg>
-            {% else %}
-              <span class="text-base-400 text-base-content/40">{{ 'snippets.page.no_prev_next_page' | t}}</span>
-            {% endif %}
+            </div>
           </div>
-        </div>
-      </a>
+        </a>
+      {%  else %}
+        <div class="flex-1"></div>
+      {% endif %}
     </div>
   </section>
 </article>
