@@ -23,8 +23,8 @@
   {% # 标题 %}
   {% assign title = page.settings.title | presence %}
   {% if title %}
-    <header class="mb-6 border-l-6 border-primary pl-2 py-1">
-      <h1 class="text-4xl font-bold">
+    <header class="mb-4 border-l-6 border-primary pl-2 py-1">
+      <h1 class="text-2xl font-bold md:text-3xl lg:text-4xl">
         {{ title }}
       </h1>
     </header>
@@ -50,7 +50,7 @@
   {% endif %}
 
   {% # 内容 %}
-  <section id="page-content" class="ProseMirror !h-auto p-6" data-controller="images-viewer" data-toc-target="content">
+  <section id="page-content" class="ProseMirror !h-auto " data-controller="link-target images-viewer" data-toc-target="content">
     {{ page.settings.content }}
   </section>
 
@@ -81,7 +81,7 @@
       <!-- Next link -->
       {% if next_page %}
         <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
-          <div class="mb-2 text-base-content/40 text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
+          <div class="mb-2 text-base-content/40 md:text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
           <div class="text-base text-primary dark:text-primary-200">
             <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
               <span class="line-clamp-1">{{ next_page.link_text }}</span>

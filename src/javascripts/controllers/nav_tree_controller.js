@@ -23,6 +23,12 @@ export default class extends Controller {
     document.addEventListener("turbo:load", () => this.#updateActiveItem())
   }
 
+  disconnect() {
+    if (this.setTimeout) {
+      clearTimeout(this.setTimeout);
+    }
+  }
+
   // 更新激活状态的菜单项
   #updateActiveItem() {
     console.log('change', window.location.pathname)
@@ -40,6 +46,8 @@ export default class extends Controller {
         if (parent) {
           parent.setAttribute('open', '')
         }
+        // item.scrollIntoView({ behavior: "smooth", block: "center" }); // 滚动到视图中
+        // window.scrollBy(0, 0);
       }else{
         item.classList.remove(this.activeClass);
       }

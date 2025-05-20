@@ -1,78 +1,80 @@
-
-<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-[var(--left-sidebar-width)_1fr] gap-6 pt-4 [&.has-toc]:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)]" 
-    data-controller="toc"
-    data-toc-header-selector-value=".js--header"
->
-    <!-- 左侧导航树 -->
-    <aside class="hidden lg:block">
-        <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
-            {% render 'nav_tree', nav_tree: site.nav_tree %}
-        </div>
-    </aside>
-    <!-- 中间内容 -->
-    <div>
-        {% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
-        {% render 'page', page: page %}
-    </div>
-    <!-- 右侧 TOC -->
-    <aside class="print:hidden hidden lg:block">
-        <div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
-            <div class="menu">
-                <div class="menu-title">{{ 'snippets.page.page_toc' | t }}</div>
-                <div data-toc-target="links"></div>
-            </div>
-        </div>
-    </aside>
+<div class="px-4">
+	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 pt-4 [&.has-toc]:lg:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)]"
+		data-controller="toc"
+		data-toc-header-selector-value=".js--header"
+		data-toc-offset-value="10"
+		data-toc-clipboard-success-value="{{ 'snippets.page.copy_success' | t: '链接已复制' }}"
+	>
+		<!-- 左侧导航树 -->
+		<aside class="hidden lg:block">
+			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
+				{% render 'nav_tree', nav_tree: site.nav_tree %}
+			</div>
+		</aside>
+		<!-- 中间内容 -->
+		<div class="px-0 lg:px-4 overflow-hidden">
+			{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+			{% render 'page', page: page %}
+		</div>
+		<!-- 右侧 TOC -->
+		<aside class="print:hidden hidden lg:block">
+			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
+				<div class="menu">
+					<div class="menu-title">{{ 'snippets.page.page_toc' | t }}</div>
+					<div data-toc-target="links"></div>
+				</div>
+			</div>
+		</aside>
+	</div>
 </div>
-  
+
 {% schema %}
 {
-    "name": "Page",
-    "description": "The content page template",
-    "thumb_url": "images/theme/page.png",
-    "sub_page_templates": ["page"],
-    "settings": [
-    {
-        "id": "show_list",
-        "type": "checkbox",
-        "default": "false",
-        "label": "栏目",
-        "info": "作为栏目页面，只显示子页面列表"
-    },
-    {
-        "id": "title",
-        "type": "text",
-        "readonly": true,
-        "label": "标题",
-        "info": "知识库同步，不可编辑"
-    },
-    {
-        "id": "tags",
-        "type": "tag_picker",
-        "multiple": true,
-        "label": "t:settings_schema.page.settings.tags.label"
-    },
-    {
-        "id": "description",
-        "type": "textarea",
-        "label": "t:settings_schema.page.settings.description.label"
-    },
-    {
-        "id": "icon",
-        "type": "image_picker",
-        "ratio": "1:1",
-        "width": 100,
-        "label": "t:settings_schema.page.settings.icon.label",
-        // "required": true, 如果必填就用这个参数
-        "info": "t:settings_schema.page.settings.icon.info"
-    },
-    {
-        "id": "content",
-        "type": "richtext",
-        "label": "t:settings_schema.page.settings.content.label",
-        "readonly": true,
-        "info": "t:settings_schema.page.settings.content.info"
-    }
-    ]
+	"name": "Page",
+	"description": "The content page template",
+	"thumb_url": "images/theme/page.png",
+	"sub_page_templates": ["page"],
+	"settings": [
+		{
+			"id": "show_list",
+			"type": "checkbox",
+			"default": "false",
+			"label": "栏目",
+			"info": "作为栏目页面，只显示子页面列表"
+		},
+		{
+			"id": "title",
+			"type": "text",
+			"readonly": true,
+			"label": "标题",
+			"info": "知识库同步，不可编辑"
+		},
+		{
+			"id": "tags",
+			"type": "tag_picker",
+			"multiple": true,
+			"label": "t:settings_schema.page.settings.tags.label"
+		},
+		{
+			"id": "description",
+			"type": "textarea",
+			"label": "t:settings_schema.page.settings.description.label"
+		},
+		{
+			"id": "icon",
+			"type": "image_picker",
+			"ratio": "1:1",
+			"width": 100,
+			"label": "t:settings_schema.page.settings.icon.label",
+			"info": "t:settings_schema.page.settings.icon.info"
+		},
+		{
+			"id": "content",
+			"type": "richtext",
+			"label": "t:settings_schema.page.settings.content.label",
+			"readonly": true,
+			"info": "t:settings_schema.page.settings.content.info"
+		}
+	]
 }
 {% endschema %}

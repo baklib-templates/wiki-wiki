@@ -45,6 +45,8 @@ export default class extends Controller {
         flipVertical: 1,
       },
     });
+
+console.log('openViewer', clickedImage)
     viewer.view(clickedImage)
   }
 }

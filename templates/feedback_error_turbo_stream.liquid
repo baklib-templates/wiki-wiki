@@ -1,6 +1,5 @@
 {% layout none %}
 
-<turbo-stream action="remove" target="js--feedback-modal"></turbo-stream>
 
 {% # 更新feedback按钮 %}
 <turbo-stream action="replace" target="js--feedback-{{ page.id }}">
@@ -9,11 +8,12 @@
   </template>
 </turbo-stream>
 
-<turbo-stream action="append" target="js--body">
+<turbo-stream action="remove" target="js--feedback-error"></turbo-stream>
+<turbo-stream action="append" target="js--feedback-modal">
   <template>
     <div class="toast toast-bottom toast-center" id="js--feedback-error" x-data="" x-init="setTimeout(() => { $el.remove() }, 5000)">
-      <div class="alert alert-success">
-        <span>{{ success }}</span>
+      <div class="alert alert-error">
+        <span>{{errors}}</span>
       </div>
     </div>
   </template>

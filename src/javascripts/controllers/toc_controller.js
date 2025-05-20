@@ -4,10 +4,16 @@ export default class extends Controller {
   static targets = ["links", "content", "menu"];
   static values = {
     headerSelector: String,
+    offset: Number,
+    clipboardSuccess: String,
   };
 
   connect() {
     this.#generateDirectory();
+
+    const anchor = window.location.hash.replace('#', '');
+    const targetElement = document.getElementById(anchor);
+    targetElement?.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
   disconnect() {
@@ -41,7 +47,12 @@ export default class extends Controller {
 
       const level = parseInt(heading.tagName.substr(1), 10);
       const id = this.#generateUniqueId(heading, level, index);
-      heading.id = id;
+      // heading.id = id;
+      heading.style.position = "relative";
+      // 解决锚点定位的问题（顶部为sticky时）
+      const top = this.headerHeight + Number(this.offsetValue);
+      heading.insertAdjacentHTML("beforeend", `<div js-position style="position: absolute; top: -${top}px; left: 0; width: 0; height: 0" id="${id}"></div>`)
+      heading.insertAdjacentHTML("beforeend", '<a name="' + id + '"></a>')
 
       const node = { level, id, text: heading.textContent, children: [] };
 
@@ -82,10 +93,24 @@ export default class extends Controller {
       li.appendChild(link);
       ul.appendChild(li);
 
-      // // 给 Heading 添加锚点复制功能
-      // const hea = document.getElementById(node.id)
-      // hea.classList = "flex group"
-      // hea.insertAdjacentHTML("beforeend",'<div data-controller="clipboard" data-clipboard-success-content-value=" Copied!"><input type="hidden" value="' + window.location.href.split('#')[0] + '#' + node.id + '" data-clipboard-target="source" /><button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="flex ml-1 opacity-0 group-hover:opacity-100">\n      <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-5 text-gray-300 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">\n        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />\n      </svg>\n    </button></div>')
+      // 获取定位的节点
+      const heading_pos = document.getElementById(node.id);
+      if (!heading_pos) return;
+
+      const heading = heading_pos.parentElement;
+      if (!heading) return;
+      heading.classList = "flex group"
+      const htmlStr = `
+        <div class="ml-1 flex items-center" data-controller="clipboard" data-clipboard-success-value="${this.clipboardSuccessValue}">
+          <input type="hidden" value="${window.location.href.split('#')[0]}#${node.id}" data-clipboard-target="source" />
+          <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="flex ml-1 opacity-0 group-hover:opacity-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-5 text-gray-300 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </button>
+        </div>
+      `
+      heading.insertAdjacentHTML("beforeend", htmlStr);
       // hea.insertAdjacentHTML("beforeend",'<a name="' + node.id + '"></a>')
 
       if (node.children.length > 0) {
@@ -116,7 +141,7 @@ export default class extends Controller {
         const heading = this.headings[i];
 
         const link = links.find(
-          (link) => link.dataset.tocAnchorParam === heading.id,
+          (link) => link.dataset.tocAnchorParam === heading.querySelector("[js-position]").id,
         );
 
         if (link && this.isHeadingInView(heading)) {
@@ -159,7 +184,6 @@ export default class extends Controller {
       const headerHeight = this.headerHeight;
       const targetPosition = targetElement.getBoundingClientRect().top;
       const scrollToPosition = targetPosition - headerHeight;
-      console.log(headerHeight, targetPosition, scrollToPosition);
 
       const scrollOptions = {
         top: scrollToPosition,
@@ -168,9 +192,14 @@ export default class extends Controller {
 
       targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       window.scrollBy(0, -headerHeight);
-      window.scrollBy(0, scrollToPosition);
+      window.scrollBy(scrollOptions);
     }
   }
+
+  fncAnimation = (callback) => {
+    window.setTimeout(callback, 1000 / 60);
+    return callback;
+  };
 
   get headings() {
     return Array.from(this.contentTarget.querySelectorAll("h1, h2, h3, h4, h5, h6"));
@@ -186,14 +215,15 @@ export default class extends Controller {
     if(!header) {
       return 0;
     }
+    return header.offsetHeight;
 
-    const styles = window.getComputedStyle(header);
+    // const styles = window.getComputedStyle(header);
 
-    let fixed = styles.getPropertyValue("position") === "fixed";
-    if (fixed) {
-      return header.offsetHeight;
-    } else {
-      return 0;
-    }
+    // let fixed = styles.getPropertyValue("position") === "fixed";
+    // if (fixed) {
+    //   return header.offsetHeight;
+    // } else {
+    //   return 0;
+    // }
   }
 }

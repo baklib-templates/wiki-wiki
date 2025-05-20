@@ -237,11 +237,25 @@
   }
 }
 
+.menu {
+  :where(li > details > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 135deg;
+    }
+  }
+  :where(li > details[open] > summary), :where(li > .menu-dropdown-toggle) {
+    &:after {
+      rotate: 225deg;
+    }
+  }
+}
+
 [data-controller="nav-tree"] summary.menu-active {
   @apply text-neutral-content bg-neutral
 }
 
 #page-content.ProseMirror a {
+  word-break: break-all;
   @apply text-primary;
 }
 
@@ -252,3 +266,6 @@
 #page-content.ProseMirror code {
   @apply text-sm;
 }
+
+@import "./tooltip.css";
+@import 'viewerjs/dist/viewer.css';
