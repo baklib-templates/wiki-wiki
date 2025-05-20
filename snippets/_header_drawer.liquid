@@ -1,5 +1,4 @@
 {%- assign header_menu_html = site.settings.header_menu_html -%}
-{% if header_menu_html %}
   <div class="drawer md:hidden">
     <input id="header-drawer-left" type="checkbox" class="drawer-toggle" x-init="$el.checked = false;" />
     <div class="drawer-content">
@@ -24,16 +23,21 @@
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
-      <div class="bg-base-200 text-base-content min-h-full w-80">
-          <div class='card bg-white p-4 h-dvh'>
-            <label class="block font-mono text-lg font-semibold mb-3 text-slate-500">{{ site.name }}</label>
+      <div class="bg-base-200 text-base-content min-h-full w-90">
+        <div class='card bg-white py-4 h-dvh overflow-auto'>
+          <label class="block font-mono text-lg font-semibold px-4 mb-3 text-slate-500">{{ site.name }}</label>
 
-            <div class="space-y-2 flex flex-col pt-4 underline border-t border-slate-200">
+          {% if header_menu_html %}
+            <div class="space-y-2 flex flex-col px-4 pt-4 underline border-t border-slate-200">
               {{ header_menu_html }}
             </div>
+          {% endif %}
+
+          <div class='border-t border-slate-200 mt-4 pt-2'>
+            {% render 'nav_tree', nav_tree: site.nav_tree, class: 'p-0' %}
           </div>
+        </div>
       </div>
     </div>
   </div>
 
-{% endif %}

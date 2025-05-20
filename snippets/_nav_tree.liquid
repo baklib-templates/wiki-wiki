@@ -1,9 +1,9 @@
-{%# locals:(nav_tree:, depth: 0) %}
+{%# locals:(nav_tree:, depth: 0, class: '') %}
 {% unless depth %}
   {% assign depth = 0 %}
 {% endunless %}
 {% if depth == 0 %}
-  <ul class="menu w-full" id="nav-tree" data-turbo-permanent data-controller="nav-tree" data-nav-tree-active-class="menu-active">
+  <ul class="menu w-full {{ class }}" id="nav-tree" data-turbo-permanent data-controller="nav-tree" data-nav-tree-active-class="menu-active">
 {% else %}
   <ul>
 {% endif %}
