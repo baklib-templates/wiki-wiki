@@ -5,21 +5,20 @@ export default class extends Controller {
   static classes = ['active'];
 
   connect() {
-    this.itemTargets.forEach(item => {
-      if (item.href === window.location.pathname) {
-        item.classList.add(this.activeClass);
-      }
-    });
+    // 初始化高亮
+    this.#updateActiveItem();
 
+    // 点击时高亮
     this.itemTargets.forEach(item => {
-      item.addEventListener('click', () => {
-        this.itemTargets.forEach(item => {
-          item.classList.remove(this.activeClass);
+      item.addEventListener('click', (e) => {
+        this.itemTargets.forEach(i => {
+          i.classList.remove(this.activeClass);
         });
         item.classList.add(this.activeClass);
       });
     });
 
+    // turbo:load 时重新高亮
     document.addEventListener("turbo:load", () => this.#updateActiveItem())
   }
 
@@ -31,24 +30,23 @@ export default class extends Controller {
 
   // 更新激活状态的菜单项
   #updateActiveItem() {
-    console.log('change', window.location.pathname)
+    // console.log('change', window.location.pathname)
     this.itemTargets.forEach(item => {
       let link;
-      if(item.tagName == 'SUMMARY') {
-        link = item.querySelector('a')
-      }else{
-        link = item
+      if(item.tagName === 'SUMMARY') {
+        link = item.querySelector('a');
+      } else {
+        link = item;
       }
-      if (link.getAttribute('href') === window.location.pathname) {
+      if (link && link.getAttribute('href') === window.location.pathname) {
         item.classList.add(this.activeClass);
-        // 展开父级菜单
+        // 展开所有父级 details
         let parent = item.closest('details');
-        if (parent) {
-          parent.setAttribute('open', '')
+        while (parent) {
+          parent.setAttribute('open', '');
+          parent = parent.parentElement.closest('details');
         }
-        // item.scrollIntoView({ behavior: "smooth", block: "center" }); // 滚动到视图中
-        // window.scrollBy(0, 0);
-      }else{
+      } else {
         item.classList.remove(this.activeClass);
       }
     });

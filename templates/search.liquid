@@ -1,4 +1,4 @@
-<div class="px-4">
+<main class="px-4">
   <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4 "
 		data-controller="toc"
 		data-toc-header-selector-value=".js--header"
@@ -162,14 +162,12 @@
         {% endpaginate_tag %}
         <script>
           document.querySelector('main').classList.add('flex-1');
-          document.querySelector('body').classList.remove('items-center', 'justify-center');
         </script>
       {% else %}
         <script>
           document.querySelector('main').classList.remove('flex-1');
-          document.querySelector('body').classList.add('items-center', 'justify-center');
         </script>
       {% endif %}
     </turbo-frame>
   </div>
-</div>
+</main>

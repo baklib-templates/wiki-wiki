@@ -9,6 +9,10 @@ export default class extends Controller {
   };
 
   connect() {
+    if (!this.hasContentTarget) return
+    if (!this.hasLinksTarget) return
+    if (!this.hasMenuTarget) return
+
     this.#generateDirectory();
 
     const anchor = window.location.hash.replace('#', '');
