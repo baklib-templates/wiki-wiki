@@ -1,5 +1,5 @@
 <main class="px-4">
-  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4 "
+  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4"
 		data-controller="toc"
 		data-toc-header-selector-value=".js--header"
 		data-toc-offset-value="10"
@@ -56,24 +56,24 @@
                     {% for page in items %}
                       <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
                         <div class="flex gap-1">
-                          <div class="shrink-0 pt-[1px]">
-                            <span class="inline-flex justify-center items-center -ml-1 w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
-                          </div>
                           <div>
-                            <div class="flex-1">
-                              <a class="text-lg text-slate-800 search-highlight-block" href="{{ page.url }}" data-turbo-frame="_top">
-                                {{ page.highlighted_search_title }}
-                              </a>
-                            </div>
-                            <div class="-mt-2">
-                              <a href="{{ page.url }}" data-turbo-frame="_top" class="text-xs text-gray-500 font-inter">{{ page.url }}</a>
-                            </div>
-                            {% unless page.highlighted_search_content == empty %}
-                              <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
-                            {% endunless %}
-                            <div class="flex justify-between items-center mt-2">
-                              <div class="hidden overflow-x-auto text-sm breadcrumbs md:block">
-                                {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                            <div class="flex space-x-2 items-start">
+                              <div class="shrink-0 pt-[1px]">
+                                <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
+                              </div>
+                              <div class='flex-1'>
+                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline" href="{{ page.url }}" data-turbo-frame="_top">
+                                  {{ page.highlighted_search_title }}
+                                </a>
+                                <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ page.url }}</a>
+                                {% unless page.highlighted_search_content == empty %}
+                                  <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
+                                {% endunless %}
+                                <div class="flex justify-between items-center text-gray-600">
+                                  <div class="hidden overflow-x-auto text-sm md:block">
+                                    {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>

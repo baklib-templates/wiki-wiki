@@ -70,21 +70,17 @@
         "label": "备案/版权信息",
         "default": "蜀ICP备xxxx号"
       },
-      "screen_width": {
-        "label": "页面宽度",
-        "choices": {
-          "narrow": "窄（1024像素）",
-          "medium": "适中（1280像素）",
-          "wide": "宽（1536像素）",
-          "full": "满屏"
-        }
-      },
       "show_published_at": {
         "label": "显示发布时间",
         "default": true
       },
       "show_author": {
         "label": "显示作者",
+        "default": true
+      },
+      "show_card_icon": {
+        "label": "首页是否显示栏目ICON图标",
+        "info": "建议自行在页面设置中配置图标",
         "default": true
       }
     }

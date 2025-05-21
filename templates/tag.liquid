@@ -1,42 +1,47 @@
-<main class="flex-col-container">
-  <!-- Page header -->
-  <div class="flex justify-between">
-    <a href="javascript: history.back();" class="mr-auto font-medium inline-flex items-center rounded-full px-4 py-2 bg-gray-100 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-800">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2">
-        <path fill="currentColor"
-          d="M16.707 19.293 9.414 12l7.293-7.293-1.414-1.414L6.586 12l8.707 8.707 1.414-1.414z"></path>
-      </svg>
-      <span class="text-xs md:text-sm font-medium">{{ "generic.back" | t }}</span>
-    </a>
-    <div></div>
+<main class="px-4">
+<div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
+  <!-- tag name -->
+  <div class="rounded-lg shadow mb-4" style="--bg-color: hsl({{ tag.color_hls[0] }}, {{ tag.color_hls[1] }}%, 95%); --color: {{ tag.color }}">
+    <div class="h-5 rounded-t-lg bg-[var(--color)]"></div>
+    <div class="px-3 py-6 text-xl rounded-b-lg bg-[var(--bg-color)]">
+      <span class="flex-grow w-0 break-words font-semibold text-[--color]"> # {{ tag.name }}</span>
+    </div>
   </div>
 
-  <article class="flex-col-container">
-    <header class="mb-6">
-      <h1 class="text-2xl lg:text-4xl py-4 text-primary dark:text-white">
-        # {{ tag.name }}
-      </h1>
-    </header>
-
+  <!-- filters by tag name -->
+  <ul role="list" class="space-y-2">
     {% paginate_tag tag.pages, as: 'pages' %}
-      {% if paginate.total_count > 0 %}
-        <section class="space-y-6">
-          {% for page in pages %}
-            <div class="space-y-3 rounded-md md:p-4 lg:p-6 dark:bg-slate-900">
-              <a class="text-lg font-bold md:text-xl text-slate-800 hover:text-secondary dark:text-slate-200" href="{{ page.path }}">{{ page.link_text | highlight: tag.name }}</a>
-              <p class="text-sm line-clamp-3 text-slate-400">{{ page.settings.content | strip_html | highlight: search.keywords }}</p>
-              <div class="hidden overflow-x-auto md:block">
-                {% render 'breadcrumb', breadcrumb: page.breadcrumb, min_depth: 2 %}
+      {% for page in pages %}
+        <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
+          <div class="flex gap-1">
+            <div>
+              <div class="flex space-x-2 items-start">
+                <div class="shrink-0 pt-[1px]">
+                  <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
+                </div>
+                <div class='flex-1'>
+                  <a class="block text-lg text-slate-800 search-highlight-block hover:underline" href="{{ page.url }}" data-turbo-frame="_top">
+                    {{ page.link_text }}
+                  </a>
+                  <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ page.url }}</a>
+                  {% if page.settings.description | presence %}
+                    <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.settings.description }}</p>
+                  {% endif %}
+                  <div class="flex justify-between items-center text-gray-600">
+                    <div class="hidden overflow-x-auto text-sm md:block">
+                      {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          {% endfor %}
-          {% render 'paginate', paginate: paginate %}
-        </section>
+          </div>
+        </li>
       {% else %}
-        <div class="flex-1 flex items-center justify-center">
-          {{ 'generic.empty' | t }}
-        </div>
-      {% endif %}
+        <div class="rounded-lg bg-white py-24 text-sm flex justify-center">{{ 'generic.empty' | t }}</div>
+      {% endfor %}
+      {% render 'paginate', paginate: paginate %}
     {% endpaginate_tag %}
-  </article>
+  </ul>
+</div>
 </main>

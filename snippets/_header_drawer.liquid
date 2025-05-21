@@ -34,6 +34,7 @@
           {% endif %}
 
           <div class='border-t border-slate-200 mt-4 pt-2'>
+            {% comment %} TODO 手机端的时候再加载 {% endcomment %}
             {% render 'nav_tree', nav_tree: site.nav_tree, class: 'p-0' %}
           </div>
         </div>

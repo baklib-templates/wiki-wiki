@@ -18,8 +18,15 @@ export default class extends Controller {
       });
     });
 
-    // turbo:load 时重新高亮
-    document.addEventListener("turbo:load", () => this.#updateActiveItem())
+    // 滚动到选中的菜单项
+    if (this.activeDom) {
+      const rect = this.activeDom.getBoundingClientRect();
+      const offsetTop = rect.top - (this.element.parentElement.offsetHeight / 3)
+      this.element.parentElement.scrollTo({
+        top: offsetTop,
+        behavior: 'instant'
+      });
+    }
   }
 
   disconnect() {
@@ -40,6 +47,7 @@ export default class extends Controller {
       }
       if (link && link.getAttribute('href') === window.location.pathname) {
         item.classList.add(this.activeClass);
+        this.activeDom = item;
         // 展开所有父级 details
         let parent = item.closest('details');
         while (parent) {
