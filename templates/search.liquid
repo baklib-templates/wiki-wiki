@@ -1,10 +1,5 @@
 <main class="px-4">
-  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4"
-		data-controller="toc"
-		data-toc-header-selector-value=".js--header"
-		data-toc-offset-value="10"
-		data-toc-clipboard-success-value="{{ 'snippets.page.copy_success' | t: '链接已复制' }}"
-	>
+  <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
     <section class="mx-auto w-full max-w-xl">
       {% form_tag 'search', data-turbo-frame: 'frame--search-results', data-turbo-action: 'advance' %}
         <div class="relative text-gray-400 rounded-md group focus:text-gray-900 hover:text-gray-500">
@@ -13,7 +8,7 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </button>
-          <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
+          <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "templates.search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
         </div>
       {% endform_tag %}
     </section>
@@ -101,8 +96,8 @@
                     })()
                   </script>
                 {% else %}
-                  <div class="flex flex-col justify-center items-center h-full">
-                    {% assign message = "empty.name" | t: '没有搜索到内容' %}
+                  <div class="flex flex-col justify-center items-center h-full my-5">
+                    {% assign message = "templates.search.no_results" | t: '没有搜索到内容' %}
                     {% render 'empty', message: message %}
                     <script>
                     (function(){

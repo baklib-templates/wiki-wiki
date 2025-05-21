@@ -57,38 +57,28 @@
       </div>
       <!-- 登录/用户 -->
       {% if current_user %}
-        {% assign user_name = current_user.name | presence %}
-        {% if user_name %}
-          {% assign user_name = user_name | escape_once %}
-        {% else %}
-          {% assign user_name = "user.default_name" | t %}
-        {% endif %}
-        {% assign user_avatar = current_user.image | presence %}
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="header-nav-icon-button">
-            {% if user_avatar %}
-              <div class="avatar">
-                <img src="{{user_avatar}}" class="size-full">
-              </div>
-            {% else %}
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-full rounded-full">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-            {% endif %}
-          </div>
-          <ul tabindex="0" class="dropdown-content z-50 mt-3 menu p-2 shadow bg-base-200 rounded-box w-36">
-            <li class="menu-title text-xs">{{ "user.logged_in_menu_title" | t }}</li>
-            <li>
-              <button type="button">{{ user_name }}</button>
-            </li>
-            <li class="flex">
-              <label>
-                {% form_tag 'sign_out', class: "" %}
-                  <button type="submit" class="cursor-pointer">{{ "user.sign_out" | t }}</button>
+        <div class='flex items-center space-x-2'>
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="header-nav-icon-button">
+              {% if current_user.image %}
+                <img src="{{ current_user.image }}" alt="{{ current_user.name }}" class="w-6 h-6 rounded-full object-cover" />
+              {% else %}
+                <svg class="w-4 h-4 text-base-content/60" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 8-4 8-4s8 0 8 4" />
+                </svg>
+              {% endif %}
+            </div>
+            <div tabindex="0" class="dropdown-content py-2 px-3 shadow bg-base-100 rounded-box w-30 mt-2 space-y-3">
+              <div class="font-medium text-primary/80 line-clamp-1 border-b pb-2
+              ">{{ current_user.name }}</div>
+              <div class='text-gray-500'>
+                {% form_tag 'sign_out' %}
+                  <button class='text-left h-[20px] w-full hover:link'>{{ 'generic.buttons.signout' | t }}</button>
                 {% endform_tag %}
-              </label>
-            </li>
-          </ul>
+              </div>
+            </div>
+          </div>
         </div>
       {% endif %}
     </div>

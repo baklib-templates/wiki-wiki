@@ -13,8 +13,8 @@
 
     {% # 反馈类型 %}
     <div
-      class="flex items-center justify-center flex-wrap gap-3" 
-      x-data="{ selected: '{{ posted_feedback.emoji | default: "" | escape_once }}' }" 
+      class="flex items-center justify-center flex-wrap gap-3"
+      x-data="{ selected: '{{ posted_feedback.emoji | default: "" | escape_once }}' }"
     >
       {% if message_enabled %}
         {% for useful_type in useful_types %}
@@ -55,7 +55,7 @@
           </div>
           <div class="label">
             {% if page.visitor_posted_feedback %}
-              {{ 'attributes.feedback_created_at' | t }} {{ posted_feedback.created_at | date: "%Y-%m-%d %H:%M:%S" }}
+              {{ 'generic.feedback_created_at' | t }} {{ posted_feedback.created_at | date: "%Y-%m-%d %H:%M:%S" }}
             {% endif %}
           </div>
         </div>

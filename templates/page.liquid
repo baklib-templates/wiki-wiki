@@ -3,7 +3,7 @@
 		data-controller="toc"
 		data-toc-header-selector-value=".js--header"
 		data-toc-offset-value="10"
-		data-toc-clipboard-success-value="{{ 'snippets.page.copy_success' | t: '链接已复制' }}"
+		data-toc-clipboard-success-value="{{ 'templates.page.copy_success' | t: '链接已复制' }}"
 	>
 		<!-- 左侧导航树 -->
 		<aside class="hidden lg:block">
@@ -20,7 +20,7 @@
 		<aside class="print:hidden hidden lg:block">
 			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
 				<div class="menu">
-					<div class="menu-title">{{ 'snippets.page.page_toc' | t }}</div>
+					<div class="menu-title">{{ 'templates.page.page_toc' | t }}</div>
 					<div data-toc-target="links"></div>
 				</div>
 			</div>
@@ -36,52 +36,45 @@
 	"sub_page_templates": ["page"],
 	"settings": [
 		{
-			"id": "show_list",
-			"type": "checkbox",
-			"default": "false",
-			"label": "栏目",
-			"info": "作为栏目页面，只显示子页面列表"
-		},
-		{
 			"id": "is_topic_channel",
 			"type": "checkbox",
 			"default": "false",
-			"label": "是否为专题栏目",
-			"info": "勾选后，该栏目将作为专题栏目处理, 显示于首页",
+			"label": "t:schema.templates.page.settings.is_topic_channel.label",
+			"info": "t:schema.templates.page.settings.is_topic_channel.info",
 			"query_enabled": true
 		},
 		{
 			"id": "title",
 			"type": "text",
 			"readonly": true,
-			"label": "标题",
-			"info": "知识库同步，不可编辑"
+			"label": "t:schema.templates.page.settings.title.label",
+			"info": "t:schema.templates.page.settings.title.info"
 		},
 		{
 			"id": "tags",
 			"type": "tag_picker",
 			"multiple": true,
-			"label": "t:settings_schema.page.settings.tags.label"
+			"label": "t:schema.templates.page.settings.tags.label"
 		},
 		{
 			"id": "description",
 			"type": "textarea",
-			"label": "t:settings_schema.page.settings.description.label"
+			"label": "t:schema.templates.page.settings.description.label"
 		},
 		{
 			"id": "icon",
 			"type": "image_picker",
 			"ratio": "1:1",
 			"width": 100,
-			"label": "t:settings_schema.page.settings.icon.label",
-			"info": "t:settings_schema.page.settings.icon.info"
+			"label": "t:schema.templates.page.settings.icon.label",
+			"info": "t:schema.templates.page.settings.icon.info"
 		},
 		{
 			"id": "content",
 			"type": "richtext",
-			"label": "t:settings_schema.page.settings.content.label",
+			"label": "t:schema.templates.page.settings.content.label",
 			"readonly": true,
-			"info": "t:settings_schema.page.settings.content.info"
+			"info": "t:schema.templates.page.settings.content.info"
 		}
 	]
 }

@@ -1,6 +1,3 @@
-{% assign screen_width = site.settings.screen_width.value |  default: 'max-w-screen-xl' %}
-{% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 24 %}
-
 <div class="relative" style="background-color: rgb(245 245 245 / 39%)">
   {% if page.settings.hero_bg_type.value == '1' %}
     <div class="absolute inset-x-0 overflow-hidden -top-10 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
@@ -20,7 +17,7 @@
     <div class="container flex flex-col h-full py-15 mx-auto">
       <div class="flex flex-col items-center justify-center flex-grow">
         <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
-          {% assign default_hero_slogan = "templates.index.help_center.hero_slogan" | t %}
+          {% assign default_hero_slogan = "templates.index.docs.hero_slogan" | t %}
           {{ page.settings.hero_slogan | presence | default: default_hero_slogan }}
         </h1>
         <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
@@ -87,42 +84,44 @@
 
     <div class='space-y-10'>
       <!-- 新手入门 Card -->
-      {% assign default_channel_one_title = "templates.index.docs.channel_one_name" | t %}
-      <section class="">
-        <div class="items-center text-center my-4 md:mb-8">
-          <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channel_one_name | default: default_channel_one_title }}</h2>
-        </div>
-        <div class="items-start lg:max-w-none grid grid-cols-3 gap-8 md:grid-cols-3 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
-          {% for card_page in card_pages | limit: 3 %}
-            <!-- Card -->
-            <a href="{{ card_page.path }}" class="flex flex-col h-full bg-gradient-to-b from-secondary-100 from-5% to-primary-50/80 to-80% dark:from-secondary dark:to-primary hover:from-secondary-100 hover:to-primary-100 rounded-xl overflow-hidden">
-              <!-- Card Content -->
-              <div class="flex-1 flex flex-col p-0 md:p-6 relative">
-                <!-- Card body -->
-                <div class="flex-1">
-                  <!-- Header -->
-                  <header class="mb-2 p-4 md:p-0 z-10">
-                    <div class="flex items-center justify-start">
-                      <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold ">{{ card_page.link_text }}</h3>
+      {% if page.settings.show_topic_channel %}
+        <section class="">
+          <div class="items-center text-center my-4 md:mb-8">
+            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.topic_channel_title }}</h2>
+          </div>
+          <div class="items-start lg:max-w-none grid grid-cols-3 gap-8 md:grid-cols-3 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
+            {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 3 %}
+            {% for card_page in card_pages %}
+              <!-- Card -->
+              <a href="{{ card_page.path }}" class="flex flex-col h-full bg-gradient-to-b from-secondary-100 from-5% to-primary-50/80 to-80% dark:from-secondary dark:to-primary hover:from-secondary-100 hover:to-primary-100 rounded-xl overflow-hidden">
+                <!-- Card Content -->
+                <div class="flex-1 flex flex-col p-0 md:p-6 relative">
+                  <!-- Card body -->
+                  <div class="flex-1">
+                    <!-- Header -->
+                    <header class="mb-2 p-4 md:p-0 z-10">
+                      <div class="flex items-center justify-start">
+                        <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold ">{{ card_page.link_text }}</h3>
+                      </div>
+                    </header>
+                    <!-- Content -->
+                    <div class="h-12 md:h-44">
+                      <span class="hidden md:flex text-gray-500 dark:text-gray-300">{{ card_page.settings.description }}</span>
+                      <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-12 md:h-40"/></div>
                     </div>
-                  </header>
-                  <!-- Content -->
-                  <div class="h-12 md:h-44">
-                    <span class="hidden md:flex text-gray-500 dark:text-gray-300">{{ card_page.settings.description }}</span>
-                    <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-12 md:h-40"/></div>
                   </div>
                 </div>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      </section>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      {% endif %}
 
       <!-- 专题推荐 -->
       {% if page.settings.show_channels_section %}
         <section class="">
           <div class="items-center text-center my-4 md:mb-8">
-            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channel_two_name |  default: '栏目导航' }}</h2>
+            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channels_section_title }}</h2>
           </div>
           <div class="items-start lg:max-w-none grid grid-cols-3 gap-2 md:gap-4 md:grid-cols-4 lg:grid-cols-4">
             {% query topic_channels from site.pages %}
@@ -173,7 +172,7 @@
         <section class="">
           <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            <span>{{ 'generic.newest_pages' | t: '最新文章' }}</span>
+            <span>{{ page.settings.newest_section_title }}</span>
           </div>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
             {% for sub_page in newest_pages %}
@@ -203,7 +202,7 @@
         <section class="bg-transparent">
           <div class="flex items-center h-8 mb-4 text-2xl font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            <span>{{ 'generic.hot_pages' | t: "热门话题" }}</span>
+            <span>{{ page.settings.hottest_section_title }}</span>
           </div>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
             {% for page in hottest_pages %}
@@ -277,56 +276,69 @@
         "info": "t:settings_schema.generic.settings.hero_image_url.info"
       },
       {
+        "id": "hero_bg_color",
+        "type": "color",
+        "label": "t:schema.templates.index.docs.settings.hero_bg_color.label",
+        "info": "t:schema.templates.index.docs.settings.hero_bg_color.info",
+        "default": "#f8fafc"
+      },
+      {
         "id": "hero_slogan",
         "type": "text",
-        "label": "t:schema.templates.index.help_center.settings.hero_slogan.label",
-        "info": "t:templates.index.help_center.hero_slogan"
+        "label": "t:schema.templates.index.docs.settings.hero_slogan.label",
+        "info": "t:templates.index.docs.hero_slogan"
       },
       {
-        "id": "search_hot_tags",
-        "label": "t:settings_schema.generic.settings.tags.label",
-        "type": "tag_picker",
-        "multiple": true,
-        "info": "配置首页输入框下标签筛选项"
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.docs.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_topic_channel.info"
       },
       {
-        "id": "search_hot_keywords",
-        "label": "t:settings_schema.generic.settings.tags.label",
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.docs.settings.topic_channel_title.label",
         "type": "text",
-        "placeholder": "sd、说的那些",
-        "info": "配置首页输入框推荐搜索关键词。';' 分割多个"
+        "default": "t:schema.templates.index.docs.settings.topic_channel_title.default"
       },
       {
         "id": "show_channels_section",
+        "label": "t:schema.templates.index.docs.settings.show_channels_section.label",
         "type": "checkbox",
-        "label": "是否显示栏目导览板块",
-        "default": true
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_channels_section.info"
+      },
+      {
+        "id": "channels_section_title",
+        "label": "t:schema.templates.index.docs.settings.channels_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.channels_section_title.default"
       },
       {
         "id": "show_newest_section",
+        "label": "t:schema.templates.index.docs.settings.show_newest_section.label",
         "type": "checkbox",
-        "label": "是否显示最新文章板块",
-        "default": true
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.docs.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.newest_section_title.default"
       },
       {
         "id": "show_hottest_section",
+        "label": "t:schema.templates.index.docs.settings.show_hottest_section.label",
         "type": "checkbox",
-        "label": "是否显示热门话题板块",
-        "default": true
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_hottest_section.info"
       },
       {
-        "id": "channel_one_name",
+        "id": "hottest_section_title",
+        "label": "t:schema.templates.index.docs.settings.hottest_section_title.label",
         "type": "text",
-        "label": "版块一名称",
-        "default": "栏目导览",
-        "info": "版块一显示所有栏目快捷方式"
-      },
-      {
-        "id": "channel_two_name",
-        "type": "text",
-        "label": "版块二名称",
-        "default": "专题推荐",
-        "info": "版块二显示所有栏目 Card"
+        "default": "t:schema.templates.index.docs.settings.hottest_section_title.default"
       }
     ]
   }

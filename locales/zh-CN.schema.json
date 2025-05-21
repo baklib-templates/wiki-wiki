@@ -32,13 +32,45 @@
             "label": "标语",
             "info": "标语会显示在背景图上方"
           },
-          "tags": {
+          "search_hot_tags": {
             "label": "热门标签",
             "info": "设置以后，标签列表会显示在首页搜索栏下方"
           },
-          "channel_one_name": {
-            "label": "版块一名称",
-            "info": "首页第一个版块显示的标题"
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "设置以后，搜索框下方会显示热门搜索。';' 分割多个关键词"
+          },
+          "show_topic_channel": {
+            "label": "第一个栏目板块",
+            "info": "如果不显示，首页将不会显示专题栏目"
+          },
+          "topic_channel_title": {
+            "label": "第一个栏目板块的标题",
+            "default": "新手入门"
+          },
+          "show_channels_section": {
+            "label": "是否显示专题板块",
+            "info": "如果不显示，首页将不会显示专题板块"
+          },
+          "channels_section_title": {
+            "label": "专题板块标题",
+            "default": "专题推荐"
+          },
+          "show_newest_section": {
+            "label": "是否显示最新文章板块",
+            "info": "如果不显示，首页将不会显示最新文章板块"
+          },
+          "newest_section_title": {
+            "label": "最新文章板块标题",
+            "default": "最新文章"
+          },
+          "show_hottest_section": {
+            "label": "是否显示热门文章板块",
+            "info": "如果不显示，首页将不会显示热门文章板块"
+          },
+          "hottest_section_title": {
+            "label": "热门文章板块标题",
+            "default": "热门文章"
           }
         }
       },
@@ -49,6 +81,32 @@
       "list": {
         "name": "产品手册",
         "description": "首页目录列表样式"
+      }
+    },
+    "page": {
+      "settings": {
+        "is_topic_channel": {
+          "label": "是否为专题栏目",
+          "info": "如果是专题栏目，页面将会显示在首页的专题栏目列表中"
+        },
+        "title": {
+          "label": "页面标题",
+          "info": "知识库同步，不可编辑"
+        },
+        "tags": {
+          "label": "页面标签"
+        },
+        "description": {
+          "label": "页面描述"
+        },
+        "icon": {
+          "label": "页面图标",
+          "info": "用于显示页面图标，建议1:1比例"
+        },
+        "content": {
+          "label": "页面内容",
+          "info": "同步自数据源，不可编辑"
+        }
       }
     }
   },

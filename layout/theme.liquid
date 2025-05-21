@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="turbo-prefetch" content="false">
     {% meta_tags %}
-    {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
     {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
 
     <style>
       :root {
