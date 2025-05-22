@@ -34,11 +34,6 @@
   },
   "templates": {
     "index": {
-      "docs": {
-        "hero_slogan": "👋 What Can We Help?",
-        "channel_one_name": "新手入门",
-        "channel_two_name": "专题推荐"
-      }
     },
     "search": {
       "placeholder": "搜索...",

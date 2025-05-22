@@ -17,8 +17,7 @@
     <div class="container flex flex-col h-full py-15 mx-auto">
       <div class="flex flex-col items-center justify-center flex-grow">
         <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
-          {% assign default_hero_slogan = "templates.index.docs.hero_slogan" | t %}
-          {{ page.settings.hero_slogan | presence | default: default_hero_slogan }}
+          {{ page.settings.hero_slogan | presence }}
         </h1>
         <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
           {% form_tag 'search', class: 'w-full' %}
@@ -42,52 +41,54 @@
             </div>
           {% endform_tag %}
 
-          {% # 自定义标签搜索 %}
-          {% assign search_hot_tags = page.settings.search_hot_tags %}
-          {% if search_hot_tags.size > 0 %}
-            <div class="items-center justify-start w-full mt-4 md:flex flex-wrap md:px-5">
-              <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
-                {% for tag in search_hot_tags %}
-                  <a
-                    href="{{ tag.path }}"
-                    data-turbo-frame="_top"
-                    class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
-                  >
-                    {{ tag.name }}
-                  </a>
-                {% endfor %}
+          <div class='space-y-1 w-full mt-2'>
+            {% # 自定义标签搜索 %}
+            {% assign search_hot_tags = page.settings.search_hot_tags %}
+            {% if search_hot_tags.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+                  {% for tag in search_hot_tags %}
+                    <a
+                      href="{{ tag.path }}"
+                      data-turbo-frame="_top"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                    >
+                      {{ tag.name }}
+                    </a>
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
 
-          {% # 热门搜索 %}
-          {% assign hot_keywords = page.settings.search_hot_keywords | split: ';' %}
-          {% if hot_keywords.size > 0 %}
-            <div class="items-center justify-start w-full mt-4 md:flex flex-wrap md:px-5">
-              <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
-                {% for hot_keyword in hot_keywords %}
-                  <a
-                    href="{{site.index_path}}-/search?q={{ hot_keyword }}"
-                    class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
-                  >
-                    {{ hot_keyword }}
-                  </a>
-                {% endfor %}
+            {% # 热门搜索 %}
+            {% assign hot_keywords = page.settings.search_hot_keywords | split: ';' %}
+            {% if hot_keywords.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
+                  {% for hot_keyword in hot_keywords %}
+                    <a
+                      href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                    >
+                      {{ hot_keyword }}
+                    </a>
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
 
     <div class='space-y-10'>
       <!-- 新手入门 Card -->
-      {% if page.settings.show_topic_channel %}
+      {% if page.settings.show_channels_section %}
         <section class="">
           <div class="items-center text-center my-4 md:mb-8">
-            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.topic_channel_title }}</h2>
+            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channels_section_title }}</h2>
           </div>
           <div class="items-start lg:max-w-none grid grid-cols-3 gap-8 md:grid-cols-3 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
             {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 3 %}
@@ -118,10 +119,10 @@
       {% endif %}
 
       <!-- 专题推荐 -->
-      {% if page.settings.show_channels_section %}
+      {% if page.settings.show_topic_channel %}
         <section class="">
           <div class="items-center text-center my-4 md:mb-8">
-            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channels_section_title }}</h2>
+            <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.topic_channel_title }}</h2>
           </div>
           <div class="items-start lg:max-w-none grid grid-cols-3 gap-2 md:gap-4 md:grid-cols-4 lg:grid-cols-4">
             {% query topic_channels from site.pages %}
@@ -272,8 +273,8 @@
         "type": "image_picker",
         "ratio": "4:1",
         "width": 900,
-        "label": "t:settings_schema.generic.settings.hero_image_url.label",
-        "info": "t:settings_schema.generic.settings.hero_image_url.info"
+        "label": "t:schema.templates.index.docs.settings.hero_image_url.label",
+        "info": "t:schema.templates.index.docs.settings.hero_image_url.info"
       },
       {
         "id": "hero_bg_color",
@@ -285,21 +286,23 @@
       {
         "id": "hero_slogan",
         "type": "text",
+        "default": "t:schema.templates.index.docs.settings.hero_slogan.default",
         "label": "t:schema.templates.index.docs.settings.hero_slogan.label",
-        "info": "t:templates.index.docs.hero_slogan"
+        "info": "t:schema.templates.index.docs.settings.hero_slogan.info"
       },
       {
-        "id": "show_topic_channel",
-        "label": "t:schema.templates.index.docs.settings.show_topic_channel.label",
-        "type": "checkbox",
-        "default": true,
-        "info": "t:schema.templates.index.docs.settings.show_topic_channel.info"
+        "id": "search_hot_tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:schema.templates.index.docs.settings.search_hot_tags.label",
+        "info": "t:schema.templates.index.docs.settings.search_hot_tags.info"
       },
       {
-        "id": "topic_channel_title",
-        "label": "t:schema.templates.index.docs.settings.topic_channel_title.label",
+        "id": "search_hot_keywords",
         "type": "text",
-        "default": "t:schema.templates.index.docs.settings.topic_channel_title.default"
+        "label": "t:schema.templates.index.docs.settings.search_hot_keywords.label",
+        "info": "t:schema.templates.index.docs.settings.search_hot_keywords.info",
+        "default": "t:schema.templates.index.docs.settings.search_hot_keywords.default"
       },
       {
         "id": "show_channels_section",
@@ -313,6 +316,19 @@
         "label": "t:schema.templates.index.docs.settings.channels_section_title.label",
         "type": "text",
         "default": "t:schema.templates.index.docs.settings.channels_section_title.default"
+      },
+      {
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.docs.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.docs.settings.show_topic_channel.info"
+      },
+      {
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.docs.settings.topic_channel_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.docs.settings.topic_channel_title.default"
       },
       {
         "id": "show_newest_section",

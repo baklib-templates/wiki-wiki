@@ -23,8 +23,7 @@
     <div class="container flex flex-col h-full py-15 mx-auto">
       <div class="flex flex-col items-center justify-center flex-grow">
         <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
-          {% assign default_hero_slogan = "templates.index.help_center.hero_slogan" | t %}
-          {{ page.settings.hero_slogan | presence | default: default_hero_slogan }}
+          {{ page.settings.hero_slogan | presence }}
         </h1>
         <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
           {% form_tag 'search', class: 'w-full' %}
@@ -48,42 +47,44 @@
             </div>
           {% endform_tag %}
 
-          {% # 自定义标签搜索 %}
-          {% assign search_hot_tags = page.settings.search_hot_tags %}
-          {% if search_hot_tags.size > 0 %}
-            <div class="items-center justify-start w-full mt-4 md:flex flex-wrap md:px-5">
-              <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
-                {% for tag in search_hot_tags %}
-                  <a
-                    href="{{ tag.path }}"
-                    data-turbo-frame="_top"
-                    class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
-                  >
-                    {{ tag.name }}
-                  </a>
-                {% endfor %}
+          <div class='space-y-1 w-full mt-2'>
+            {% # 自定义标签搜索 %}
+            {% assign search_hot_tags = page.settings.search_hot_tags %}
+            {% if search_hot_tags.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+                  {% for tag in search_hot_tags %}
+                    <a
+                      href="{{ tag.path }}"
+                      data-turbo-frame="_top"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                    >
+                      {{ tag.name }}
+                    </a>
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
 
-          {% # 热门搜索 %}
-          {% assign hot_keywords = page.settings.search_hot_keywords | split: ';' %}
-          {% if hot_keywords.size > 0 %}
-            <div class="items-center justify-start w-full mt-4 md:flex flex-wrap md:px-5">
-              <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
-                {% for hot_keyword in hot_keywords %}
-                  <a
-                    href="{{site.index_path}}-/search?q={{ hot_keyword }}"
-                    class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
-                  >
-                    {{ hot_keyword }}
-                  </a>
-                {% endfor %}
+            {% # 热门搜索 %}
+            {% assign hot_keywords = page.settings.search_hot_keywords | split: ';' %}
+            {% if hot_keywords.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t }}:</span>
+                  {% for hot_keyword in hot_keywords %}
+                    <a
+                      href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                    >
+                      {{ hot_keyword }}
+                    </a>
+                  {% endfor %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
@@ -95,7 +96,7 @@
         <section>
           <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            {{ page.settings.channels_section_name | default: '栏目导览' }}
+            {{ page.settings.channels_section_title }}
           </div>
           <div class="items-start lg:max-w-none grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2">
             {% for channel_page in channel_pages %}
@@ -122,7 +123,7 @@
         <section>
           <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            <span>{{ 'generic.newest_pages' | t: '最新文章' }}</span>
+            <span>{{ page.settings.newest_section_title }}</span>
           </div>
 
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
@@ -148,7 +149,7 @@
       {% endif %}
 
       <!-- 专题推荐: 由站点在页面中勾选的页面组成 -->
-      {% if page.settings.show_topic_section %}
+      {% if page.settings.show_topic_channel %}
         <section class="flex flex-col h-full mx-auto">
           {% query topic_channels from site.pages %}
             {
@@ -159,7 +160,7 @@
           {% endquery %}
           <div class="flex items-center text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            <span>{{ page.settings.channel_two_name }}专题推荐</span>
+            <span>{{ page.settings.topic_channel_title }}</span>
           </div>
           <div class="items-start lg:max-w-none grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-2">
             {% for card_page in topic_channels %}
@@ -227,7 +228,7 @@
         <section class="bg-transparent">
           <div class="flex items-center h-8 mb-4 text-2xl font-bold text-slate-800 dark:text-slate-200">
             <div class="w-1 h-full mr-3 bg-primary"></div>
-            <span>{{ 'generic.hot_pages' | t: "热门话题" }}</span>
+            <span>{{ page.settings.hottest_section_title }}</span>
           </div>
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
             {% for page in hottest_pages %}
@@ -269,112 +270,117 @@
     ],
     "sub_page_templates": ["page"],
     "settings": [
-        {
-          "id": "hero_bg_type",
-          "type": "radio",
-          "label": "t:schema.templates.index.docs.settings.hero_bg_type.label",
-          "choices": [
-            {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.none", "value": "0" },
-            {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.color", "value": "1" },
-            {"label": "t:schema.templates.index.docs.settings.hero_bg_type.choices.image", "value": "2" }
-          ],
-          "default": "1",
-          "info": "t:schema.templates.index.docs.settings.hero_bg_type.info"
-        },
-        {
-          "id": "hero_height",
-          "type": "range",
-          "label": "t:schema.templates.index.docs.settings.hero_height.label",
-          "info": "t:schema.templates.index.docs.settings.hero_height.info",
-          "min": 100,
-          "max": 600,
-          "step": 10,
-          "unit": "px",
-          "default": 360
-        },
-        {
-          "id": "hero_image_url",
-          "type": "image_picker",
-          "ratio": "4:1",
-          "label": "t:schema.templates.index.docs.settings.hero_image_url.label",
-          "info": "t:schema.templates.index.docs.settings.hero_image_url.info"
-        },
-        {
-          "id": "hero_bg_color",
-          "type": "color",
-          "label": "t:schema.templates.index.docs.settings.hero_bg_color.label",
-          "info": "t:schema.templates.index.docs.settings.hero_bg_color.info",
-          "default": "#f8fafc"
-        },
-        {
-          "id": "hero_slogan",
-          "type": "text",
-          "label": "t:schema.templates.index.docs.settings.hero_slogan.label",
-          "placeholder": "t:templates.index.docs.hero_slogan"
-        },
-        {
-          "id": "search_hot_tags",
-          "label": "t:settings_schema.generic.settings.tags.label",
-          "type": "tag_picker",
-          "multiple": true,
-          "info": "配置首页输入框下标签筛选项"
-        },
-        {
-          "id": "search_hot_keywords",
-          "label": "t:settings_schema.generic.settings.tags.label",
-          "type": "text",
-          "placeholder": "sd、说的那些",
-          "info": "配置首页输入框推荐搜索关键词。';' 分割多个"
-        },
-        {
-          "id": "show_channels_section",
-          "type": "checkbox",
-          "label": "是否显示栏目导览板块",
-          "default": true
-        },
-        {
-          "id": "show_newest_section",
-          "type": "checkbox",
-          "label": "是否显示最新文章板块",
-          "default": true
-        },
-        {
-          "id": "show_topic_section",
-          "type": "checkbox",
-          "label": "是否显示专题推荐板块",
-          "info": "请在需要展示的页面栏目中勾选专题栏目",
-          "default": true
-        },
-        {
-          "id": "topic_section_card_list_count",
-          "type": "number",
-          "min": 1,
-          "max": 20,
-          "step": 1,
-          "default": 5,
-          "label": "专题推荐板块单个展示页面数量",
-          "info": ""
-        },
-        {
-          "id": "show_hottest_section",
-          "type": "checkbox",
-          "label": "是否显示热门话题板块",
-          "default": true
-        },
-        {
-          "id": "channel_one_name",
-          "type": "text",
-          "label": "版块一名称",
-          "default": "栏目导览",
-          "info": "版块一显示所有栏目快捷方式"
-        },
-        {
-          "id": "channel_two_name",
-          "type": "text",
-          "label": "版块二名称",
-          "default": "专题推荐",
-          "info": "版块二显示所有栏目 Card"
-        }
-      ]
+      {
+        "id": "hero_bg_type",
+        "type": "radio",
+        "label": "t:schema.templates.index.help_center.settings.hero_bg_type.label",
+        "choices": [
+          {"label": "t:schema.templates.index.help_center.settings.hero_bg_type.choices.none", "value": "0" },
+          {"label": "t:schema.templates.index.help_center.settings.hero_bg_type.choices.color", "value": "1" },
+          {"label": "t:schema.templates.index.help_center.settings.hero_bg_type.choices.image", "value": "2" }
+        ],
+        "default": "1",
+        "info": "t:schema.templates.index.help_center.settings.hero_bg_type.info"
+      },
+      {
+        "id": "hero_height",
+        "type": "range",
+        "label": "t:schema.templates.index.help_center.settings.hero_height.label",
+        "info": "t:schema.templates.index.help_center.settings.hero_height.info",
+        "min": 100,
+        "max": 600,
+        "step": 10,
+        "unit": "px",
+        "default": 360
+      },
+      {
+        "id": "hero_image_url",
+        "type": "image_picker",
+        "ratio": "4:1",
+        "width": 900,
+        "label": "t:settings_schema.generic.settings.hero_image_url.label",
+        "info": "t:settings_schema.generic.settings.hero_image_url.info"
+      },
+      {
+        "id": "hero_bg_color",
+        "type": "color",
+        "label": "t:schema.templates.index.help_center.settings.hero_bg_color.label",
+        "info": "t:schema.templates.index.help_center.settings.hero_bg_color.info",
+        "default": "#f8fafc"
+      },
+      {
+        "id": "hero_slogan",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.hero_slogan.default",
+        "label": "t:schema.templates.index.help_center.settings.hero_slogan.label",
+        "info": "t:schema.templates.index.help_center.settings.hero_slogan.info"
+      },
+      {
+        "id": "search_hot_tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:schema.templates.index.help_center.settings.search_hot_tags.label",
+        "info": "t:schema.templates.index.help_center.settings.search_hot_tags.info"
+      },
+      {
+        "id": "search_hot_keywords",
+        "type": "text",
+        "label": "t:schema.templates.index.help_center.settings.search_hot_keywords.label",
+        "info": "t:schema.templates.index.help_center.settings.search_hot_keywords.info",
+        "default": "t:schema.templates.index.help_center.settings.search_hot_keywords.default"
+      },
+      {
+        "id": "show_channels_section",
+        "label": "t:schema.templates.index.help_center.settings.show_channels_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.help_center.settings.show_channels_section.info"
+      },
+      {
+        "id": "channels_section_title",
+        "label": "t:schema.templates.index.help_center.settings.channels_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.channels_section_title.default"
+      },
+      {
+        "id": "show_newest_section",
+        "label": "t:schema.templates.index.help_center.settings.show_newest_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.help_center.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.help_center.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.newest_section_title.default"
+      },
+      {
+        "id": "show_topic_channel",
+        "label": "t:schema.templates.index.help_center.settings.show_topic_channel.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.help_center.settings.show_topic_channel.info"
+      },
+      {
+        "id": "topic_channel_title",
+        "label": "t:schema.templates.index.help_center.settings.topic_channel_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.topic_channel_title.default"
+      },
+      {
+        "id": "show_hottest_section",
+        "label": "t:schema.templates.index.help_center.settings.show_hottest_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.help_center.settings.show_hottest_section.info"
+      },
+      {
+        "id": "hottest_section_title",
+        "label": "t:schema.templates.index.help_center.settings.hottest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.hottest_section_title.default"
+      }
+    ]
   }
 {% endschema %}

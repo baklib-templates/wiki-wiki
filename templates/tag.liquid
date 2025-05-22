@@ -10,8 +10,8 @@
 
   <!-- filters by tag name -->
   <ul role="list" class="space-y-2">
-    {% paginate_tag tag.pages, as: 'pages' %}
-      {% for page in pages %}
+    {% paginate_tag tag.pages, as: 'items' %}
+      {% for item in items %}
         <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
           <div class="flex gap-1">
             <div>
@@ -21,15 +21,15 @@
                 </div>
                 <div class='flex-1'>
                   <a class="block text-lg text-slate-800 search-highlight-block hover:underline" href="{{ page.url }}" data-turbo-frame="_top">
-                    {{ page.link_text }}
+                    {{ item.link_text }}
                   </a>
-                  <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ page.url }}</a>
-                  {% if page.settings.description | presence %}
-                    <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.settings.description }}</p>
+                  <a href="{{ item.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ item.url }}</a>
+                  {% if item.settings.description | presence %}
+                    <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ item.settings.description }}</p>
                   {% endif %}
                   <div class="flex justify-between items-center text-gray-600">
                     <div class="hidden overflow-x-auto text-sm md:block">
-                      {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
+                      {% render 'breadcrumb', breadcrumb: item.breadcrumb %}
                     </div>
                   </div>
                 </div>

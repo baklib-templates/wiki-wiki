@@ -6,7 +6,6 @@
 {%#   templates/page.export.liquid %}
 
 {% layout none %}
-{% assign pages = page.children_in_list | limit: 200 %}
 
 <!doctype html>
 <html lang="{{ site.language }}" class="scroll-smooth h-full">
@@ -14,15 +13,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% meta_tags %}
-    {{ 'javascripts/main.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
-    {{ 'css/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'stylesheets/application.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'baklib/shared/main.css' | asset_url | stylesheet_tag: data-turbo-track: 'reload' }}
+    {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
 
     {%# TIPS：在低代码平台开发时，请打开下一行代码注释 %}
     {% if true %}{{ 'javascripts/cdn.tailwindcss.js' | asset_url | script_tag: data-turbo-track: 'reload' }} {% endif %}
     {{ site.settings.head_html }}
   </head>
   <body class="h-full">
-    {% paginate_tag pages, per: 200 %}
+    {% paginate_tag page.children_in_list, per: 200, as: 'items' %}
       <!-- Static sidebar for desktop -->
       <div class="flex lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-80 lg:flex-col">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -32,41 +32,41 @@
           </div>
           <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-0">
-                {% for item in pages %}
-                  {% assign sub_item_count = item.children_in_list | size %}
-                    {% if sub_item_count > 0 %}
-                      <!-- 1st level -->
-                      <li class="mb-1">
-                        <a href="#{{ item.id }}">
+              {% for item in items %}
+                {% assign sub_item_count = item.children_in_list | size %}
+                  {% if sub_item_count > 0 %}
+                    <!-- 1st level -->
+                    <li class="mb-1">
+                      <a href="#{{ item.id }}">
+                        <span>{{ item.link_text }}</span>
+                      </a>
+                      <!-- 2nd level -->
+                      <ul class="pl-6 mb-3 ml-4">
+                        {% for sub_item in item.children_in_list %}
+                          {% render "export_tree", item: sub_item %}
+                        {% endfor %}
+                      </ul>
+                    </li>
+                  {% else %}
+                    <!-- 1st level -->
+                    <li class="mb-1">
+                      <a href="#{{item.id}}" class="relative flex items-center justify-between p-1">
+                        <div class="flex items-center space-x-3">
                           <span>{{ item.link_text }}</span>
-                        </a>
-                        <!-- 2nd level -->
-                        <ul class="pl-6 mb-3 ml-4">
-                          {% for sub_item in item.children_in_list %}
-                            {% render "export_tree", item: sub_item %}
-                          {% endfor %}
-                        </ul>
-                      </li>
-                    {% else %}
-                      <!-- 1st level -->
-                      <li class="mb-1">
-                        <a href="#{{item.id}}" class="relative flex items-center justify-between p-1">
-                          <div class="flex items-center space-x-3">
-                            <span>{{ item.link_text }}</span>
-                          </div>
-                          <div class="px-3 grow">
-                            <span class="block border-t border-slate-300"></span>
-                          </div>
-                          <div>
-                          </div>
-                        </a>
-                      </li>
-                    {% endif %}
-                {% endfor %}
-                <!-- Pagination -->
-                <li class="mb-0">
-                  {% render 'paginate', paginate: paginate %}
-                </li>
+                        </div>
+                        <div class="px-3 grow">
+                          <span class="block border-t border-slate-300"></span>
+                        </div>
+                        <div>
+                        </div>
+                      </a>
+                    </li>
+                  {% endif %}
+              {% endfor %}
+              <!-- Pagination -->
+              <li class="mb-0">
+                {% render 'paginate', paginate: paginate %}
+              </li>
             </ul>
           </nav>
         </div>
@@ -85,7 +85,7 @@
           </turbo-frame>
         </div>
       </main>
-      
+
     {% endpaginate_tag %}
   </body>
 </html>

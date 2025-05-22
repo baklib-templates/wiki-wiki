@@ -30,7 +30,8 @@
           },
           "hero_slogan": {
             "label": "标语",
-            "info": "标语会显示在背景图上方"
+            "info": "标语会显示在背景图上方",
+            "default": "👋 What Can We Help?"
           },
           "search_hot_tags": {
             "label": "热门标签",
@@ -40,43 +41,111 @@
             "label": "热门搜索",
             "info": "设置以后，搜索框下方会显示热门搜索。';' 分割多个关键词"
           },
-          "show_topic_channel": {
-            "label": "第一个栏目板块",
-            "info": "如果不显示，首页将不会显示专题栏目"
-          },
-          "topic_channel_title": {
-            "label": "第一个栏目板块的标题",
-            "default": "新手入门"
-          },
           "show_channels_section": {
-            "label": "是否显示专题板块",
-            "info": "如果不显示，首页将不会显示专题板块"
+            "label": "1. 第一个板块",
+            "info": "不勾选，首页将不会显示此板块"
           },
           "channels_section_title": {
-            "label": "专题板块标题",
+            "label": "第一个板块标题",
+            "default": "新手入门"
+          },
+          "show_topic_channel": {
+            "label": "2. 专题推荐板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "topic_channel_title": {
+            "label": "专题推荐板块的标题",
             "default": "专题推荐"
           },
           "show_newest_section": {
-            "label": "是否显示最新文章板块",
-            "info": "如果不显示，首页将不会显示最新文章板块"
+            "label": "3. 最新文章板块",
+            "info": "不勾选，首页将不会显示此板块"
           },
           "newest_section_title": {
             "label": "最新文章板块标题",
             "default": "最新文章"
           },
           "show_hottest_section": {
-            "label": "是否显示热门文章板块",
-            "info": "如果不显示，首页将不会显示热门文章板块"
+            "label": "4. 热门话题板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "hottest_section_title": {
+            "label": "热门话题板块标题",
+            "default": "热门话题"
+          }
+        }
+      },
+      "help_center": {
+        "name": "帮助中心",
+        "description": "功能丰富的产品知识库样式",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景样式",
+            "info": "选择背景样式后，背景色和背景图会根据选择的内容进行展示",
+            "choices": {
+              "none": "无背景",
+              "color": "颜色背景",
+              "image": "图片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建议高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景图",
+            "info": "背景图会根据页面宽度和背景高度自动裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "选择背景色后，背景色会根据选择的内容进行展示"
+          },
+          "hero_slogan": {
+            "label": "标语",
+            "info": "标语会显示在背景图上方",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "热门标签",
+            "info": "设置以后，标签列表会显示在首页搜索栏下方"
+          },
+          "search_hot_keywords": {
+            "label": "热门搜索",
+            "info": "设置以后，搜索框下方会显示热门搜索。';' 分割多个关键词"
+          },
+          "show_channels_section": {
+            "label": "1. 栏目导览板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "channels_section_title": {
+            "label": "栏目导览板块标题",
+            "default": "栏目导览"
+          },
+          "show_newest_section": {
+            "label": "2. 最新文章板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "newest_section_title": {
+            "label": "最新文章板块标题",
+            "default": "最新文章"
+          },
+          "show_topic_channel": {
+            "label": "3. 专题推荐板块",
+            "info": "不勾选，首页将不会显示此板块"
+          },
+          "topic_channel_title": {
+            "label": "专题推荐板块的标题",
+            "default": "专题推荐"
+          },
+          "show_hottest_section": {
+            "label": "4. 热门文章板块",
+            "info": "不勾选，首页将不会显示此板块"
           },
           "hottest_section_title": {
             "label": "热门文章板块标题",
             "default": "热门文章"
           }
         }
-      },
-      "help_center": {
-        "name": "帮助中心",
-        "description": "功能丰富的产品知识库样式"
       },
       "list": {
         "name": "产品手册",
@@ -106,6 +175,24 @@
         "content": {
           "label": "页面内容",
           "info": "同步自数据源，不可编辑"
+        }
+      },
+      "video": {
+        "name": "视频教程",
+        "description": "视频教程列表样式",
+        "settings": {
+          "is_video_list": {
+            "label": "是否为视频列表",
+            "info": "视频列表页，仅获取下级为视频模版页面; 请确保下级页面的模版为视频模版"
+          },
+          "video_url": {
+            "label": "视频地址",
+            "info": "用于呈现于视频列表页中, 列表页无需填写"
+          },
+          "video_cover_url": {
+            "label": "视频封面图",
+            "info": "建议1:1比例"
+          }
         }
       }
     }

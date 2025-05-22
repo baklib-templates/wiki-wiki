@@ -8,6 +8,10 @@ export default class extends Controller {
     this.systemThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     this.systemThemeMediaQuery.addEventListener("change", this.handleSystemThemeChange.bind(this));
     this.#updateTheme(this.theme);
+
+    document.addEventListener("turbo:load", () => {
+      this.#updateTheme(this.theme);
+    });
   }
 
   disconnect() {
