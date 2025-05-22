@@ -153,6 +153,8 @@
       }
     },
     "page": {
+      "name": "普通页面模版",
+      "description": "内容页面模板",
       "settings": {
         "is_topic_channel": {
           "label": "是否为专题栏目",
@@ -178,8 +180,8 @@
         }
       },
       "video": {
-        "name": "视频教程",
-        "description": "视频教程列表样式",
+        "name": "视频模版",
+        "description": "视频页面模版, 用于展示视频内容",
         "settings": {
           "is_video_list": {
             "label": "是否为视频列表",
@@ -194,6 +196,10 @@
             "info": "建议1:1比例"
           }
         }
+      },
+      "export": {
+        "name": "导出页面模版",
+        "description": "常用于浏览器直接导出当前栏目及下级页面的内容"
       }
     }
   },

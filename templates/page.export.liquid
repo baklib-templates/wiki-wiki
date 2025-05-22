@@ -93,51 +93,29 @@
 
 {% schema %}
 {
-  "name": "Export Page",
-  "description": "The export page template",
-  "thumb_url": "images/theme/page-export.png",
+  "name": "t:schema.templates.page.export.name",
+  "description": "t:schema.templates.page.export.description",
+  "thumb_url": "images/schema/${lang}/page-export.png",
   "sub_page_templates": ["page"],
   "settings": [
-      {
-        "id": "show_list",
-        "type": "checkbox",
-        "default": "false",
-        "label": "栏目",
-        "info": "作为栏目页面，只显示子页面列表"
-      },
       {
         "id": "title",
         "type": "text",
         "readonly": true,
-        "label": "标题",
-        "info": "知识库同步，不可编辑"
-      },
-      {
-        "id": "tags",
-        "type": "tag_picker",
-        "multiple": true,
-        "label": "t:settings_schema.page.settings.tags.label"
+        "label": "t:schema.templates.page.settings.title.label",
+        "info": "t:schema.templates.page.settings.title.info"
       },
       {
         "id": "description",
         "type": "textarea",
-        "label": "t:settings_schema.page.settings.description.label"
-      },
-      {
-        "id": "icon",
-        "type": "image_picker",
-        "ratio": "1:1",
-        "width": 100,
-        "label": "t:settings_schema.page.settings.icon.label",
-        // "required": true, 如果必填就用这个参数
-        "info": "t:settings_schema.page.settings.icon.info"
+        "label": "t:schema.templates.page.settings.description.label"
       },
       {
         "id": "content",
         "type": "richtext",
-        "label": "t:settings_schema.page.settings.content.label",
+        "label": "t:schema.templates.page.settings.content.label",
         "readonly": true,
-        "info": "t:settings_schema.page.settings.content.info"
+        "info": "t:schema.templates.page.settings.content.info"
       }
   ]
 }
