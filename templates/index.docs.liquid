@@ -7,18 +7,21 @@
     <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url({{ page.settings.hero_image_url | escape_once }})"></div>
   {% endif %}
 
-  <section class="mx-auto max-w-[var(--max-content-width)] md:px-0">
+  <section class="mx-auto max-w-[var(--max-content-width)] px-4 md:px-0">
     <!-- 顶部自定义输入板块 -->
     <section>
       {{ site.settings.features_one }}
     </section>
 
     <!-- 搜索区域 -->
-    <div class="container flex flex-col h-full py-15 mx-auto">
+    <div class="container flex flex-col h-full py-5 md:py-15 mx-auto">
       <div class="flex flex-col items-center justify-center flex-grow">
-        <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
-          {{ page.settings.hero_slogan | presence }}
-        </h1>
+        {{ assign hero_slogan = page.settings.hero_slogan | presence }}
+        {% if hero_slogan %}
+          <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
+            {{ hero_slogan }}
+          </h1>
+        {% endif %}
         <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
           {% form_tag 'search', class: 'w-full' %}
             <div class="relative">
@@ -90,7 +93,7 @@
           <div class="items-center text-center my-4 md:mb-8">
             <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.channels_section_title }}</h2>
           </div>
-          <div class="items-start lg:max-w-none grid grid-cols-3 gap-8 md:grid-cols-3 lg:grid-cols-3 lg:gap-x-12 lg:gap-y-16">
+          <div class="items-start lg:max-w-none grid grid-cols-1 gap-2 md:gap-8 md:grid-cols-3">
             {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 3 %}
             {% for card_page in card_pages %}
               <!-- Card -->
@@ -124,7 +127,7 @@
           <div class="items-center text-center my-4 md:mb-8">
             <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.topic_channel_title }}</h2>
           </div>
-          <div class="items-start lg:max-w-none grid grid-cols-3 gap-2 md:gap-4 md:grid-cols-4 lg:grid-cols-4">
+          <div class="items-start lg:max-w-none grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-3">
             {% query topic_channels from site.pages %}
               {
                 "where": {
