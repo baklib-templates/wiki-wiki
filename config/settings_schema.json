@@ -3,19 +3,19 @@
     "name": "theme_info",
     "theme_name": "wiki",
     "theme_label": "t:schema.theme_label",
+    "theme_description": "t:schema.theme_description",
     "theme_version": "1.1.0",
     "theme_scope": "wiki",
     "theme_author": "Baklib",
-    "theme_description": "t:schema.theme_description",
     "theme_documentation_url": "https://help.baklib.cn/themes/wiki",
     "theme_support_url": "https://help.baklib.cn/themes/wiki/settings",
     "theme_thumb_url": "images/schema/thumb.png",
     "theme_preview_images": [
-      "images/schema/${lang}/wiki.png",
-      "images/schema/${lang}/index-help-center.png",
-      "images/schema/${lang}/index-list.png",
-      "images/schema/${lang}/index-docs.png",
-      "images/schema/${lang}/page.png"
+      "images/schema/wiki.png",
+      "images/schema/index-help-center.png",
+      "images/schema/index-list.png",
+      "images/schema/index-docs.png",
+      "images/schema/page.png"
     ],
     "theme_languages": [
       {
