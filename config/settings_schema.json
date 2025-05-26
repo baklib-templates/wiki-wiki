@@ -23,8 +23,24 @@
         "value": "zh-CN"
       },
       {
+        "name": "中文繁體",
+        "value": "zh-TW"
+      },
+      {
+        "name": "한국어",
+        "value": "ko"
+      },
+      {
         "name": "English",
         "value": "en"
+      },
+      {
+        "name": "日本語",
+        "value": "ja"
+      },
+      {
+        "name": "한국어",
+        "value": "ko"
       }
     ],
     "recommendations": {

@@ -1,0 +1,254 @@
+{
+  "theme_label": "知識內容展示門戶",
+  "theme_description": "專業的知識內容展示主題，支持將組織內部知識庫通過 CMS 系統轉化為獨立的展示網站。適用於企業知識庫、產品幫助中心、技術文檔等多種內容展示場景，讓知識管理和內容展示更加高效。",
+  "templates": {
+    "index": {
+      "docs": {
+        "name": "文檔中心",
+        "description": "理想的產品用戶手冊",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景樣式",
+            "info": "選擇背景樣式後，背景色和背景圖會根據選擇的內容進行展示",
+            "choices": {
+              "none": "無背景",
+              "color": "顏色背景",
+              "image": "圖片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建議高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景圖",
+            "info": "背景圖會根據頁面寬度和背景高度自動裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "選擇背景色後，背景色會根據選擇的內容進行展示"
+          },
+          "hero_slogan": {
+            "label": "標語",
+            "info": "標語會顯示在背景圖上方",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "熱門標籤",
+            "info": "設置以後，標籤列表會顯示在首頁搜尋欄下方"
+          },
+          "search_hot_keywords": {
+            "label": "熱門搜尋",
+            "info": "設置以後，搜尋框下方會顯示熱門搜尋。';' 分割多個關鍵詞"
+          },
+          "show_channels_section": {
+            "label": "1. 第一個板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "channels_section_title": {
+            "label": "第一個板塊標題",
+            "default": "新手入門"
+          },
+          "show_topic_channel": {
+            "label": "2. 專題推薦板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "topic_channel_title": {
+            "label": "專題推薦板塊的標題",
+            "default": "專題推薦"
+          },
+          "show_newest_section": {
+            "label": "3. 最新文章板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "newest_section_title": {
+            "label": "最新文章板塊標題",
+            "default": "最新文章"
+          },
+          "show_hottest_section": {
+            "label": "4. 熱門話題板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "hottest_section_title": {
+            "label": "熱門話題板塊標題",
+            "default": "熱門話題"
+          }
+        }
+      },
+      "help_center": {
+        "name": "幫助中心",
+        "description": "功能豐富的產品知識庫樣式",
+        "settings": {
+          "hero_bg_type": {
+            "label": "首屏背景樣式",
+            "info": "選擇背景樣式後，背景色和背景圖會根據選擇的內容進行展示",
+            "choices": {
+              "none": "無背景",
+              "color": "顏色背景",
+              "image": "圖片背景"
+            }
+          },
+          "hero_height": {
+            "label": "背景高度",
+            "info": "建議高度：360px"
+          },
+          "hero_image_url": {
+            "label": "背景圖",
+            "info": "背景圖會根據頁面寬度和背景高度自動裁剪"
+          },
+          "hero_bg_color": {
+            "label": "背景色",
+            "info": "選擇背景色後，背景色會根據選擇的內容進行展示"
+          },
+          "hero_slogan": {
+            "label": "標語",
+            "info": "標語會顯示在背景圖上方",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "熱門標籤",
+            "info": "設置以後，標籤列表會顯示在首頁搜尋欄下方"
+          },
+          "search_hot_keywords": {
+            "label": "熱門搜尋",
+            "info": "設置以後，搜尋框下方會顯示熱門搜尋。';' 分割多個關鍵詞"
+          },
+          "show_channels_section": {
+            "label": "1. 欄目導覽板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "channels_section_title": {
+            "label": "欄目導覽板塊標題",
+            "default": "欄目導覽"
+          },
+          "show_newest_section": {
+            "label": "2. 最新文章板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "newest_section_title": {
+            "label": "最新文章板塊標題",
+            "default": "最新文章"
+          },
+          "show_topic_channel": {
+            "label": "3. 專題推薦板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "topic_channel_title": {
+            "label": "專題推薦板塊的標題",
+            "default": "專題推薦"
+          },
+          "show_hottest_section": {
+            "label": "4. 熱門文章板塊",
+            "info": "不勾選，首頁將不會顯示此板塊"
+          },
+          "hottest_section_title": {
+            "label": "熱門文章板塊標題",
+            "default": "熱門文章"
+          }
+        }
+      },
+      "list": {
+        "name": "產品手冊",
+        "description": "首頁目錄列表樣式"
+      }
+    },
+    "page": {
+      "name": "普通頁面模版",
+      "description": "內容頁面模板",
+      "settings": {
+        "is_topic_channel": {
+          "label": "是否為專題欄目",
+          "info": "如果是專題欄目，頁面將會顯示在首頁的專題欄目列表中"
+        },
+        "title": {
+          "label": "頁面標題",
+          "info": "知識庫同步，不可編輯"
+        },
+        "tags": {
+          "label": "頁面標籤"
+        },
+        "description": {
+          "label": "頁面描述"
+        },
+        "icon": {
+          "label": "頁面圖標",
+          "info": "用於顯示頁面圖標，建議1:1比例"
+        },
+        "content": {
+          "label": "頁面內容",
+          "info": "同步自數據源，不可編輯"
+        }
+      },
+      "video": {
+        "name": "視頻模版",
+        "description": "視頻頁面模版, 用於展示視頻內容",
+        "settings": {
+          "is_video_list": {
+            "label": "是否為視頻列表",
+            "info": "視頻列表頁，僅獲取下級為視頻模版頁面; 請確保下級頁面的模版為視頻模版"
+          },
+          "video_url": {
+            "label": "視頻地址",
+            "info": "用於呈現於視頻列表頁中, 列表頁無需填寫"
+          },
+          "video_cover_url": {
+            "label": "視頻封面圖",
+            "info": "建議1:1比例"
+          }
+        }
+      },
+      "export": {
+        "name": "導出頁面模版",
+        "description": "常用於瀏覽器直接導出當前欄目及下級頁面的內容"
+      }
+    }
+  },
+  "generic": {
+    "name": "通用設置",
+    "header_name": "頁頭頁尾導航菜單",
+    "head_title": "Head HTML 配置",
+    "settings": {
+      "logo_url": {
+        "label": "Logo 圖片",
+        "info": "若設置了logo，則頁頭顯示 logo，否則顯示：網站圖標+站點名稱"
+      },
+      "company_name": {
+        "label": "公司名稱",
+        "default": "Baklib.cn",
+        "info": "顯示在頁面底部頁腳位置"
+      },
+      "copyright_info": {
+        "label": "備案/版權信息",
+        "default": "蜀ICP備xxxx號"
+      },
+      "show_published_at": {
+        "label": "顯示發布時間",
+        "default": true
+      },
+      "show_author": {
+        "label": "顯示作者",
+        "default": true
+      },
+      "show_card_icon": {
+        "label": "首頁是否顯示欄目ICON圖標",
+        "info": "建議自行在頁面設置中配置圖標",
+        "default": true
+      }
+    }
+  },
+  "custom_html": {
+    "name": "自定義 HTML 代碼",
+    "settings": {
+      "head_html": {
+        "label": "自定義 <head></head> 標籤中的 HTML",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入訪問統計、客服機器人等嵌入代碼"
+      },
+      "header_menu_html": {
+        "label": "頂部導航區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      }
+    }
+  }
+}
