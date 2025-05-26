@@ -122,9 +122,6 @@
     --color-secondary-500: hsl(
     var(--theme-color-secondary-hsl-h) var(--theme-color-secondary-hsl-s) 55%
   );
-    --color-accent-100: hsl(
-    var(--theme-color-accent-hsl-h) var(--theme-color-accent-hsl-s) 92%
-  );
   }
 }
 @layer base {
@@ -2010,6 +2007,9 @@
       max-width: 96rem;
     }
   }
+  .m-auto {
+    margin: auto;
+  }
   .filter {
     display: flex;
     flex-wrap: wrap;
@@ -2272,6 +2272,9 @@
   }
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
+  }
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
   }
   .mb-12 {
     margin-bottom: calc(var(--spacing) * 12);
@@ -3203,9 +3206,6 @@
   .bg-\[var\(--tag-color\)\/20\] {
     background-color: var(--tag-color)/20;
   }
-  .bg-accent-100 {
-    background-color: var(--color-accent-100);
-  }
   .bg-base-100 {
     background-color: var(--color-base-100);
   }
@@ -3294,10 +3294,6 @@
     --tw-gradient-from: #ff80b5;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
-  .from-primary {
-    --tw-gradient-from: var(--color-primary);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
   .from-secondary-100 {
     --tw-gradient-from: var(--color-secondary-100);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -3324,10 +3320,6 @@
   }
   .to-primary-600 {
     --tw-gradient-to: var(--color-primary-600);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-  .to-secondary {
-    --tw-gradient-to: var(--color-secondary);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
   .to-80\% {
@@ -3438,9 +3430,6 @@
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
-  }
-  .py-5 {
-    padding-block: calc(var(--spacing) * 5);
   }
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
@@ -4647,11 +4636,6 @@
   .md\:py-8 {
     @media (width >= 48rem) {
       padding-block: calc(var(--spacing) * 8);
-    }
-  }
-  .md\:py-15 {
-    @media (width >= 48rem) {
-      padding-block: calc(var(--spacing) * 15);
     }
   }
   .md\:pt-4 {
