@@ -26,7 +26,7 @@
           },
           "hero_bg_color": {
             "label": "Background Color",
-            "info": "After selecting the background color, it will be displayed according to the selected content"
+            "info": "The color of the hero background style will be processed according to the selected color value (color background)"
           },
           "hero_slogan": {
             "label": "Slogan",
@@ -98,7 +98,7 @@
           },
           "hero_bg_color": {
             "label": "Background Color",
-            "info": "After selecting the background color, it will be displayed according to the selected content"
+            "info": "The color of the hero background style will be processed according to the selected color value (color background)"
           },
           "hero_slogan": {
             "label": "Slogan",
