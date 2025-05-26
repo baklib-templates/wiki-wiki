@@ -4,7 +4,7 @@
     "theme_name": "wiki",
     "theme_label": "t:schema.theme_label",
     "theme_description": "t:schema.theme_description",
-    "theme_version": "1.1.0",
+    "theme_version": "2.0.1",
     "theme_scope": "wiki",
     "theme_author": "Baklib",
     "theme_documentation_url": "https://help.baklib.cn/themes/wiki",
