@@ -177,14 +177,14 @@
                     <!-- 消息将在这里显示 -->
                   </div>
                   <div class="flex justify-between items-center">
-                    <div data-ai-search-completion-target="completed" class="hidden p-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
+                    <div data-ai-search-completion-target="completed" class="hidden py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
                       {{ "ai.completed" | t: "AI 回答完毕." }}
                     </div>
-                    <button data-expandable-content-target="expandButton" class="flex hidden gap-1 items-center p-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
+                    <button data-expandable-content-target="expandButton" class="flex hidden gap-1 items-center py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 19.1642L18.2071 12.9571L16.7929 11.5429L12 16.3358L7.20712 11.5429L5.79291 12.9571L12 19.1642ZM12 13.5143L18.2071 7.30722L16.7929 5.89301L12 10.6859L7.20712 5.89301L5.79291 7.30722L12 13.5143Z"></path></svg>
                       <span>{{ "ai.expand" | t: "展开内容" }}</span>
                     </button>
-                    <button data-expandable-content-target="collapseButton" class="flex hidden gap-1 items-center p-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
+                    <button data-expandable-content-target="collapseButton" class="flex hidden gap-1 items-center py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 4.83582L5.79291 11.0429L7.20712 12.4571L12 7.66424L16.7929 12.4571L18.2071 11.0429L12 4.83582ZM12 10.4857L5.79291 16.6928L7.20712 18.107L12 13.3141L16.7929 18.107L18.2071 16.6928L12 10.4857Z"></path></svg>
                       <span>{{ "ai.collapse" | t: "收起内容" }}</span>
                     </button>
