@@ -1,4 +1,4 @@
-<article class="grid">
+<article class="flex flex-col h-full">
   {% # 作者和发布时间 %}
   {% if site.settings.show_author or site.settings.show_published_at %}
     <section class="mb-6 mt-2">
@@ -50,7 +50,7 @@
   {% endif %}
 
   {% # 内容 %}
-  <section id="page-content" class="ProseMirror !h-auto " data-controller="link-target images-viewer" data-toc-target="content">
+  <section id="page-content" class="ProseMirror flex-1" data-controller="link-target images-viewer" data-toc-target="content">
     {{ page.settings.content }}
   </section>
 

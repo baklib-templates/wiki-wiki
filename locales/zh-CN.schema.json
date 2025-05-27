@@ -39,7 +39,7 @@
           },
           "search_hot_keywords": {
             "label": "热门搜索",
-            "info": "设置以后，搜索框下方会显示热门搜索。';' 分割多个关键词"
+            "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
           },
           "show_channels_section": {
             "label": "1. 第一个板块",
@@ -220,6 +220,15 @@
       "copyright_info": {
         "label": "备案/版权信息",
         "default": "蜀ICP备xxxx号"
+      },
+      "screen_width": {
+        "label": "页面宽度",
+        "choices": {
+          "narrow": "窄（1024像素）",
+          "medium": "适中（1280像素）",
+          "wide": "宽（1536像素）",
+          "full": "满屏"
+        }
       },
       "show_published_at": {
         "label": "显示发布时间",

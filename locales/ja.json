@@ -57,6 +57,15 @@
     "published_at": "公開日時",
     "feedback_created_at": "最終フィードバック",
     "empty": "データなし",
+    "settings": {
+      "screen_width": "画面幅",
+      "screen_width_choices": {
+        "narrow": "狭い（1024px）",
+        "medium": "中（1280px）",
+        "wide": "広い（1536px）",
+        "full": "全画面"
+      }
+    },
     "buttons": {
       "close": "閉じる",
       "signout": "ログアウト",

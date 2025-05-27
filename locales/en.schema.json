@@ -39,7 +39,7 @@
           },
           "search_hot_keywords": {
             "label": "Popular Searches",
-            "info": "After setting, popular searches will be displayed below the search box. Use ';' to separate multiple keywords"
+            "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
           },
           "show_channels_section": {
             "label": "1. First Section",
@@ -111,7 +111,7 @@
           },
           "search_hot_keywords": {
             "label": "Popular Searches",
-            "info": "After setting, popular searches will be displayed below the search box. Use ';' to separate multiple keywords"
+            "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
           },
           "show_channels_section": {
             "label": "1. Navigation Section",
@@ -220,6 +220,15 @@
       "copyright_info": {
         "label": "ICP/Copyright Information",
         "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Screen Width",
+        "choices": {
+          "narrow": "Narrow (1024px)",
+          "medium": "Medium (1280px)",
+          "wide": "Wide (1536px)",
+          "full": "Full Screen"
+        }
       },
       "show_published_at": {
         "label": "Show Publication Time",

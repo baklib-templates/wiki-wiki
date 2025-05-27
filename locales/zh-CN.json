@@ -57,6 +57,15 @@
     "published_at": "发布时间",
     "feedback_created_at": "上次反馈于",
     "empty": "暂无数据",
+    "settings": {
+      "screen_width": "页面宽度",
+      "screen_width_choices": {
+        "narrow": "窄（1024像素）",
+        "medium": "适中（1280像素）",
+        "wide": "宽（1536像素）",
+        "full": "满屏"
+      }
+    },
     "buttons": {
       "close": "关闭",
       "signout": "退出登录",

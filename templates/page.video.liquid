@@ -1,6 +1,5 @@
 <!-- 提供视频链接，Card显示视频列表 -->
 {% assign pages = page.children_in_list | limit: 200 %}
-{% assign screen_width = site.settings.screen_width.value |  default: 'max-w-screen-xl' %}
 {% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
 
 <div class="px-4">

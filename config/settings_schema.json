@@ -91,6 +91,18 @@
         "default": "t:schema.generic.settings.copyright_info.default"
       },
       {
+        "id": "screen_width",
+        "type": "radio",
+        "label": "t:schema.generic.settings.screen_width.label",
+        "choices": [
+          { "label": "t:schema.generic.settings.screen_width.choices.narrow", "value":"1024px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.medium", "value":"1280px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.wide", "value":"1536px" },
+          { "label": "t:schema.generic.settings.screen_width.choices.full", "value":"100%" }
+        ],
+        "default": "1280px"
+      },
+      {
         "id": "show_published_at",
         "type": "checkbox",
         "label": "t:schema.generic.settings.show_published_at.label",

@@ -11,6 +11,46 @@
           <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "templates.search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
         </div>
       {% endform_tag %}
+
+      <div class='space-y-1 w-full mt-2'>
+        {% # 自定义标签搜索 %}
+        {% assign index_page = site.pages['/'] %}
+        {% assign search_hot_tags = index_page.settings.search_hot_tags %}
+        {% if search_hot_tags.size > 0 %}
+          <div class="items-center justify-start w-full md:flex flex-wrap md:px-3">
+            <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+              <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+              {% for tag in search_hot_tags %}
+                <a
+                  href="{{ tag.path }}"
+                  data-turbo-frame="_top"
+                  class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                >
+                  {{ tag.name }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% # 热门搜索 %}
+        {% assign hot_keywords = index_page.settings.search_hot_keywords | reg_split: "/\n/" %}
+        {% if hot_keywords.size > 0 %}
+          <div class="items-center justify-start w-full md:flex flex-wrap md:px-3">
+            <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+              <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
+              {% for hot_keyword in hot_keywords %}
+                <a
+                  href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                  class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                >
+                  {{ hot_keyword }}
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
     </section>
 
     {% comment %} 使用turbo-frame，可以使光标一直在输入框中 {% endcomment %}

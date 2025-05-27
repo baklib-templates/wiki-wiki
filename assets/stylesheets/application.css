@@ -1965,6 +1965,17 @@
   .col-span-8 {
     grid-column: span 8 / span 8;
   }
+  .hero {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    background-size: cover;
+    background-position: center;
+    & > * {
+      grid-column-start: 1;
+      grid-row-start: 1;
+    }
+  }
   .modal-box {
     grid-column-start: 1;
     grid-row-start: 1;
@@ -2093,6 +2104,9 @@
         opacity: 0% !important;
       }
     }
+  }
+  .mx-4 {
+    margin-inline: calc(var(--spacing) * 4);
   }
   .mx-auto {
     margin-inline: auto;
@@ -2625,9 +2639,6 @@
   .size-full {
     width: 100%;
     height: 100%;
-  }
-  .\!h-auto {
-    height: auto !important;
   }
   .h-1\.5 {
     height: calc(var(--spacing) * 1.5);
@@ -4603,9 +4614,9 @@
       padding: calc(var(--spacing) * 6);
     }
   }
-  .md\:px-0 {
+  .md\:px-3 {
     @media (width >= 48rem) {
-      padding-inline: calc(var(--spacing) * 0);
+      padding-inline: calc(var(--spacing) * 3);
     }
   }
   .md\:px-4 {

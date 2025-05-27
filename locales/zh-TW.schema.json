@@ -39,7 +39,7 @@
           },
           "search_hot_keywords": {
             "label": "熱門搜尋",
-            "info": "設置以後，搜尋框下方會顯示熱門搜尋。';' 分割多個關鍵詞"
+            "info": "設置以後，搜尋框下方會顯示熱門搜尋。換行設置多個關鍵詞"
           },
           "show_channels_section": {
             "label": "1. 第一個板塊",
@@ -111,7 +111,7 @@
           },
           "search_hot_keywords": {
             "label": "熱門搜尋",
-            "info": "設置以後，搜尋框下方會顯示熱門搜尋。';' 分割多個關鍵詞"
+            "info": "設置以後，搜尋框下方會顯示熱門搜尋。換行設置多個關鍵詞"
           },
           "show_channels_section": {
             "label": "1. 欄目導覽板塊",

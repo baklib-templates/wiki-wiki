@@ -39,7 +39,7 @@
           },
           "search_hot_keywords": {
             "label": "人気の検索",
-            "info": "設定すると、検索ボックスの下に人気の検索が表示されます。複数のキーワードは「;」で区切ります"
+            "info": "設定すると、検索ボックスの下に人気の検索が表示されます。改行で複数のキーワードを設定します"
           },
           "show_channels_section": {
             "label": "1. 最初のセクション",
@@ -111,7 +111,7 @@
           },
           "search_hot_keywords": {
             "label": "人気の検索",
-            "info": "設定すると、検索ボックスの下に人気の検索が表示されます。複数のキーワードは「;」で区切ります"
+            "info": "設定すると、検索ボックスの下に人気の検索が表示されます。改行で複数のキーワードを設定します"
           },
           "show_channels_section": {
             "label": "1. ナビゲーションセクション",
@@ -205,24 +205,33 @@
   },
   "generic": {
     "name": "一般設定",
-    "header_name": "ヘッダーとフッターナビゲーションメニュー",
-    "head_title": "Head HTML設定",
+    "header_name": "ヘッダーとフッターのナビゲーションメニュー",
+    "head_title": "Head HTML 設定",
     "settings": {
       "logo_url": {
         "label": "ロゴ画像",
-        "info": "ロゴが設定されている場合、ヘッダーにロゴが表示されます。それ以外の場合は：ウェブサイトアイコン+サイト名"
+        "info": "ロゴが設定されている場合、ヘッダーに表示されます。それ以外の場合は：サイトアイコン+サイト名"
       },
       "company_name": {
         "label": "会社名",
         "default": "Baklib.cn",
-        "info": "ページ下部のフッター位置に表示"
+        "info": "フッターに表示"
       },
       "copyright_info": {
-        "label": "ICP/著作権情報",
-        "default": "ICP xxxxxx"
+        "label": "著作権情報",
+        "default": "ICP xxxxx"
+      },
+      "screen_width": {
+        "label": "画面幅",
+        "choices": {
+          "narrow": "狭い（1024px）",
+          "medium": "中（1280px）",
+          "wide": "広い（1536px）",
+          "full": "全画面"
+        }
       },
       "show_published_at": {
-        "label": "公開日時を表示",
+        "label": "公開時間を表示",
         "default": true
       },
       "show_author": {
