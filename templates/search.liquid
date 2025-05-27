@@ -1,6 +1,6 @@
 <main class="px-4">
   <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
-    <section class="mx-auto w-full max-w-xl">
+    <section class="mx-auto w-full max-w-[60%]">
       {% form_tag 'search', data-turbo-frame: 'frame--search-results', data-turbo-action: 'advance' %}
         <div class="relative text-gray-400 rounded-md group focus:text-gray-900 hover:text-gray-500">
           <button type="submit" class="flex absolute inset-y-0 right-0 items-center pr-3 pl-4">
@@ -68,7 +68,7 @@
           {% assign total_size = extends_size | plus: items_size %}
           {% assign top_5_paths = items | map: 'path' | limit: 5 | join: ',' %}
           <section
-            class="flex flex-col flex-1 gap-6 items-start mx-auto w-full max-w-7xl md:flex-row sm:mt-8"
+            class="flex flex-col flex-1 gap-6 items-start mx-auto w-full md:flex-row sm:mt-8"
             data-controller="responsive-attr"
             data-responsive-attr-breakpoints-value='{"sm": 640, "md": 768, "lg": 1024, "xl": 1280, "2xl": 1536}'
           >

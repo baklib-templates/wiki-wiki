@@ -22,7 +22,7 @@
               {{ hero_slogan }}
             </h1>
           {% endif %}
-          <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
+          <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3 {% if page.settings.hero_bg_type.value == '2' %} backdrop-blur-xl  p-5 shadow rounded {% endif %}">
             {% form_tag 'search', class: 'w-full' %}
               <div class="relative">
                 <button type="button" class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 pr-3 sm:right-auto">
@@ -36,6 +36,8 @@
                   class="block w-full h-14 pr-6 pl-12 text-lg transition duration-300 ease-in-out bg-white dark:bg-gray-600 bg-opacity-75 focus:bg-opacity-90 placeholder:text-gray-300 rounded-full outline-none
                     {% if page.settings.hero_bg_type.value == '0' %}
                       border border-gray-200 dark:border-slate-700 hover:ring-4 hover:ring-primary hover:bg-primary/10 dark:hover:ring-slate-500 dark:hover:bg-slate-600
+                    {% elsif page.settings.hero_bg_type.value == '2' %}
+                      border border-gray-200 dark:border-slate-700  bg-white
                     {% else %}
                       border-none hover:ring-4 hover:ring-primary
                     {% endif %}
@@ -49,7 +51,7 @@
               {% assign search_hot_tags = page.settings.search_hot_tags %}
               {% if search_hot_tags.size > 0 %}
                 <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
-                  <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <div class="inline-block text-sm {% if page.settings.hero_bg_type.value == '2' %} text-white {% else %} text-gray-500 {% endif %} text-gray-500 dark:text-gray-100">
                     <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
                     {% for tag in search_hot_tags %}
                       <a
@@ -68,7 +70,7 @@
               {% assign hot_keywords = page.settings.search_hot_keywords | reg_split: "/\n/" %}
               {% if hot_keywords.size > 0 %}
                 <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
-                  <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <div class="inline-block text-sm {% if page.settings.hero_bg_type.value == '2' %} text-white {% else %} text-gray-500 {% endif %} dark:text-gray-100">
                     <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t: '热门搜索' }}:</span>
                     {% for hot_keyword in hot_keywords %}
                       <a
