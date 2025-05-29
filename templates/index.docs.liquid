@@ -4,7 +4,10 @@
       <div class="relative left-[calc(50%-11rem)] aspect-[1200/800] w-[80w] -translate-x-1/2 rotate-[30deg] opacity-30 sm:left-[calc(50%-20rem)] sm:w-[82.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%); background-color: {{ page.settings.hero_bg_color }}"></div>
     </div>
   {% elsif page.settings.hero_bg_type.value == '2' %}
-    <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url({{ page.settings.hero_image_url | escape_once }})"></div>
+    {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
+    {% assign bg_image_url = page.settings.hero_image_url | escape_once | default: default_hero_image %}
+
+    <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url({{ bg_image_url }})"></div>
   {% endif %}
 
   <div class='px-4'>
@@ -16,7 +19,7 @@
       <!-- 搜索区域 -->
       <div class="container flex flex-col h-full m-auto mb-10" style="height: {{ page.settings.hero_height }}px;">
         <div class="flex flex-col items-center justify-center flex-grow">
-          {{ assign hero_slogan = page.settings.hero_slogan | presence }}
+          {% assign hero_slogan = page.settings.hero_slogan | presence %}
           {% if hero_slogan %}
             <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
               {{ hero_slogan }}
