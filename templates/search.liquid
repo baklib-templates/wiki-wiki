@@ -1,6 +1,6 @@
 <main class="px-4">
   <div class="w-full max-w-[var(--max-content-width)] mx-auto pt-4">
-    <section class="mx-auto w-full max-w-[60%]">
+    <section class="mx-auto w-full md:max-w-[60%]">
       {% form_tag 'search', data-turbo-frame: 'frame--search-results', data-turbo-action: 'advance' %}
         <div class="relative text-gray-400 rounded-md group focus:text-gray-900 hover:text-gray-500">
           <button type="submit" class="flex absolute inset-y-0 right-0 items-center pr-3 pl-4">
@@ -8,7 +8,8 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
           </button>
-          <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "templates.search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60">
+          <input type="text" autofocus name="{{form.keywords_field_name}}" value="{{ search.keywords | truncate: 10 | escape }}" placeholder="{{ "templates.search.placeholder" | t: "搜索内容" }}" class="block pr-10 pl-3 w-full h-12 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500
+          bg-opacity-25 rounded-md transition duration-300 ease-in-out outline-1 focus-visible:outline-primary hover:outline-2 hover:outline-primary-300 sm:text-md focus:bg-opacity-60 ">
         </div>
       {% endform_tag %}
 
@@ -89,7 +90,7 @@
                       {% endfor %}
                     {% endif %}
                     {% for page in items %}
-                      <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
+                      <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700">
                         <div class="flex gap-1">
                           <div>
                             <div class="flex space-x-2 items-start">
@@ -97,7 +98,7 @@
                                 <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
                               </div>
                               <div class='flex-1'>
-                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline" href="{{ page.url }}" data-turbo-frame="_top">
+                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline dark:text-slate-100" href="{{ page.url }}" data-turbo-frame="_top">
                                   {{ page.highlighted_search_title }}
                                 </a>
                                 <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ page.url }}</a>
@@ -140,13 +141,13 @@
                     {% assign message = "templates.search.no_results" | t: '没有搜索到内容' %}
                     {% render 'empty', message: message %}
                     <script>
-                    (function(){
-                      setTimeout(function(){
-                        const aiSearchCompletionContainer = document.getElementById('js--ai-search-completion-container');
-                        if (aiSearchCompletionContainer) aiSearchCompletionContainer.classList.add('hidden');
-                      }, 10);
-                    })()
-                  </script>
+                      (function(){
+                        setTimeout(function(){
+                          const aiSearchCompletionContainer = document.getElementById('js--ai-search-completion-container');
+                          if (aiSearchCompletionContainer) aiSearchCompletionContainer.classList.add('hidden');
+                        }, 10);
+                      })()
+                    </script>
                   </div>
                 {% endif %}
               </turbo-frame>
@@ -199,9 +200,13 @@
           document.querySelector('main').classList.add('flex-1');
         </script>
       {% else %}
-        <script>
-          document.querySelector('main').classList.remove('flex-1');
-        </script>
+        <div class='mt-10'>
+          {% assign message = "templates.search.no_results" | t: '没有搜索到内容' %}
+          {% render 'empty', message: message %}
+          <script>
+            document.querySelector('main').classList.remove('flex-1');
+          </script>
+        </div>
       {% endif %}
     </turbo-frame>
   </div>

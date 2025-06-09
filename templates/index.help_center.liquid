@@ -1,6 +1,8 @@
 {% assign default_icon = 'images/icon.svg' | asset_url %}
 
-<div class="relative" style="background-color: rgb(245 245 245 / 39%)">
+
+
+<div class="relative">
   {% comment %} 背景 {% endcomment %}
   {% if page.settings.hero_bg_type.value == '1' %}
     <div class="absolute inset-x-0 overflow-hidden -top-10 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
@@ -14,90 +16,96 @@
     {% assign bg_image_url = page.settings.hero_image_url | escape_once | default: default_hero_image %}
 
     <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url({{ bg_image_url }})"></div>
+  {% else %}
+    <div class="absolute w-full bg-center bg-cover -z-10 bg-slate-100 dark:bg-slate-900 pt-10" style="height: {{ page.settings.hero_height }}px;"></div>
   {% endif %}
 
-  <div class='mx-4'>
-    <section class="mx-auto max-w-[var(--max-content-width)]">
-      <!-- 顶部自定义输入板块 -->
-      <section>
-        {{ site.settings.features_one }}
-      </section>
+  <div class="">
+    <!-- 顶部自定义输入板块 -->
+    <section>
+      {{ site.settings.features_one }}
+    </section>
 
-      <!-- 搜索区域1 -->
-      <div class="container flex flex-col h-full m-auto mb-10" style="height: {{ page.settings.hero_height }}px;">
-        <div class="flex flex-col items-center justify-center flex-grow">
-          {% assign hero_slogan = page.settings.hero_slogan %}
+    <!-- 搜索区域1 -->
+    <div class="container flex flex-col h-full m-auto" style="height: {{ page.settings.hero_height }}px;">
+      <div class="flex flex-col items-center justify-center flex-grow mx-4">
+        {% assign hero_slogan = page.settings.hero_slogan %}
+        <div class="{% if page.settings.hero_bg_type.value == '2' %} text-white {% endif %}">
+          <h1 class="py-2 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow text-center">
+            {{ site.name }}
+          </h1>
           {% if hero_slogan %}
-            <h1 class="py-2 my-4 leading-8 text-2xl md:text-4xl font-bold transition duration-500 md:mt-0 text-shadow">
-              {{ hero_slogan }}
-            </h1>
+            <p class="py-2 text-base transition duration-500 text-shadow">{{ hero_slogan }}</p>
           {% endif %}
-          <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
-            {% form_tag 'search', class: 'w-full' %}
-              <div class="relative">
-                <button type="button" class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 pr-3 sm:right-auto">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>
-                </button>
-                <input
-                  type="search"
-                  name="{{form.keywords_field_name}}" value="{{ search.keywords | escape_once }}"
-                  placeholder="{{ "layout.theme.search_input_placeholder" | t }}"
-                  autocomplete="off"
-                  class="block w-full h-14 pr-6 pl-12 text-lg transition duration-300 ease-in-out bg-white dark:bg-gray-600 bg-opacity-75 focus:bg-opacity-90 placeholder:text-gray-300 rounded-full outline-none
-                    {% if page.settings.hero_bg_type.value == '0' %}
-                      border border-gray-200 dark:border-slate-700 hover:ring-4 hover:ring-primary hover:bg-primary/10 dark:hover:ring-slate-500 dark:hover:bg-slate-600
-                    {% else %}
-                      border-none hover:ring-4 hover:ring-primary
-                    {% endif %}
-                  "
-                >
-              </div>
-            {% endform_tag %}
+        </div>
 
-            <div class='space-y-1 w-full mt-2'>
-              {% # 自定义标签搜索 %}
-              {% assign search_hot_tags = page.settings.search_hot_tags %}
-              {% if search_hot_tags.size > 0 %}
-                <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
-                  <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                    <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
-                    {% for tag in search_hot_tags %}
-                      <a
-                        href="{{ tag.path }}"
-                        data-turbo-frame="_top"
-                        class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
-                      >
-                        {{ tag.name }}
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endif %}
-
-              {% # 热门搜索 %}
-
-              {% assign hot_keywords = page.settings.search_hot_keywords | reg_split: "/\n/" %}
-              {% if hot_keywords.size > 0 %}
-                <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
-                  <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
-                    <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t }}:</span>
-                    {% for hot_keyword in hot_keywords %}
-                      <a
-                        href="{{site.index_path}}-/search?q={{ hot_keyword }}"
-                        class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
-                      >
-                        {{ hot_keyword }}
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              {% endif %}
+        <div class="z-0 flex flex-col items-center justify-center w-full md:w-2/3">
+          {% form_tag 'search', class: 'w-full' %}
+            <div class="relative">
+              <button type="button" class="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-5 pr-3 sm:right-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" > <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>
+              </button>
+              <input
+                type="search"
+                name="{{form.keywords_field_name}}" value="{{ search.keywords | escape_once }}"
+                placeholder="{{ "layout.theme.search_input_placeholder" | t }}"
+                autocomplete="off"
+                class="block w-full h-14 pr-6 pl-12 text-lg transition duration-300 ease-in-out bg-white dark:bg-gray-600 bg-opacity-75 focus:bg-opacity-90 placeholder:text-gray-300 rounded-full outline-none
+                  {% if page.settings.hero_bg_type.value == '0' %}
+                    border border-gray-200 dark:border-slate-700 hover:ring-4 hover:ring-primary hover:bg-primary/10 dark:hover:ring-slate-500 dark:hover:bg-slate-600
+                  {% else %}
+                    border-none hover:ring-4 hover:ring-primary
+                  {% endif %}
+                "
+              >
             </div>
+          {% endform_tag %}
+
+          <div class='space-y-1 w-full mt-2'>
+            {% # 自定义标签搜索 %}
+            {% assign search_hot_tags = page.settings.search_hot_tags %}
+            {% if search_hot_tags.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_tags_label' | t }}:</span>
+                  {% for tag in search_hot_tags %}
+                    <a
+                      href="{{ tag.path }}"
+                      data-turbo-frame="_top"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] min-w-12"
+                    >
+                      {{ tag.name }}
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% # 热门搜索 %}
+
+            {% assign hot_keywords = page.settings.search_hot_keywords | reg_split: "/\n/" %}
+            {% if hot_keywords.size > 0 %}
+              <div class="items-center justify-start w-full md:flex flex-wrap md:px-5">
+                <div class="inline-block text-sm text-gray-500 dark:text-gray-100">
+                  <span class="mr-2">{{ 'layout.theme.search_keywords_label' | t }}:</span>
+                  {% for hot_keyword in hot_keywords %}
+                    <a
+                      href="{{site.index_path}}-/search?q={{ hot_keyword }}"
+                      class="mr-2 hover:text-primary focus:ring hover:-translate-y-[2px] underline"
+                    >
+                      {{ hot_keyword }}
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
+    </div>
 
-      <div class='space-y-10'>
+    <div class='bg-slate-100 dark:bg-slate-900 py-6 md:py-10 px-4'>
+      <div class='mx-auto max-w-[var(--max-content-width)] space-y-10'>
         <!-- 栏目导览 -->
         {% if page.settings.show_channels_section %}
           {% assign channel_pages = site.pages['/'].children_in_list |  order_by: '-created_at' %}
@@ -106,9 +114,9 @@
               <div class="w-1 h-full mr-3 bg-primary"></div>
               {{ page.settings.channels_section_title }}
             </div>
-            <div class="items-start lg:max-w-none grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-6 lg:gap-2">
+            <div class="items-start lg:max-w-none grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-7 lg:gap-2">
               {% for channel_page in channel_pages %}
-                <a href="{{ channel_page.path }}" class="flex flex-col text-center items-center text-md h-full px-2 py-4 bg-white hover:bg-blue-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden shadow">
+                <a href="{{ channel_page.path }}" class="flex flex-col text-center items-center text-md h-full px-2 py-6 bg-white hover:bg-blue-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden shadow">
                   {% if channel_page.settings.icon %}
                     <span><img src="{{ channel_page.settings.icon | default: default_icon }}" class="h-8"/> </span>
                   {% else %}
@@ -119,37 +127,6 @@
                     </span>
                   {% endif %}
                   <h3 class="line-clamp-1 mt-1">{{ channel_page.link_text }}</h3>
-                </a>
-              {% endfor %}
-            </div>
-          </section>
-        {% endif %}
-
-        <!-- 最新文章 -->
-        {% if page.settings.show_newest_section %}
-          {% assign newest_pages = site.pages['/'].pages_in_list | order_by: '-created_at' | limit: 10 %}
-          <section>
-            <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
-              <div class="w-1 h-full mr-3 bg-primary"></div>
-              <span>{{ page.settings.newest_section_title }}</span>
-            </div>
-
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
-              {% for sub_page in newest_pages %}
-                <a class="flex items-center justify-between transition transform group"
-                  href="{{ sub_page.path }}">
-                  <div class="flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
-                      {{ sub_page.link_text }}
-                    </h6>
-                  </div>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
                 </a>
               {% endfor %}
             </div>
@@ -230,6 +207,38 @@
           </section>
         {% endif %}
 
+        <!-- 最新文章 -->
+        {% if page.settings.show_newest_section %}
+          {% assign newest_pages = site.pages['/'].pages_in_list | order_by: '-created_at' | limit: 10 %}
+          <section>
+            <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
+              <div class="w-1 h-full mr-3 bg-primary"></div>
+              <span>{{ page.settings.newest_section_title }}</span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 gap-y-4 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-md overflow-hidden">
+              {% for sub_page in newest_pages %}
+                <a class="flex items-center justify-between transition transform group"
+                  href="{{ sub_page.path }}">
+                  <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400 transition group-hover:text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                    <h6 class="ml-2 transition text-gray-550 group-hover:text-primary">
+                      {{ sub_page.link_text }}
+                    </h6>
+                  </div>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 mr-4 text-gray-500 transition group-hover:text-primary group-hover:translate-x-3 md:transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+
         <!-- 热门话题 -->
         {% if page.settings.show_hottest_section %}
           {% assign hottest_pages = site.pages['/'].pages_in_list | order_by: '-visits_count' | limit: 10 %}
@@ -265,7 +274,7 @@
           {{ site.settings.features_two }}
         </section>
       </div>
-    </section>
+    </div>
   </div>
 </div>
 
@@ -341,7 +350,7 @@
         "id": "show_channels_section",
         "label": "t:schema.templates.index.help_center.settings.show_channels_section.label",
         "type": "checkbox",
-        "default": true,
+        "default": false,
         "info": "t:schema.templates.index.help_center.settings.show_channels_section.info"
       },
       {
@@ -349,19 +358,6 @@
         "label": "t:schema.templates.index.help_center.settings.channels_section_title.label",
         "type": "text",
         "default": "t:schema.templates.index.help_center.settings.channels_section_title.default"
-      },
-      {
-        "id": "show_newest_section",
-        "label": "t:schema.templates.index.help_center.settings.show_newest_section.label",
-        "type": "checkbox",
-        "default": true,
-        "info": "t:schema.templates.index.help_center.settings.show_newest_section.info"
-      },
-      {
-        "id": "newest_section_title",
-        "label": "t:schema.templates.index.help_center.settings.newest_section_title.label",
-        "type": "text",
-        "default": "t:schema.templates.index.help_center.settings.newest_section_title.default"
       },
       {
         "id": "show_topic_channel",
@@ -375,6 +371,19 @@
         "label": "t:schema.templates.index.help_center.settings.topic_channel_title.label",
         "type": "text",
         "default": "t:schema.templates.index.help_center.settings.topic_channel_title.default"
+      },
+      {
+        "id": "show_newest_section",
+        "label": "t:schema.templates.index.help_center.settings.show_newest_section.label",
+        "type": "checkbox",
+        "default": true,
+        "info": "t:schema.templates.index.help_center.settings.show_newest_section.info"
+      },
+      {
+        "id": "newest_section_title",
+        "label": "t:schema.templates.index.help_center.settings.newest_section_title.label",
+        "type": "text",
+        "default": "t:schema.templates.index.help_center.settings.newest_section_title.default"
       },
       {
         "id": "show_hottest_section",

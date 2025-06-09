@@ -250,6 +250,12 @@
   }
 }
 
+.search-highlight-block {
+  b {
+    @apply text-primary;
+  }
+}
+
 [data-controller="nav-tree"] summary.menu-active {
   @apply text-neutral-content bg-neutral
 }
@@ -265,6 +271,13 @@
 
 #page-content.ProseMirror code {
   @apply text-sm;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @import "./tooltip.css";

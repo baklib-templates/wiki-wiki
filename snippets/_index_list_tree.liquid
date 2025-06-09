@@ -44,7 +44,7 @@
       </li>
     {% else %}
       <li>
-        <a data-nav-tree-target="item" href="{{ tree.path }}">
+        <div>
           {% if depth == 0 %}
             <svg
               class="shrink-0"
@@ -57,8 +57,10 @@
               <path class="fill-sky-600" d="M19.888 7.804c.073.132.112.28.112.43v7.892c0 .31-.161.597-.426.758l-7.11 4.346c-.14.085-.3.13-.464.13v-8.736l7.888-4.82Z" />
             </svg>
           {% endif %}
-          {{ tree.link_text }}
-        </a>
+          <div>
+            <a data-nav-tree-target="item" href="{{ tree.path }}">{{ tree.link_text }}</a>
+          </div>
+        </div>
       </li>
     {% endif %}
   {% endfor %}
