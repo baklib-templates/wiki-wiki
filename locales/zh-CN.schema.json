@@ -156,6 +156,10 @@
       "name": "普通页面模版",
       "description": "内容页面模板",
       "settings": {
+        "show_list": {
+          "label": "是否为栏目页面",
+          "info": "作为栏目页面，页面显示子页面列表"
+        },
         "is_topic_channel": {
           "label": "是否为专题栏目",
           "info": "如果是专题栏目，页面将会显示在首页的专题栏目列表中"

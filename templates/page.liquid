@@ -14,7 +14,14 @@
 		<!-- 中间内容 -->
 		<div class="px-0 lg:px-4 overflow-hidden">
 			{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
-			{% render 'page', page: page %}
+
+			{% if page.settings.show_list %}
+				{% assign sub_pages = page.children_in_list %}
+				{% render 'page_list', page: page, pages: sub_pages %}
+			{% else %}
+				{% render 'page', page: page %}
+			{% endif %}
+
 		</div>
 		<!-- 右侧 TOC -->
 		<aside class="print:hidden hidden lg:block">
@@ -35,6 +42,13 @@
 	"thumb_url": "images/schema/page.png",
 	"sub_page_templates": ["page"],
 	"settings": [
+		{
+			"id": "show_list",
+			"type": "checkbox",
+			"default": "false",
+			"label": "t:schema.templates.page.settings.show_list.label",
+			"info": "t:schema.templates.page.settings.show_list.info"
+		},
 		{
 			"id": "is_topic_channel",
 			"type": "checkbox",

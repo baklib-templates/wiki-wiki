@@ -156,6 +156,10 @@
       "name": "Basic Page Template",
       "description": "Content page template",
       "settings": {
+        "show_list": {
+          "label": "Show Sub-page List",
+          "info": "If checked, the sub-page list will be displayed on the page"
+        },
         "is_topic_channel": {
           "label": "Is Featured Topic",
           "info": "If it's a featured topic, the page will be displayed in the featured topics list on the homepage"
