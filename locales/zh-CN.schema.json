@@ -111,7 +111,7 @@
           },
           "search_hot_keywords": {
             "label": "热门搜索",
-            "info": "设置以后，搜索框下方会显示热门搜索。';' 分割多个关键词"
+            "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
           },
           "show_channels_section": {
             "label": "1. 栏目导览板块",
