@@ -51,7 +51,7 @@
           },
           "show_topic_channel": {
             "label": "2. Featured Topics Section",
-            "info": "If unchecked, this section will not be displayed on the homepage"
+            "info": "If unchecked, this section will not be displayed on the homepage; please check the 'Is Featured Topic' option in page settings to display it on the homepage"
           },
           "topic_channel_title": {
             "label": "Featured Topics Section Title",
