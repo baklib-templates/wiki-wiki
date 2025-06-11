@@ -7,9 +7,12 @@ import Clipboard from './clipboard_controller'
 import ScrollToController from "./scroll_to_controller"
 // import ScrollspyController from "./scrollspy_controller"
 import LinkTargetController from "./link_target_controller"
+import AiSearchCompletionController from './ai_search_completion_controller'
 
-const application = Application.start()
-window.Stimulus = application
+if (!window.Stimulus) {
+  window.Stimulus = Application.start()
+}
+const application = window.Stimulus
 
 application.register('toc', TocController)
 application.register('images-viewer', ImagesViewerController)
@@ -19,4 +22,4 @@ application.register('clipboard', Clipboard)
 application.register("scroll-to", ScrollToController)
 // application.register("scrollspy", ScrollspyController)
 application.register('link-target', LinkTargetController)
-
+application.register('ai-search', AiSearchCompletionController)

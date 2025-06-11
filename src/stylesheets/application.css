@@ -256,8 +256,9 @@
   }
 }
 
-[data-controller="nav-tree"] summary.menu-active {
-  @apply text-neutral-content bg-neutral
+summary.menu-active,
+summary:has(.menu-active) {
+  @apply text-neutral-content bg-neutral;
 }
 
 #page-content.ProseMirror a {

@@ -44,7 +44,7 @@
       </li>
     {% else %}
       <li>
-        <div>
+        <summary>
           {% if depth == 0 %}
             <svg
               class="shrink-0"
@@ -60,7 +60,7 @@
           <div>
             <a data-nav-tree-target="item" href="{{ tree.path }}">{{ tree.link_text }}</a>
           </div>
-        </div>
+        </summary>
       </li>
     {% endif %}
   {% endfor %}

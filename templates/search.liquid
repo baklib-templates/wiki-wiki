@@ -98,12 +98,13 @@
                                 <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
                               </div>
                               <div class='flex-1'>
-                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline dark:text-slate-100" href="{{ page.url }}" data-turbo-frame="_top">
+                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline dark:text-slate-100 break-all" href="{{ page.url }}" data-turbo-frame="_top">
                                   {{ page.highlighted_search_title }}
                                 </a>
-                                <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter">{{ page.url }}</a>
+                                <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter break-all">{{ page.url }}</a>
                                 {% unless page.highlighted_search_content == empty %}
-                                  <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block">{{ page.highlighted_search_content }}</p>
+                                  <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block break-all" x-cloak>{{ page.highlighted_search_content }}
+                                  </p>
                                 {% endunless %}
                                 <div class="flex justify-between items-center text-gray-600">
                                   <div class="hidden overflow-x-auto text-sm md:block">
@@ -124,14 +125,14 @@
                     (function(){
                       const firstPage = {{ search.page_number }} === 1;
                       setTimeout(function(){
-                        const aiSearchCompletionContainer = document.getElementById('js--ai-search-completion-container');
-                        const aiSearchCompletion = document.getElementById('js--ai-search-completion');
-                        if(aiSearchCompletionContainer && aiSearchCompletion && firstPage){
-                          aiSearchCompletionContainer.classList.remove('hidden');
-                          aiSearchCompletion.dataset.aiSearchCompletionMessageValue = "{{ search.keywords | escape_once }}";
-                          aiSearchCompletion.dataset.aiSearchCompletionPathsValue = "{{ top_5_paths }}";
+                        const aiSearchContainer = document.getElementById('js--ai-search-container');
+                        const aiSearch = document.getElementById('js--ai-search');
+                        if(aiSearchContainer && aiSearch && firstPage){
+                          aiSearchContainer.classList.remove('hidden');
+                          aiSearch.dataset.aiSearchMessageValue = "{{ search.keywords | escape_once }}";
+                          aiSearch.dataset.aiSearchPathsValue = "{{ top_5_paths }}";
                         }else{
-                          aiSearchCompletionContainer.classList.add('hidden');
+                          aiSearchContainer.classList.add('hidden');
                         }
                       }, 10);
                     })()
@@ -143,8 +144,8 @@
                     <script>
                       (function(){
                         setTimeout(function(){
-                          const aiSearchCompletionContainer = document.getElementById('js--ai-search-completion-container');
-                          if (aiSearchCompletionContainer) aiSearchCompletionContainer.classList.add('hidden');
+                          const aiSearchContainer = document.getElementById('js--ai-search-container');
+                          if (aiSearchContainer) aiSearchContainer.classList.add('hidden');
                         }, 10);
                       })()
                     </script>
@@ -155,43 +156,91 @@
 
             {% comment %} AI 搜索结果区域 {% endcomment %}
             {% if site.ai_search_enabled? %}
-              <div class="hidden flex-grow-0 order-1 w-full md:order-2 md:w-96" id="js--ai-search-completion-container">
+              <div class="hidden flex-grow-0 order-1 w-full md:order-2 md:w-96" id="js--ai-search-container" data-turbo-permanent>
                 <div
-                  class="p-4 rounded bg-primary-50 space-y-2 chat-container"
-                  id="js--ai-search-completion"
-                  data-controller="ai-search-completion expandable-content"
-                  md:data-controller="ai-search-completion"
-                  data-ai-search-completion-hidden-class="hidden opacity-0"
-                  data-ai-search-completion-messages-value='{"started":"{{ 'ai.started' | t: '正在开始...' }}","reading":"{{ 'ai.reading' | t: '正在阅读内容...' }}","thinking":"{{ 'ai.thinking' | t: '正在思考...' }}"}'
-                  data-ai-search-completion-url-value="/-/ai-search-completion"
-                  data-ai-search-completion-auto-submit-value="true"
-                  data-expandable-content-max-height-value="12rem"
-                  data-expandable-content-hidden-class="hidden"
+                  class="py-4 rounded bg-primary-50 space-y-2 chat-container"
+                  id="js--ai-search"
+                  data-controller="ai-search"
+                  md:data-controller="ai-search"
+                  data-ai-search-hidden-class="hidden opacity-0"
+                  data-ai-search-messages-value='{"started":"{{ 'ai.started' | t: '正在开始...' }}","reading":"{{ 'ai.reading' | t: '正在阅读内容...' }}","thinking":"{{ 'ai.thinking' | t: '正在思考...' }}"}'
+                  data-ai-search-url-value="/-/ai-search-completion"
+                  data-ai-search-auto-submit-value="true"
                 >
-                  <div class="flex gap-1 items-center text-sm">
-                    <div class="overflow-hidden w-5 h-5 bg-gradient-to-r rounded-full from-secondary-500 to-primary-600">
-                      <img src="{{ "images/ai-search-icon.apng" | asset_url }}">
+                  <div class="flex gap-1 items-center px-4 text-sm">
+                    <div class="overflow-hidden w-5 h-5 bg-gradient bg-gradient-to-r rounded-full from-secondary-500 to-primary-600">
+                      <img src="{{ "images/ai-search-icon.png" | asset_url }}">
                     </div>
-                    <span>{{ "ai.title" | t: "AI 搜索" }}</span>
+                    <span>{{ "ai.title" | t: "AI智能助理" }}</span>
                   </div>
-                  <div data-expandable-content-target="content" data-ai-search-completion-target="response" class="ai-response prose max-h-48 md:max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    <!-- 消息将在这里显示 -->
+                  <div data-ai-search-target="messages" class="ai-response prose p-4 gap-2 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    <!-- 多轮消息将在这里显示 -->
                   </div>
-                  <div class="flex justify-between items-center">
-                    <div data-ai-search-completion-target="completed" class="hidden py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
-                      {{ "ai.completed" | t: "AI 回答完毕." }}
+                  <template data-ai-search-target="userMessageTemplate">
+                    <div class="flex justify-end items-end mb-2">
+                      <div class="flex flex-col items-end flex-1">
+                        <div class="bg-primary text-gray-50 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                          <span class="text-sm ai-user-message"></span>
+                        </div>
+                      </div>
+                      <span class="w-8 h-8 ml-2 rounded-full shadow flex items-center justify-center bg-primary text-secondary">
+                        <!-- 用户 SVG 头像 -->
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                          <circle cx="14" cy="11" r="5" fill="white"/>
+                          <ellipse cx="14" cy="21" rx="7" ry="4" fill="white"/>
+                        </svg>
+                      </span>
                     </div>
-                    <button data-expandable-content-target="expandButton" class="flex hidden gap-1 items-center py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 19.1642L18.2071 12.9571L16.7929 11.5429L12 16.3358L7.20712 11.5429L5.79291 12.9571L12 19.1642ZM12 13.5143L18.2071 7.30722L16.7929 5.89301L12 10.6859L7.20712 5.89301L5.79291 7.30722L12 13.5143Z"></path></svg>
-                      <span>{{ "ai.expand" | t: "展开内容" }}</span>
-                    </button>
-                    <button data-expandable-content-target="collapseButton" class="flex hidden gap-1 items-center py-2 text-sm text-gray-400 opacity-100 transition-opacity duration-300">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M12 4.83582L5.79291 11.0429L7.20712 12.4571L12 7.66424L16.7929 12.4571L18.2071 11.0429L12 4.83582ZM12 10.4857L5.79291 16.6928L7.20712 18.107L12 13.3141L16.7929 18.107L18.2071 16.6928L12 10.4857Z"></path></svg>
-                      <span>{{ "ai.collapse" | t: "收起内容" }}</span>
-                    </button>
+                  </template>
+                  <template data-ai-search-target="assistantMessageTemplate">
+                    <div class="flex justify-start items-end mb-2">
+                      <span class="w-8 h-8 mr-2 rounded-full shadow flex items-center justify-center bg-gradient-to-r from-secondary-500 to-primary-600">
+                        <!-- AI SVG 头像 -->
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="14" cy="14" r="14" fill="currentColor"/>
+                          <rect x="8" y="8" width="12" height="12" rx="6" fill="white"/>
+                          <circle cx="14" cy="14" r="3" fill="currentColor"/>
+                        </svg>
+                      </span>
+                      <div class="flex flex-col items-start flex-1">
+                        <div class="bg-gray-100 text-gray-800 px-3 py-2 rounded-2xl max-w-full break-words shadow">
+                          <span class="text-sm ai-assistant-message"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                  <div class="mt-4 flex gap-2 px-4">
+                    <input
+                      type="text"
+                      class="flex-1 p-2 border border-gray-100 rounded focus-visible:outline-primary"
+                      placeholder="请输入你的问题…"
+                      id="js--ai-chat-input"
+                      data-ai-search-target="input"
+                      autocomplete="off"
+                    >
+                    <div class="flex items-center justify-center">
+                      <button
+                        class="rounded-full w-8 h-8 text-primary"
+                        id="js--ai-chat-send"
+                        data-ai-search-target="send"
+                        type="button"
+                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" class="size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C17.52 2 22 6.48 22 12C22 17.52 17.52 22 12 22C6.48 22 2 17.52 2 12C2 6.48 6.48 2 12 2ZM13 12H16L12 8L8 12H11V16H13V12Z"></path></svg>
+                      </button>
+                    </div>
                   </div>
-                  <div data-ai-search-completion-target="error" class="hidden text-red-500 opacity-100 transition-opacity duration-300"></div>
+                  <div data-ai-search-target="error" class="hidden text-red-500 opacity-100 transition-opacity duration-300"></div>
                 </div>
+                <script>
+                  (function(){
+                    setTimeout(function(){
+                      const aiSearchContainer = document.getElementById('js--ai-search-container');
+                      const aiSearch = document.getElementById('js--ai-search');
+                      aiSearch.dataset.aiSearchMessageValue = "{{ search.keywords | escape_once }}";
+                    }, 1000);
+                  })()
+                </script>
               </div>
             {% endif %}
           </section>
