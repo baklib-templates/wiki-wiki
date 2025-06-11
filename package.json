@@ -1,25 +1,29 @@
 {
   "name": "blog",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "scripts": {
     "build": "npm-run-all --parallel build:css build:js",
-    "build:css": "npx tailwindcss -i ./src/main.css -o ./assets/css/main.css",
-    "build:js": "npx esbuild ./src/main.js --bundle --minify --outfile=./assets/javascripts/main.js",
-    "dev": "npm-run-all --parallel 'build:css -- --watch' 'build:js -- --watch'"
+    "build:css": "npx @tailwindcss/cli -i ./src/stylesheets/application.css -o ./assets/stylesheets/application.css",
+    "build:js": "npx esbuild ./src/javascripts/application.js --bundle --minify --outfile=./assets/javascripts/application.js",
+    "dev": "npm-run-all --parallel 'build:css --watch' 'build:js --watch'",
+    "livereload": "guard"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "daisyui": "^5.0.27",
     "esbuild": "^0.19.3",
     "npm-run-all": "^4.1.5",
-    "tailwindcss": "^3.3.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4.1.4",
     "viewerjs": "^1.11.6"
   },
   "dependencies": {
-    "@alpinejs/collapse": "^3.13.0",
+    "@alpinejs/collapse": "^3.14.9",
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo": "^7.3.0",
-    "@stimulus-components/clipboard": "^5.0.0",
-    "alpinejs": "^3.13.0",
-    "stimulus-dropdown": "^2.1.0"
+    "@hotwired/turbo": "^8.0.13",
+    "alpinejs": "^3.14.9",
+    "tippy.js": "^6.3.7"
   }
 }

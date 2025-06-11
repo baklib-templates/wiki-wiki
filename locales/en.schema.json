@@ -1,74 +1,266 @@
 {
-  "settings_schema": {
-    "generic": {
-      "name": "Basic Setting",
-      "help_center_index_description": "Ideal for feature-rich product user manuals",
-      "list_index_description": "list dictionary style",
-      "header_name": "Header and footer menu",
-      "head_title": "Head HTML Settings",
-      "settings": {
-        "hero_image_url": {
-          "label": "Hero Banner",
-          "info": "For the help center index theme, size of 1900*600px is recommended."
-        },
-        "title": {
-          "label": "site title"
-        },
-        "description": {
-          "label": "site description"
-        },
-        "hot_tags": {
-            "label": "Hot search keywords (please separate them with English comma: ,)"
-        },
-        "company_name": {
-          "label": "Company Name",
-          "default": "Tanmer Inc."
-        },
-        "copyright_info": {
-          "label": "Copyright Info",
-          "default": "All copyright served"
-        },
-        "header_menu_html": {
-          "label": "Header navigation menu",
-          "info": "Supports HTML、Javascript and TailwindCss code"
-        },
-        "features_one": {
-          "label": "HTML Section 1(features_one)",
-          "info": "Supports HTML、Javascript and TailwindCss code"
-        },
-        "features_two": {
-          "label": "HTML Section 2(features_two)",
-          "info": "Supports HTML、Javascript and TailwindCss code"
-        },
-        "footer_menu_html": {
-          "label": "Footer navigation menu",
-          "info": "Supports HTML、Javascript and TailwindCss code"
-        },
-        "head_html": {
-          "label": "Head HTML Code",
-          "info": "This part of the content will be embedded in the <head> tag of the site. Please use standard HTML format.",
-          "placeholder": "<meta name='author' content='Baklib' />"
+  "theme_label": "Knowledge Content Portal",
+  "theme_description": "Professional knowledge content display theme that supports converting internal organizational knowledge bases into independent display websites through CMS systems. Suitable for enterprise knowledge bases, product help centers, technical documentation, and other content display scenarios, making knowledge management and content display more efficient.",
+  "templates": {
+    "index": {
+      "docs": {
+        "name": "Documentation Center",
+        "description": "Ideal product user manual",
+        "settings": {
+          "hero_bg_type": {
+            "label": "Hero Background Style",
+            "info": "After selecting the background style, the background color and image will be displayed according to the selected content",
+            "choices": {
+              "none": "No Background",
+              "color": "Color Background",
+              "image": "Image Background"
+            }
+          },
+          "hero_height": {
+            "label": "Background Height",
+            "info": "Recommended height: 360px"
+          },
+          "hero_image_url": {
+            "label": "Background Image",
+            "info": "Background image will be automatically cropped according to page width and background height"
+          },
+          "hero_bg_color": {
+            "label": "Background Color",
+            "info": "The color of the hero background style will be processed according to the selected color value (color background)"
+          },
+          "hero_slogan": {
+            "label": "Slogan",
+            "info": "Slogan will be displayed above the background image",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "Popular Tags",
+            "info": "After setting, the tag list will be displayed below the homepage search bar"
+          },
+          "search_hot_keywords": {
+            "label": "Popular Searches",
+            "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
+          },
+          "show_channels_section": {
+            "label": "1. First Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "channels_section_title": {
+            "label": "First Section Title",
+            "default": "Getting Started"
+          },
+          "show_topic_channel": {
+            "label": "2. Featured Topics Section",
+            "info": "If unchecked, this section will not be displayed on the homepage; please check the 'Is Featured Topic' option in page settings to display it on the homepage"
+          },
+          "topic_channel_title": {
+            "label": "Featured Topics Section Title",
+            "default": "Featured Topics"
+          },
+          "show_newest_section": {
+            "label": "3. Latest Articles Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "newest_section_title": {
+            "label": "Latest Articles Section Title",
+            "default": "Latest Articles"
+          },
+          "show_hottest_section": {
+            "label": "4. Hot Topics Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "hottest_section_title": {
+            "label": "Hot Topics Section Title",
+            "default": "Hot Topics"
+          }
         }
+      },
+      "help_center": {
+        "name": "Help Center",
+        "description": "Feature-rich product knowledge base style",
+        "settings": {
+          "hero_bg_type": {
+            "label": "Hero Background Style",
+            "info": "After selecting the background style, the background color and image will be displayed according to the selected content",
+            "choices": {
+              "none": "No Background",
+              "color": "Color Background",
+              "image": "Image Background"
+            }
+          },
+          "hero_height": {
+            "label": "Background Height",
+            "info": "Recommended height: 360px"
+          },
+          "hero_image_url": {
+            "label": "Background Image",
+            "info": "Background image will be automatically cropped according to page width and background height"
+          },
+          "hero_bg_color": {
+            "label": "Background Color",
+            "info": "The color of the hero background style will be processed according to the selected color value (color background)"
+          },
+          "hero_slogan": {
+            "label": "Slogan",
+            "info": "Slogan will be displayed above the background image",
+            "default": "👋 What Can We Help?"
+          },
+          "search_hot_tags": {
+            "label": "Popular Tags",
+            "info": "After setting, the tag list will be displayed below the homepage search bar"
+          },
+          "search_hot_keywords": {
+            "label": "Popular Searches",
+            "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
+          },
+          "show_channels_section": {
+            "label": "1. Navigation Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "channels_section_title": {
+            "label": "Navigation Section Title",
+            "default": "Navigation"
+          },
+          "show_newest_section": {
+            "label": "2. Latest Articles Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "newest_section_title": {
+            "label": "Latest Articles Section Title",
+            "default": "Latest Articles"
+          },
+          "show_topic_channel": {
+            "label": "3. Featured Topics Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "topic_channel_title": {
+            "label": "Featured Topics Section Title",
+            "default": "Featured Topics"
+          },
+          "show_hottest_section": {
+            "label": "4. Popular Articles Section",
+            "info": "If unchecked, this section will not be displayed on the homepage"
+          },
+          "hottest_section_title": {
+            "label": "Popular Articles Section Title",
+            "default": "Popular Articles"
+          }
+        }
+      },
+      "list": {
+        "name": "Product Manual",
+        "description": "Homepage directory list style"
       }
     },
     "page": {
-      "name": "Page",
-      "description": "Document content page",
+      "name": "Basic Page Template",
+      "description": "Content page template",
       "settings": {
-        "description":{
-          "label": "Description"
+        "show_list": {
+          "label": "Show Sub-page List",
+          "info": "If checked, the sub-page list will be displayed on the page"
         },
-        "content":{
-          "label": "Content",
-          "info": "Synchronized from data source, cannot be edited"
+        "is_topic_channel": {
+          "label": "Is Featured Topic",
+          "info": "If it's a featured topic, the page will be displayed in the featured topics list on the homepage"
+        },
+        "title": {
+          "label": "Page Title",
+          "info": "Synced from knowledge base, not editable"
+        },
+        "tags": {
+          "label": "Page Tags"
+        },
+        "description": {
+          "label": "Page Description"
         },
         "icon": {
-          "label": "ICON",
-          "info": "1:1 ratio is recommended"
+          "label": "Page Icon",
+          "info": "Used to display page icon, recommended 1:1 ratio"
         },
-        "tags":{
-          "label": "Tags"
+        "content": {
+          "label": "Page Content",
+          "info": "Synced from data source, not editable"
         }
+      },
+      "video": {
+        "name": "Video Template",
+        "description": "Video page template, used for displaying video content",
+        "settings": {
+          "is_video_list": {
+            "label": "Is Video List",
+            "info": "Video list page, only gets sub-pages with video template; please ensure sub-pages use video template"
+          },
+          "video_url": {
+            "label": "Video URL",
+            "info": "Used for display in video list page, not needed for list page"
+          },
+          "video_cover_url": {
+            "label": "Video Cover Image",
+            "info": "Recommended 1:1 ratio"
+          }
+        }
+      },
+      "export": {
+        "name": "Export Page Template",
+        "description": "Commonly used for directly exporting current section and sub-page content in browser"
+      }
+    }
+  },
+  "generic": {
+    "name": "General Settings",
+    "header_name": "Header and Footer Navigation Menu",
+    "head_title": "Head HTML Configuration",
+    "settings": {
+      "logo_url": {
+        "label": "Logo Image",
+        "info": "If logo is set, it will be displayed in header, otherwise: website icon + site name"
+      },
+      "company_name": {
+        "label": "Company Name",
+        "default": "Baklib.cn",
+        "info": "Displayed in footer position at bottom of page"
+      },
+      "copyright_info": {
+        "label": "ICP/Copyright Information",
+        "default": "ICP xxxxxx"
+      },
+      "screen_width": {
+        "label": "Screen Width",
+        "choices": {
+          "narrow": "Narrow (1024px)",
+          "medium": "Medium (1280px)",
+          "wide": "Wide (1536px)",
+          "full": "Full Screen"
+        }
+      },
+      "show_published_at": {
+        "label": "Show Publication Time",
+        "default": true
+      },
+      "show_author": {
+        "label": "Show Author",
+        "default": true
+      },
+      "show_card_icon": {
+        "label": "Show Section Icons on Homepage",
+        "info": "Recommended to configure icons in page settings",
+        "default": true
+      }
+    }
+  },
+  "custom_html": {
+    "name": "Custom HTML Code",
+    "settings": {
+      "head_html": {
+        "label": "Custom HTML in <head></head> tags",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert analytics, customer service bot, etc."
+      },
+      "header_menu_html": {
+        "label": "Insert HTML code in top navigation area",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
       }
     }
   }

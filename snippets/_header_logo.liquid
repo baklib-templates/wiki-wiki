@@ -1,0 +1,18 @@
+<div class="flex items-center max-w-[var(--left-sidebar-width)]">
+	<a href="{{site.index_path}}" class="flex items-center gap-2">
+		{% assign logo_url = site.settings.logo_url | presence %}
+		{% if logo_url %}
+			<div class='avatar h-8 w-8'>
+				<img src="{{ logo_url }}" class="rounded-md" alt="{{ site.name | escape_once }}">
+			</div>
+		{% else %}
+			{% assign favicon_url = site.favicon_url | presence %}
+			{% if favicon_url %}
+				<div class='avatar h-8 w-8'>
+					<img src="{{ favicon_url }}" class="rounded-md" alt="{{ site.name | escape_once }}" />
+				</div>
+			{% endif %}
+		{% endif %}
+		<span class="hidden md:block text-xl font-bold">{{ site.name }}</span>
+	</a>
+</div>
