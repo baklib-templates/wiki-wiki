@@ -13,6 +13,7 @@
         <details>
           <summary data-nav-tree-target="item"><a href="{{ tree.path }}" class=''>{{ tree.link_text }}</a></summary>
           {% assign newDepth = depth | plus: 1 %}
+          {% assign children = tree.children | order_by '-position' %}
           {% render 'nav_tree', nav_tree: tree.children, depth: newDepth %}
         </details>
       </li>
