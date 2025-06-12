@@ -261,6 +261,21 @@
         "label": "Insert HTML code in top navigation area",
         "info": "Supports HTML tags and limited TailwindCSS style code",
         "placeholder": "Usually used to insert navigation links to company's other websites"
+      },
+      "footer_menu_html": {
+        "label": "Insert HTML code in footer navigation area",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
+      },
+      "features_one_html": {
+        "label": "Insert HTML code in first homepage feature section",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
+      },
+      "features_two_html": {
+        "label": "Insert HTML code in second homepage feature section",
+        "info": "Supports HTML tags and limited TailwindCSS style code",
+        "placeholder": "Usually used to insert navigation links to company's other websites"
       }
     }
   }

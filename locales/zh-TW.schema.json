@@ -252,6 +252,21 @@
         "label": "頂部導航區域插入 HTML 代碼",
         "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
         "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      },
+      "footer_menu_html": {
+        "label": "頁腳導航區域插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      },
+      "features_one_html": {
+        "label": "首頁功能區域一插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
+      },
+      "features_two_html": {
+        "label": "首頁功能區域二插入 HTML 代碼",
+        "info": "支持HTML標籤和有限的TailwindCSS樣式代碼",
+        "placeholder": "通常在這裡插入公司其他網站的導航連結"
       }
     }
   }

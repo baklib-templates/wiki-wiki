@@ -150,6 +150,22 @@
         "info": "t:schema.custom_html.settings.footer_menu_html.info",
         "rows": 6,
         "placeholder": "t:schema.custom_html.settings.footer_menu_html.placeholder"
+      },
+      {
+        "id": "features_one_html",
+        "type": "html",
+        "label": "t:schema.custom_html.settings.features_one_html.label",
+        "info": "t:schema.custom_html.settings.features_one_html.info",
+        "rows": 6,
+        "placeholder": "t:schema.custom_html.settings.features_one_html.placeholder"
+      },
+      {
+        "id": "features_two_html",
+        "type": "html",
+        "label": "t:schema.custom_html.settings.features_two_html.label",
+        "info": "t:schema.custom_html.settings.features_two_html.info",
+        "rows": 6,
+        "placeholder": "t:schema.custom_html.settings.features_two_html.placeholder"
       }
     ]
   }

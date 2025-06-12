@@ -263,9 +263,19 @@
         "placeholder": "通常在这里插入公司其他网站的导航链接"
       },
       "footer_menu_html": {
-        "label": "底部区域插入 HTML 代码",
+        "label": "底部区域插入 HTML 代码(footer 内)",
         "info": "支持HTML标签和有限的TailwindCSS样式代码",
         "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
+      },
+      "features_one_html" : {
+        "label": "首页顶部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
+      },
+      "features_two_html" : {
+        "label": "首页底部功能区 HTML",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码",
+        "placeholder": "通常在这里插入公司产品介绍、服务介绍等"
       }
     }
   }

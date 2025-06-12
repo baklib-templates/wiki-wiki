@@ -15,6 +15,19 @@
 		<div class="px-0 lg:px-4 overflow-hidden">
 			{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
 
+
+			{% query faq_pages1 from site.pages %}
+				{
+					"where": {
+						"settings.tags_array_cont_any": ["faq", "help"]
+					}
+				}
+			{% endquery %}
+			{% for card_page in faq_pages1 %}
+			{% endfor %}
+
+
+
 			{% if page.settings.show_list %}
 				{% assign sub_pages = page.children_in_list %}
 				{% render 'page_list', page: page, pages: sub_pages %}
@@ -61,7 +74,8 @@
 			"id": "tags",
 			"type": "tag_picker",
 			"multiple": true,
-			"label": "t:schema.templates.page.settings.tags.label"
+			"label": "t:schema.templates.page.settings.tags.label",
+			"query_enabled": true
 		},
 		{
 			"id": "icon",

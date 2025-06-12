@@ -50,13 +50,12 @@
   {% endif %}
 
   {% # 内容 %}
-  {%
-    assign page_content = page.settings.content
-    has_content = page_content | present?
-  %}
+  {% assign page_content = page.settings.content %}
+  {% assign has_content = page_content | present? %}
+
   {% if has_content %}
     <section id="page-content" class="ProseMirror flex-1" data-controller="link-target images-viewer" data-toc-target="content">
-      {{ page.settings.content }}
+      {{ page_content }}
     </section>
   {% endif %}
 

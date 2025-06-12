@@ -252,6 +252,21 @@
         "label": "상단 네비게이션 영역에 HTML 코드 삽입",
         "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
         "placeholder": "일반적으로 회사의 다른 웹사이트로의 네비게이션 링크를 삽입하는 데 사용"
+      },
+      "footer_menu_html": {
+        "label": "하단 네비게이션 영역에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 다른 웹사이트로의 네비게이션 링크를 삽입하는 데 사용"
+      },
+      "features_one_html": {
+        "label": "첫 번째 기능 섹션에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 첫 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
+      },
+      "features_two_html": {
+        "label": "두 번째 기능 섹션에 HTML 코드 삽입",
+        "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
+        "placeholder": "일반적으로 회사의 두 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
       }
     }
   }

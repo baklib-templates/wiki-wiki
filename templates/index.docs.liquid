@@ -1,7 +1,57 @@
-<div class="relative" style="background-color: rgb(245 245 245 / 39%)">
+<script>
+  function gradientGenerator(initialColor) {
+    return {
+      baseColor: initialColor,
+      isDark: document.documentElement.classList.contains('dark'),
+      init() {
+        // 监听 <html> class属性变化
+        const observer = new MutationObserver(() => {
+          this.isDark = document.documentElement.classList.contains('dark');
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      },
+      get lighterColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -10)
+          : this.adjustColor(this.baseColor, 30);
+      },
+      get darkerColor() {
+        return this.isDark
+          ? this.adjustColor(this.baseColor, -40)
+          : this.adjustColor(this.baseColor, -20);
+      },
+      adjustColor(color, amt) {
+        let hex = color.replace('#', '');
+        let alpha = '';
+
+        if (hex.length === 8) {
+          alpha = hex.slice(6);
+          hex = hex.slice(0, 6);
+        }
+
+        let r = parseInt(hex.slice(0, 2), 16);
+        let g = parseInt(hex.slice(2, 4), 16);
+        let b = parseInt(hex.slice(4, 6), 16);
+
+        r = Math.min(255, Math.max(0, r + amt));
+        g = Math.min(255, Math.max(0, g + amt));
+        b = Math.min(255, Math.max(0, b + amt));
+
+        const toHex = (n) => n.toString(16).padStart(2, '0');
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}${alpha}`;
+      }
+    };
+  }
+</script>
+
+<div class="relative" style="background-color: rgb(245 245 245 / 39%)" x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')">
   {% if page.settings.hero_bg_type.value == '1' %}
-    <div class="absolute inset-x-0 overflow-hidden -top-10 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
-      <div class="relative left-[calc(50%-11rem)] aspect-[1200/800] w-[80w] -translate-x-1/2 rotate-[30deg] opacity-30 sm:left-[calc(50%-20rem)] sm:w-[82.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%); background-color: {{ page.settings.hero_bg_color }}"></div>
+
+    <div class="left-0 right-0 top-0 bottom-0 absolute inset-x-0 overflow-hidden h-full -z-10 transform-gpu blur-3xl sm:-top-80 aspect-[1200/800] opacity-70 " aria-hidden="true"
+    :style="isDark
+      ? `background: linear-gradient(to bottom, ${lighterColor} 5%, rgba(0, 0, 0, 0.5) 30%, ${darkerColor} 85%)`
+      : `background: linear-gradient(to bottom, ${lighterColor} 5%, white 20%, ${darkerColor} 85%)`
+    ">
     </div>
   {% elsif page.settings.hero_bg_type.value == '2' %}
     {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
@@ -13,9 +63,13 @@
   <div class='px-4'>
     <section class="mx-auto max-w-[var(--max-content-width)]">
       <!-- 顶部自定义输入板块 -->
-      <section>
-        {{ site.settings.features_one }}
-      </section>
+      {% assign features_one_html = site.settings.features_one_html | strip %}
+      {% if features_one_html | present? %}
+        <section>
+          {{ features_one_html }}
+        </section>
+      {% endif %}
+
       <!-- 搜索区域 -->
       <div class="container flex flex-col h-full m-auto mb-10" style="height: {{ page.settings.hero_height }}px;">
         <div class="flex flex-col items-center justify-center flex-grow">
@@ -102,7 +156,7 @@
               {% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 3 %}
               {% for card_page in card_pages %}
                 <!-- Card -->
-                <a href="{{ card_page.path }}" class="flex flex-col h-full bg-gradient-to-b from-secondary-100 from-5% to-primary-50/80 to-80% dark:from-secondary dark:to-primary hover:from-secondary-100 hover:to-primary-100 rounded-xl overflow-hidden">
+                <a href="{{ card_page.path }}" class="flex flex-col h-full bg-gradient-to-b from-secondary-100 from-5% to-primary-50/80 to-80% dark:from-slate-800 dark:to-slate-700 hover:from-secondary-100 hover:to-primary-100 dark:hover:from-slate-700 dark:hover:to-slate-600 rounded-xl overflow-hidden">
                   <!-- Card Content -->
                   <div class="flex-1 flex flex-col p-0 md:p-6 relative">
                     <!-- Card body -->
@@ -110,7 +164,7 @@
                       <!-- Header -->
                       <header class="mb-2 p-4 md:p-0 z-10">
                         <div class="flex items-center justify-start">
-                          <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold ">{{ card_page.link_text }}</h3>
+                          <h3 class="line-clamp-2 text-md md:text-xl md:font-semibold dark:text-gray-100">{{ card_page.link_text }}</h3>
                         </div>
                       </header>
                       <!-- Content -->
@@ -236,9 +290,12 @@
         {% endif %}
 
         <!-- 底部自定义输入板块 -->
-        <section>
-          {{ site.settings.features_two }}
-        </section>
+        {% assign features_two_html = site.settings.features_two_html | strip %}
+        {% if features_two_html | present? %}
+          <section>
+            {{ features_two_html }}
+          </section>
+        {% endif %}
       </div>
     </section>
   </div>

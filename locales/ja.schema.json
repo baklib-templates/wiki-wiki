@@ -261,6 +261,21 @@
         "label": "トップナビゲーション領域にHTMLコードを挿入",
         "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
         "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      },
+      "footer_menu_html": {
+        "label": "フッターナビゲーション領域にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      },
+      "features_one_html": {
+        "label": "ホームページの機能セクション1にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      },
+      "features_two_html": {
+        "label": "ホームページの機能セクション2にHTMLコードを挿入",
+        "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
+        "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
       }
     }
   }
