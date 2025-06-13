@@ -9,9 +9,11 @@ export default class extends Controller {
   };
 
   connect() {
-    if (!this.hasContentTarget) return
-    if (!this.hasLinksTarget) return
-    if (!this.hasMenuTarget) return
+    const validOptions = this.hasContentTarget && this.hasLinksTarget && this.hasMenuTarget;
+    if (!validOptions) {
+      if (this.menuTarget) this.menuTarget.remove();
+      return
+    }
 
     this.#generateDirectory();
 

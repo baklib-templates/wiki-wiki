@@ -46,8 +46,7 @@
 
 <div class="relative" style="background-color: rgb(245 245 245 / 39%)" x-data="gradientGenerator('{{ page.settings.hero_bg_color }}')">
   {% if page.settings.hero_bg_type.value == '1' %}
-
-    <div class="left-0 right-0 top-0 bottom-0 absolute inset-x-0 overflow-hidden h-full -z-10 transform-gpu blur-3xl sm:-top-80 aspect-[1200/800] opacity-70 " aria-hidden="true"
+    <div class="left-0 right-0 top-0 bottom-0 absolute inset-x-0 overflow-hidden h-full -z-10 transform-gpu blur-3xl sm:-top-80 opacity-70" aria-hidden="true"
     :style="isDark
       ? `background: linear-gradient(to bottom, ${lighterColor} 5%, rgba(0, 0, 0, 0.5) 30%, ${darkerColor} 85%)`
       : `background: linear-gradient(to bottom, ${lighterColor} 5%, white 20%, ${darkerColor} 85%)`
