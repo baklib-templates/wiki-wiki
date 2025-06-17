@@ -105,19 +105,47 @@ export default class extends Controller {
 
       const heading = heading_pos.parentElement;
       if (!heading) return;
-      heading.classList = "flex group"
+
+      // 保存原始内容并设置相对定位以便放置复制按钮
+      heading.style.position = "relative";
+      heading.classList.add('group');
+
+      // 创建复制按钮容器
+      const clipboardDiv = document.createElement('span');
+      clipboardDiv.className = "inline-flex items-center align-middle ml-1";
+      clipboardDiv.setAttribute('data-controller', 'clipboard');
+      clipboardDiv.setAttribute('data-clipboard-success-value', this.clipboardSuccessValue);
+      clipboardDiv.style.verticalAlign = "middle";
+
       const htmlStr = `
-        <div class="ml-1 flex items-center" data-controller="clipboard" data-clipboard-success-value="${this.clipboardSuccessValue}">
-          <input type="hidden" value="${window.location.href.split('#')[0]}#${node.id}" data-clipboard-target="source" />
-          <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="flex ml-1 opacity-0 group-hover:opacity-100">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-5 text-gray-300 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-            </svg>
-          </button>
-        </div>
-      `
-      heading.insertAdjacentHTML("beforeend", htmlStr);
-      // hea.insertAdjacentHTML("beforeend",'<a name="' + node.id + '"></a>')
+        <input type="hidden" value="${window.location.href.split('#')[0]}#${node.id}" data-clipboard-target="source" />
+        <button type="button" data-action="clipboard#copy" data-clipboard-target="button" class="inline-flex ml-1 opacity-0 group-hover:opacity-100">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+        </button>
+      `;
+
+      clipboardDiv.innerHTML = htmlStr;
+
+      // 在最后一个子元素之后添加复制按钮
+      // 这样可以确保按钮跟随文本，无论标题有多少行
+      heading.appendChild(clipboardDiv);
+
+      // 调整复制按钮与文本的对齐方式
+      const lastTextNode = Array.from(heading.childNodes)
+        .filter(node => node.nodeType === Node.TEXT_NODE ||
+          (node.nodeType === Node.ELEMENT_NODE &&
+            !node.hasAttribute('data-controller') &&
+            !node.hasAttribute('js-position')))
+        .pop();
+
+      if (lastTextNode) {
+        // 如果找到了最后一个文本节点，将复制按钮移至其后
+        if (lastTextNode.nextSibling) {
+          heading.insertBefore(clipboardDiv, lastTextNode.nextSibling);
+        }
+      }
 
       if (node.children.length > 0) {
         const subList = this.#renderDirectory(node, li, level + 1);
@@ -176,9 +204,9 @@ export default class extends Controller {
       bounding.top >= this.headerHeight &&
       bounding.left >= 0 &&
       bounding.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
+      (window.innerHeight || document.documentElement.clientHeight) &&
       bounding.right <=
-        (window.innerWidth || document.documentElement.clientWidth)
+      (window.innerWidth || document.documentElement.clientWidth)
     );
   }
 
@@ -196,9 +224,8 @@ export default class extends Controller {
         behavior: "smooth",
       };
 
-      targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.scrollBy(0, -headerHeight);
-      window.scrollBy(scrollOptions);
+      window.scrollBy(0, -headerHeight); // 先滚动到目标位置的上方
+      window.scrollBy(scrollOptions); // 再滚动到目标位置
     }
   }
 
@@ -212,13 +239,13 @@ export default class extends Controller {
   }
 
   get headerHeight() {
-    if(!this.hasHeaderSelectorValue || !this.headerSelectorValue) {
+    if (!this.hasHeaderSelectorValue || !this.headerSelectorValue) {
       return 0
     }
 
     // 动态获取header的高度，并且判断是否是固定
     const header = document.querySelector(this.headerSelectorValue);
-    if(!header) {
+    if (!header) {
       return 0;
     }
     return header.offsetHeight;

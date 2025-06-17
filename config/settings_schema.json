@@ -4,7 +4,7 @@
     "theme_name": "wiki",
     "theme_label": "t:schema.theme_label",
     "theme_description": "t:schema.theme_description",
-    "theme_version": "2.0.2",
+    "theme_version": "2.0.3",
     "theme_syntax_version": "v2",
     "theme_scope": "wiki",
     "theme_author": "Baklib",

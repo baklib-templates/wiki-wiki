@@ -16,8 +16,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "tailwindcss": "^4.1.4",
-    "viewerjs": "^1.11.6"
+    "tailwindcss": "^4.1.4"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.9",
@@ -25,6 +24,7 @@
     "@hotwired/turbo": "^8.0.13",
     "alpinejs": "^3.14.9",
     "marked": "^15.0.12",
-    "tippy.js": "^6.3.7"
+    "tippy.js": "^6.3.7",
+    "viewerjs": "^1.11.7"
   }
 }

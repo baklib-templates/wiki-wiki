@@ -31,7 +31,6 @@ export default class extends Controller {
       return;
     }
 
-    console.log('121323', this.successValue)
     const tippyInstance = tippy(target.parentElement, {
       theme: 'material',
       content: this.successValue,
