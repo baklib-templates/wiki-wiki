@@ -168,8 +168,8 @@
                       </header>
                       <!-- Content -->
                       <div class="h-12 md:h-44">
-                        <span class="hidden md:flex text-gray-500 dark:text-gray-300">{{ card_page.settings.description }}</span>
-                        <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-12 md:h-40"/></div>
+                        <span class="text-gray-500 dark:text-gray-300 line-clamp-2">{{ card_page.settings.description }}</span>
+                        <div class="absolute -bottom-0 -right-0 opacity-60"><img src="{{ card_page.settings.icon }}" class="object-cover h-10 md:h-35"/></div>
                       </div>
                     </div>
                   </div>
@@ -185,7 +185,7 @@
             <div class="items-center text-center my-4 md:mb-8">
               <h2 class="text-xl md:text-2xl font-semibold">{{ page.settings.topic_channel_title }}</h2>
             </div>
-            <div class="items-start lg:max-w-none grid grid-cols-1 gap-2 md:gap-4 md:grid-cols-3">
+            <div class="items-start lg:max-w-none grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-3">
               {% query topic_channels from site.pages %}
                 {
                   "where": {

@@ -234,6 +234,14 @@
           "full": "满屏"
         }
       },
+      "left_sidebar_width": {
+        "label": "左侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右侧边栏宽度(详细页面中)",
+        "info": "建议：240px"
+      },
       "show_published_at": {
         "label": "显示发布时间",
         "default": true

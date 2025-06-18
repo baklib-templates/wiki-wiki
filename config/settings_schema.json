@@ -104,6 +104,26 @@
         "default": "1280px"
       },
       {
+        "id": "left_sidebar_width",
+        "type": "range",
+        "label": "t:schema.generic.settings.left_sidebar_width.label",
+        "min": 200,
+        "max": 1200,
+        "step": 1,
+        "default": 240,
+        "info": "t:schema.generic.settings.left_sidebar_width.info"
+      },
+      {
+        "id": "right_sidebar_width",
+        "type": "range",
+        "label": "t:schema.generic.settings.right_sidebar_width.label",
+        "min": 200,
+        "max": 1200,
+        "step": 1,
+        "default": 240,
+        "info": "t:schema.generic.settings.right_sidebar_width.info"
+      },
+      {
         "id": "show_published_at",
         "type": "checkbox",
         "label": "t:schema.generic.settings.show_published_at.label",

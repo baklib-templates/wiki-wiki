@@ -225,6 +225,23 @@
         "label": "備案/版權信息",
         "default": "蜀ICP備xxxx號"
       },
+      "screen_width": {
+        "label": "頁面寬度",
+        "choices": {
+          "narrow": "窄（1024像素）",
+          "medium": "適中（1280像素）",
+          "wide": "寬（1536像素）",
+          "full": "滿屏"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "左側邊欄寬度(詳細頁面中)",
+        "info": "建議：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右側邊欄寬度(詳細頁面中)",
+        "info": "建議：240px"
+      },
       "show_published_at": {
         "label": "顯示發布時間",
         "default": true

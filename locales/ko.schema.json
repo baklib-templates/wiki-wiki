@@ -225,6 +225,23 @@
         "label": "ICP/저작권 정보",
         "default": "ICP xxxxxx"
       },
+      "screen_width": {
+        "label": "페이지 너비",
+        "choices": {
+          "narrow": "좁음（1024픽셀）",
+          "medium": "중간（1280픽셀）",
+          "wide": "넓음（1536픽셀）",
+          "full": "전체 화면"
+        }
+      },
+      "left_sidebar_width": {
+        "label": "좌측 사이드바 너비(상세 페이지)",
+        "info": "권장: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "우측 사이드바 너비(상세 페이지)",
+        "info": "권장: 240px"
+      },
       "show_published_at": {
         "label": "게시일 표시",
         "default": true

@@ -234,6 +234,14 @@
           "full": "全画面"
         }
       },
+      "left_sidebar_width": {
+        "label": "左サイドバー幅（詳細ページ）",
+        "info": "推奨：240px"
+      },
+      "right_sidebar_width": {
+        "label": "右サイドバー幅（詳細ページ）",
+        "info": "推奨：240px"
+      },
       "show_published_at": {
         "label": "公開時間を表示",
         "default": true

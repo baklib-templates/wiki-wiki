@@ -234,6 +234,14 @@
           "full": "Full Screen"
         }
       },
+      "left_sidebar_width": {
+        "label": "Left Sidebar Width (in detail pages)",
+        "info": "Recommended: 240px"
+      },
+      "right_sidebar_width": {
+        "label": "Right Sidebar Width (in detail pages)",
+        "info": "Recommended: 240px"
+      },
       "show_published_at": {
         "label": "Show Publication Time",
         "default": true
