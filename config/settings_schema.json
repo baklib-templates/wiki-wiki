@@ -164,6 +164,14 @@
         "placeholder": "t:schema.custom_html.settings.header_menu_html.placeholder"
       },
       {
+        "id": "footer_html",
+        "type": "html",
+        "label": "t:schema.custom_html.settings.footer_html.label",
+        "info": "t:schema.custom_html.settings.footer_html.info",
+        "rows": 6,
+        "placeholder": "t:schema.custom_html.settings.footer_html.placeholder"
+      },
+      {
         "id": "footer_menu_html",
         "type": "html",
         "label": "t:schema.custom_html.settings.footer_menu_html.label",

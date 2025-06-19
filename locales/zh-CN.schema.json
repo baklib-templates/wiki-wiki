@@ -270,8 +270,13 @@
         "info": "支持HTML标签和有限的TailwindCSS样式代码",
         "placeholder": "通常在这里插入公司其他网站的导航链接"
       },
+      "footer_html": {
+        "label": "页脚区域插入 HTML 代码",
+        "info": "支持HTML标签和有限的TailwindCSS样式代码; 将完全替换默认页脚内容",
+        "placeholder": "若需要保留默认页脚内容，请在 footer_menu_html 中插入 HTML 代码"
+      },
       "footer_menu_html": {
-        "label": "底部区域插入 HTML 代码(footer 内)",
+        "label": "底部区域插入 HTML 代码(footer 内，footer_menu_html)",
         "info": "支持HTML标签和有限的TailwindCSS样式代码",
         "placeholder": "通常在这里插入公司其他网站的外部导航链接、友情链接、SEO 优化链接等"
       },
