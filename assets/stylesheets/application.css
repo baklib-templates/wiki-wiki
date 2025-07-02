@@ -3797,6 +3797,9 @@
   .text-primary {
     color: var(--color-primary);
   }
+  .text-primary-content {
+    color: var(--color-primary-content);
+  }
   .text-primary\/80 {
     color: var(--color-primary);
     @supports (color: color-mix(in lab, red, red)) {
@@ -4990,6 +4993,11 @@
       grid-template-columns: var(--left-sidebar-width) 1fr;
     }
   }
+  .lg\:grid-cols-\[var\(--left-sidebar-width\)px_1fr\] {
+    @media (width >= 64rem) {
+      grid-template-columns: var(--left-sidebar-width)px 1fr;
+    }
+  }
   .lg\:flex-col {
     @media (width >= 64rem) {
       flex-direction: column;
@@ -5410,6 +5418,13 @@
     &.has-toc {
       @media (width >= 64rem) {
         grid-template-columns: var(--left-sidebar-width) 1fr var(--right-sidebar-width);
+      }
+    }
+  }
+  .\[\&\.has-toc\]\:lg\:grid-cols-\[var\(--left-sidebar-width\)px_1fr_var\(--right-sidebar-width\)px\] {
+    &.has-toc {
+      @media (width >= 64rem) {
+        grid-template-columns: var(--left-sidebar-width)px 1fr var(--right-sidebar-width)px;
       }
     }
   }
