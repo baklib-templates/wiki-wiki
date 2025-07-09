@@ -54,7 +54,7 @@
   {% assign has_content = page_content | present? %}
 
   {% if has_content %}
-    <section id="page-content" class="ProseMirror flex-1" data-controller="link-target images-viewer" data-toc-target="content">
+    <section id="page-content" class="ProseMirror flex-grow max-h-min!" data-controller="link-target images-viewer" data-toc-target="content">
       {{ page_content }}
     </section>
   {% endif %}

@@ -109,7 +109,7 @@
       <div class='mx-auto max-w-[var(--max-content-width)] space-y-10'>
         <!-- 栏目导览 -->
         {% if page.settings.show_channels_section %}
-          {% assign channel_pages = site.pages['/'].children_in_list |  order_by: '-created_at' %}
+          {% assign channel_pages = site.pages['/'].children_in_list %}
           <section>
             <div class="flex items-center text-xl md:text-2xl h-8 mb-4 font-bold text-slate-800 dark:text-slate-200">
               <div class="w-1 h-full mr-3 bg-primary"></div>
