@@ -149,6 +149,12 @@
         "label": "t:schema.generic.settings.show_card_icon.label",
         "info": "t:schema.generic.settings.show_card_icon.info",
         "default": true
+      },
+      {
+        "id": "ai_search_completed_text",
+        "type": "text",
+        "label": "t:schema.generic.settings.ai_search_completed_text.label",
+        "info": "t:schema.generic.settings.ai_search_completed_text.info"
       }
     ]
   },

@@ -51,7 +51,8 @@
     "thinking": "正在思考...",
     "completed": "AI 回答完毕.",
     "expand": "展开内容",
-    "collapse": "收起内容"
+    "collapse": "收起内容",
+    "canceled": "已取消回答"
   },
   "generic": {
     "published_at": "发布时间",

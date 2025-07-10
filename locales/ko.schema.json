@@ -254,6 +254,10 @@
         "label": "홈페이지에 섹션 아이콘 표시",
         "info": "페이지 설정에서 아이콘을 설정하는 것을 권장",
         "default": true
+      },
+      "ai_search_completed_text": {
+        "label": "AI 답변 종료 문구",
+        "info": "AI 답변이 끝난 후 문장을 추가합니다."
       }
     }
   },

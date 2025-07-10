@@ -51,7 +51,8 @@
     "thinking": "생각 중...",
     "completed": "AI 응답 완료.",
     "expand": "콘텐츠 펼치기",
-    "collapse": "콘텐츠 접기"
+    "collapse": "콘텐츠 접기",
+    "canceled": "취소됨"
   },
   "generic": {
     "published_at": "게시일",

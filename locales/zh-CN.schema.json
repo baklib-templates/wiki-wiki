@@ -254,6 +254,10 @@
         "label": "首页是否显示栏目ICON图标",
         "info": "建议自行在页面设置中配置图标",
         "default": true
+      },
+      "ai_search_completed_text": {
+        "label": "AI回答结束语",
+        "info": "AI回答结束后添加一句话"
       }
     }
   },
