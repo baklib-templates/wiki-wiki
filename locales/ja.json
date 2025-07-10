@@ -51,7 +51,8 @@
     "thinking": "思考中...",
     "completed": "AI 応答完了.",
     "expand": "コンテンツを展開",
-    "collapse": "コンテンツを折りたたむ"
+    "collapse": "コンテンツを折りたたむ",
+    "canceled": "キャンセルされました"
   },
   "generic": {
     "published_at": "公開日時",

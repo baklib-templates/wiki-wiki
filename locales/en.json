@@ -51,7 +51,8 @@
     "thinking": "Thinking...",
     "completed": "AI response completed.",
     "expand": "Expand content",
-    "collapse": "Collapse content"
+    "collapse": "Collapse content",
+    "canceled": "Canceled"
   },
   "generic": {
     "published_at": "Published at",

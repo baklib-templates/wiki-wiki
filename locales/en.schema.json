@@ -254,6 +254,10 @@
         "label": "Show Section Icons on Homepage",
         "info": "Recommended to configure icons in page settings",
         "default": true
+      },
+      "ai_search_completed_text": {
+        "label": "AI Completion Text",
+        "info": "Add a sentence after AI completes the answer"
       }
     }
   },

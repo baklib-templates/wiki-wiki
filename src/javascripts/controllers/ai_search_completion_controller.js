@@ -25,7 +25,8 @@ export default class extends Controller {
     url: String,
     timeout: Number,
     autoSubmit: { type: Boolean, default: false },
-    message: String
+    message: String,
+    messages: Object
   };
 
   connect() {
@@ -58,16 +59,15 @@ export default class extends Controller {
   }
 
   messageValueChanged() {
-    console.log('[AIChat] messageValueChanged', this.messageValue);
     this.autoSubmitValue && this.messageValue && this.#delayAutoSubmit();
   }
 
   #delayAutoSubmit() {
-    if(this.delayAutoSubmitTimer){
+    if (this.delayAutoSubmitTimer) {
       clearTimeout(this.delayAutoSubmitTimer);
     }
     this.delayAutoSubmitTimer = setTimeout(() => {
-      if(this.messageValue){
+      if (this.messageValue) {
         this.sendMessage(this.messageValue);
       }
     }, 500);
@@ -83,7 +83,7 @@ export default class extends Controller {
     this.sendMessage(message);
   }
 
-  async chat(event){
+  async chat(event) {
     const { message } = event.params;
     this.sendMessage(message);
   }
@@ -146,7 +146,7 @@ export default class extends Controller {
       msgSpan.innerHTML = marked(content);
       forceScroll = false;
     } else {
-      msgSpan.innerHTML = '<span class="bkt-text-gray-400">AI 正在思考...</span>';
+      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.thinking}</span>`;
     }
     this.messagesTarget.appendChild(tpl);
     // 绑定重试
@@ -184,11 +184,11 @@ export default class extends Controller {
         }, 0);
       }
     } else if (status === 'canceled') {
-      msgSpan.innerHTML = '<span class="bkt-text-gray-400">已取消回答</span>';
+      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.canceled}</span>`;
     } else if (content) {
       msgSpan.innerHTML = marked(content);
     } else {
-      msgSpan.innerHTML = '<span class="bkt-text-gray-400">AI 正在思考...</span>';
+      msgSpan.innerHTML = `<span class="bkt-text-gray-400">${this.messagesValue.thinking}</span>`;
     }
     this.scrollToBottom();
   }
@@ -236,6 +236,8 @@ export default class extends Controller {
         this.isStreaming = false;
         this.eventSource.close();
         this.clearTimeoutTimer();
+        // 在AI回答结束后添加一句话, 提示用户联系人工客服或者提交问题
+        this.currentRound.ai += this.messagesValue.completed;
         this.updateCurrentAssistantMessage(this.currentRound.ai, 'completed', idx);
       } else if (data.status === "error") {
         this.currentRound.ai = data.message;
@@ -274,14 +276,14 @@ export default class extends Controller {
   }
 
   stopStreaming() {
-    if (this.eventSource){
-      try{
+    if (this.eventSource) {
+      try {
         this.eventSource.close();
-      } catch (error) {}
+      } catch (error) { }
     }
     this.isStreaming = false;
     this.clearTimeoutTimer();
-    if(this.hasErrorTarget){
+    if (this.hasErrorTarget) {
       this.errorTarget.classList.add(...this.hiddenClasses);
     }
   }
@@ -289,14 +291,14 @@ export default class extends Controller {
   escapeHTML(str) {
     if (!str) return '';
     return str.replace(/[&<>"']/g, function (c) {
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c];
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', '\'': '&#39;' }[c];
     });
   }
 
   startTimeoutTimer() {
-    if(!this.hasTimeoutValue) return
+    if (!this.hasTimeoutValue) return
     this.timeoutTimer = setTimeout(() => {
-      if(this.currentRound){
+      if (this.currentRound) {
         this.currentRound.status = 'error';
         this.currentRound.ai = '响应超时，请重试';
         const idx = this.chatHistory.length - 1;
@@ -314,7 +316,7 @@ export default class extends Controller {
   }
 
   clearTimeoutTimer() {
-    if(!this.hasTimeoutValue || !this.timeoutTimer) return
+    if (!this.hasTimeoutValue || !this.timeoutTimer) return
     clearTimeout(this.timeoutTimer);
   }
 
@@ -338,9 +340,9 @@ export default class extends Controller {
   }
 
   get retryButton() {
-    if(this.hasRetryButtonTarget){
+    if (this.hasRetryButtonTarget) {
       return this.retryButtonTarget;
-    }else{
+    } else {
       const button = document.createElement('button');
       button.classList.add("bkt-size-4", "bkt-text-gray-600")
       button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="bkt-size-full" viewBox="0 0 24 24" fill="currentColor"><path d="M5.46257 4.43262C7.21556 2.91688 9.5007 2 12 2C17.5228 2 22 6.47715 22 12C22 14.1361 21.3302 16.1158 20.1892 17.7406L17 12H20C20 7.58172 16.4183 4 12 4C9.84982 4 7.89777 4.84827 6.46023 6.22842L5.46257 4.43262ZM18.5374 19.5674C16.7844 21.0831 14.4993 22 12 22C6.47715 22 2 17.5228 2 12C2 9.86386 2.66979 7.88416 3.8108 6.25944L7 12H4C4 16.4183 7.58172 20 12 20C14.1502 20 16.1022 19.1517 17.5398 17.7716L18.5374 19.5674Z"></path></svg>`
