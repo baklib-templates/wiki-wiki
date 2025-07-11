@@ -11,11 +11,16 @@
     {{ 'javascripts/application.js' | asset_url | script_tag: defer: true, data-turbo-track: 'reload' }}
 
     <style>
+      {%- assign screen_width = site.settings.screen_width.value | presence | default: '1200px' -%}
+      {%- assign left_sidebar_width = site.settings.left_sidebar_width | presence | default: '300' | append: 'px' -%}
+      {%- assign right_sidebar_width = site.settings.right_sidebar_width | presence | default: '240' | append: 'px' -%}
+      {%- assign header_height = site.settings.header_height | presence | default: '64' | append: 'px' -%}
+
       :root {
-        --max-content-width: {{ site.settings.screen_width.value | presence | default: '1200px' }};
-        --left-sidebar-width: {{ site.settings.left_sidebar_width.value | presence | default: '240px' }};
-        --right-sidebar-width: {{ site.settings.right_sidebar_width.value | presence | default: '240px' }};
-        --header-height: {{ site.settings.header_height.value | presence | default: '64px' }};
+        --max-content-width: {{ screen_width }};
+        --left-sidebar-width: {{ left_sidebar_width }};
+        --right-sidebar-width: {{ right_sidebar_width  }};
+        --header-height: {{ header_height }};
       }
     </style>
 
