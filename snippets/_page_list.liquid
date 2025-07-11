@@ -21,7 +21,7 @@
   {% endif %}
 
   {% # 标题 %}
-  {% assign title = page.settings.title | presence %}
+  {% assign title = page.link_text | presence %}
   {% if title %}
     <header class="mb-4 border-l-6 border-primary pl-2 py-1">
       <h1 class="text-xl font-bold md:text-3xl lg:text-4xl">
