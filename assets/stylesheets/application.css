@@ -3216,9 +3216,6 @@
   .border-\[var\(--tag-color\)\] {
     border-color: var(--tag-color);
   }
-  .border-base-200 {
-    border-color: var(--color-base-200);
-  }
   .border-gray-100 {
     border-color: var(--color-gray-100);
   }
@@ -3252,11 +3249,17 @@
   .\!bg-primary-200 {
     background-color: var(--color-primary-200) !important;
   }
+  .bg-\[--header-bg\] {
+    background-color: --header-bg;
+  }
   .bg-\[var\(--bg-color\)\] {
     background-color: var(--bg-color);
   }
   .bg-\[var\(--color\)\] {
     background-color: var(--color);
+  }
+  .bg-\[var\(--header-bg\)\] {
+    background-color: var(--header-bg);
   }
   .bg-\[var\(--tag-color\)\/20\] {
     background-color: var(--tag-color)/20;
@@ -3680,6 +3683,12 @@
   }
   .text-\[--color\] {
     color: --color;
+  }
+  .text-\[--header-text\] {
+    color: --header-text;
+  }
+  .text-\[var\(--header-text\)\] {
+    color: var(--header-text);
   }
   .text-\[var\(--tag-color\)\] {
     color: var(--tag-color);
@@ -5130,6 +5139,16 @@
       background-color: var(--color-primary-700) !important;
     }
   }
+  .dark\:bg-\[--header-bg-dark\] {
+    &:where([data-theme=dark], [data-theme=dark] *) {
+      background-color: --header-bg-dark;
+    }
+  }
+  .dark\:bg-\[var\(--header-bg-dark\)\] {
+    &:where([data-theme=dark], [data-theme=dark] *) {
+      background-color: var(--header-bg-dark);
+    }
+  }
   .dark\:bg-\[var\(--tag-dark-color\)\/20\] {
     &:where([data-theme=dark], [data-theme=dark] *) {
       background-color: var(--tag-dark-color)/20;
@@ -5195,6 +5214,16 @@
   .dark\:fill-slate-800 {
     &:where([data-theme=dark], [data-theme=dark] *) {
       fill: var(--color-slate-800);
+    }
+  }
+  .dark\:text-\[--header-text-dark\] {
+    &:where([data-theme=dark], [data-theme=dark] *) {
+      color: --header-text-dark;
+    }
+  }
+  .dark\:text-\[var\(--header-text-dark\)\] {
+    &:where([data-theme=dark], [data-theme=dark] *) {
+      color: var(--header-text-dark);
     }
   }
   .dark\:text-\[var\(--tag-dark-color\)\] {
@@ -5371,6 +5400,11 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-base-200);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-base-content);
       }
     }
   }

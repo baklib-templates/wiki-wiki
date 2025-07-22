@@ -126,10 +126,23 @@
       {
         "id": "header_type",
         "type": "radio",
-        "label": "页头风格",
-        "choices": [{"label":"浅色","value":"0"},{"label":"深色","value":"1"}],
+        "label": "顶部导航栏风格",
+        "choices": [{"label":"简单透明","value":"0"},{"label":"自定义颜色","value":"1"}],
         "default": "0",
-        "info": "*  影响头部导航栏的背景色和文字颜色。\n*  0 - 浅色风格，适合浅色背景。\n*  1 - 深色风格，适合深色背景。"
+        "info": "*  影响头部导航栏的背景色和文字颜色。\n*  0 - 浅色风格，毛玻璃展现形式。\n*  1 - 自定义颜色, 请在方选择背景、文字颜色。"
+      },
+      {
+        "id": "header_bg_color",
+        "type": "color",
+        "label": "顶部导航栏背景色",
+        "info": "",
+        "default": "#ffffff"
+      },
+      {
+        "id": "header_text_color",
+        "type": "color",
+        "label": "首页header文字颜色",
+        "default": "#000000"
       },
       {
         "id": "show_published_at",
