@@ -5942,7 +5942,7 @@ summary.menu-active, summary:has(.menu-active) {
 .ProseMirror {
   [bke-role="column"] {
     &:where([data-theme=dark], [data-theme=dark] *) {
-      background-color: var(--color-base-100);
+      background-color: var(--color-base-300);
     }
   }
 }
