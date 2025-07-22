@@ -291,6 +291,6 @@ summary:has(.menu-active) {
 
 .ProseMirror {
   [bke-role="column"] {
-    @apply dark:bg-base-100;
+    @apply dark:bg-base-300;
   }
 }
