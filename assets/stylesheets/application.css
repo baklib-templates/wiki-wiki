@@ -5924,6 +5924,13 @@ summary.menu-active, summary:has(.menu-active) {
     display: none;
   }
 }
+.ProseMirror {
+  [bke-role="column"] {
+    &:where([data-theme=dark], [data-theme=dark] *) {
+      background-color: var(--color-base-100);
+    }
+  }
+}
 @layer base {
   :where(:root),:root:has(input.theme-controller[value=light]:checked),[data-theme=light] {
     color-scheme: light;

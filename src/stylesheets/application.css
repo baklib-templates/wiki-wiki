@@ -287,3 +287,10 @@ summary:has(.menu-active) {
 
 @import "./tooltip.css";
 @import 'viewerjs/dist/viewer.css';
+
+
+.ProseMirror {
+  [bke-role="column"] {
+    @apply dark:bg-base-100;
+  }
+}
