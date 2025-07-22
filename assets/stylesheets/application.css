@@ -3249,9 +3249,6 @@
   .\!bg-primary-200 {
     background-color: var(--color-primary-200) !important;
   }
-  .bg-\[--header-bg\] {
-    background-color: --header-bg;
-  }
   .bg-\[var\(--bg-color\)\] {
     background-color: var(--bg-color);
   }
@@ -3684,9 +3681,6 @@
   .text-\[--color\] {
     color: --color;
   }
-  .text-\[--header-text\] {
-    color: --header-text;
-  }
   .text-\[var\(--header-text\)\] {
     color: var(--header-text);
   }
@@ -3746,9 +3740,6 @@
   }
   .text-primary {
     color: var(--color-primary);
-  }
-  .text-primary-content {
-    color: var(--color-primary-content);
   }
   .text-primary\/80 {
     color: var(--color-primary);
@@ -5139,11 +5130,6 @@
       background-color: var(--color-primary-700) !important;
     }
   }
-  .dark\:bg-\[--header-bg-dark\] {
-    &:where([data-theme=dark], [data-theme=dark] *) {
-      background-color: --header-bg-dark;
-    }
-  }
   .dark\:bg-\[var\(--header-bg-dark\)\] {
     &:where([data-theme=dark], [data-theme=dark] *) {
       background-color: var(--header-bg-dark);
@@ -5214,11 +5200,6 @@
   .dark\:fill-slate-800 {
     &:where([data-theme=dark], [data-theme=dark] *) {
       fill: var(--color-slate-800);
-    }
-  }
-  .dark\:text-\[--header-text-dark\] {
-    &:where([data-theme=dark], [data-theme=dark] *) {
-      color: --header-text-dark;
     }
   }
   .dark\:text-\[var\(--header-text-dark\)\] {
