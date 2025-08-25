@@ -13,7 +13,7 @@
     {% assign default_hero_image = 'images/hero.jpg' | asset_url %}
     {% assign bg_image_url = page.settings.hero_image_url | escape_once | default: default_hero_image %}
 
-    <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url({{ bg_image_url }})"></div>
+    <div class="absolute w-full bg-center bg-cover -z-10" style="height: {{ page.settings.hero_height }}px; background-image: url('{{ bg_image_url }}')"></div>
   {% else %}
     <div class="absolute w-full bg-center bg-cover -z-10 bg-slate-100 dark:bg-slate-900 pt-10" style="height: {{ page.settings.hero_height }}px;"></div>
   {% endif %}
