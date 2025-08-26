@@ -34,8 +34,11 @@
           {% endif %}
 
           <div class='border-t border-slate-200 mt-4 pt-2'>
-            {% comment %} TODO 手机端的时候再加载 {% endcomment %}
-            {% render 'nav_tree', nav_tree: site.nav_tree, class: 'p-0' %}
+            <turbo-frame id="nav_tree_frame" src="/s/nav_tree" loading="lazy">
+              <div class="flex items-center justify-center h-20 text-base-content/60">
+                <span class="loading loading-spinner loading-md"></span>
+              </div>
+            </turbo-frame>
           </div>
         </div>
       </div>

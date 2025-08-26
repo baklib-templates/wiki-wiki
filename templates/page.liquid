@@ -1,5 +1,5 @@
 <div class="px-4">
-	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 md:pt-4 [&.has-toc]:lg:grid-cols-[var(--left-sidebar-width)_1fr_var(--right-sidebar-width)]"
+	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 md:pt-4 group"
 		data-controller="toc"
 		data-toc-header-selector-value=".js--header"
 		data-toc-offset-value="10"
@@ -8,30 +8,36 @@
 		<!-- 左侧导航树 -->
 		<aside class="hidden lg:block">
 			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
-				{% render 'nav_tree', nav_tree: site.nav_tree %}
+				<turbo-frame id="nav_tree_frame" src="/s/nav_tree" loading="lazy">
+					<div class="flex items-center justify-center h-20 text-base-content/60">
+						<span class="loading loading-spinner loading-md"></span>
+					</div>
+				</turbo-frame>
 			</div>
 		</aside>
-		<!-- 中间内容 -->
-		<div class="px-0 lg:px-4 overflow-hidden">
-			{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
 
-			{% if page.settings.show_list %}
-				{% assign sub_pages = page.children_in_list %}
-				{% render 'page_list', page: page, pages: sub_pages %}
-			{% else %}
-				{% render 'page', page: page %}
-			{% endif %}
+		<turbo-frame id="main-content-frame" class='grid grid-cols-1 gap-6 group-[.has-toc]:lg:grid-cols-[1fr_var(--right-sidebar-width)]'>
+			<!-- 中间内容 -->
+			<div class="px-0 lg:px-4 overflow-hidden">
+				{% render 'breadcrumb', breadcrumb: page.breadcrumb  %}
+					{% if page.settings.show_list %}
+						{% assign sub_pages = page.children_in_list %}
+						{% render 'page_list', page: page, pages: sub_pages %}
+					{% else %}
+						{% render 'page', page: page %}
+					{% endif %}
+			</div>
 
-		</div>
-		<!-- 右侧 TOC -->
-		<aside class="print:hidden hidden lg:block">
-			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
-				<div class="menu">
-					<div class="menu-title">{{ 'templates.page.page_toc' | t }}</div>
-					<div data-toc-target="links"></div>
+			<!-- 右侧 TOC -->
+			<aside class="print:hidden hidden lg:block">
+				<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box" data-toc-target="menu">
+					<div class="menu">
+						<div class="menu-title">{{ 'templates.page.page_toc' | t }}</div>
+						<div data-toc-target="links"></div>
+					</div>
 				</div>
-			</div>
-		</aside>
+			</aside>
+		</turbo-frame>
 	</div>
 </div>
 
