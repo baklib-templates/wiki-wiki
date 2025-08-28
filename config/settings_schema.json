@@ -4,7 +4,7 @@
     "theme_name": "wiki",
     "theme_label": "t:schema.theme_label",
     "theme_description": "t:schema.theme_description",
-    "theme_version": "2.0.3",
+    "theme_version": "2.0.4",
     "theme_syntax_version": "v2",
     "theme_scope": "wiki",
     "theme_author": "Baklib",
@@ -168,6 +168,37 @@
         "type": "text",
         "label": "t:schema.generic.settings.ai_search_completed_text.label",
         "info": "t:schema.generic.settings.ai_search_completed_text.info"
+      }
+    ]
+  },
+  {
+    "name": "t:schema.settings.weixin_share.title",
+    "settings": [
+      {
+        "id": "weixin_app_id",
+        "type": "text",
+        "label": "t:schema.settings.weixin_share.weixin_app_id.label",
+        "info": "t:schema.settings.weixin_share.weixin_app_id.info"
+      },
+      {
+        "id": "weixin_app_secret",
+        "type": "text",
+        "label": "t:schema.settings.weixin_share.weixin_app_secret.label",
+        "info": "t:schema.settings.weixin_share.weixin_app_secret.info"
+      },
+      {
+        "id": "weixin_enabled",
+        "type": "checkbox",
+        "label": "t:schema.settings.weixin_share.weixin_enabled.label",
+        "default": false,
+        "info": "t:schema.settings.weixin_share.weixin_enabled.info"
+      },
+      {
+        "id": "weixin_debug",
+        "type": "checkbox",
+        "label": "t:schema.settings.weixin_share.weixin_debug.label",
+        "default": false,
+        "info": "t:schema.settings.weixin_share.weixin_debug.info"
       }
     ]
   },

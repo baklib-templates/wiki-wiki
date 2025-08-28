@@ -8,9 +8,9 @@
   },
   "snippets": {
     "header": {
-      "sign_in_button": "Sign In",
-      "logged_in_menu_title": "Signed In",
-      "sign_out": "Sign Out"
+      "light_mode": "light color",
+      "dark_mode": "dark color",
+      "auto_mode": "automatic"
     },
     "footer": {
       "copyright": "All Rights Reserved"
@@ -33,8 +33,6 @@
     }
   },
   "templates": {
-    "index": {
-    },
     "search": {
       "placeholder": "Search...",
       "no_results": "No results found"
@@ -46,31 +44,23 @@
   },
   "ai": {
     "title": "AI Search",
-    "started": "Starting...",
-    "reading": "Reading content...",
     "thinking": "Thinking...",
     "completed": "AI response completed.",
-    "expand": "Expand content",
-    "collapse": "Collapse content",
     "canceled": "Canceled"
   },
   "generic": {
     "published_at": "Published at",
     "feedback_created_at": "Last feedback at",
-    "empty": "No data",
-    "settings": {
-      "screen_width": "Screen Width",
-      "screen_width_choices": {
-        "narrow": "Narrow (1024px)",
-        "medium": "Medium (1280px)",
-        "wide": "Wide (1536px)",
-        "full": "Full Screen"
-      }
-    },
     "buttons": {
-      "close": "Close",
-      "signout": "Sign Out",
-      "signin": "Sign In"
-    }
+      "signout": "Sign Out"
+    },
+    "read_more": "View more",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "Search .."
+  },
+  "placeholders": {
+    "search": ""
   }
 }

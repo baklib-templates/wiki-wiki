@@ -8,9 +8,9 @@
   },
   "snippets": {
     "header": {
-      "sign_in_button": "登录",
-      "logged_in_menu_title": "已登录",
-      "sign_out": "退出登录"
+      "light_mode": "亮色",
+      "dark_mode": "暗色",
+      "auto_mode": "自动"
     },
     "footer": {
       "copyright": "版权所有"
@@ -33,8 +33,6 @@
     }
   },
   "templates": {
-    "index": {
-    },
     "search": {
       "placeholder": "搜索...",
       "no_results": "没有找到相关结果"
@@ -46,31 +44,23 @@
   },
   "ai": {
     "title": "AI 搜索",
-    "started": "正在开始...",
-    "reading": "正在阅读内容...",
     "thinking": "正在思考...",
     "completed": "AI 回答完毕.",
-    "expand": "展开内容",
-    "collapse": "收起内容",
     "canceled": "已取消回答"
   },
   "generic": {
     "published_at": "发布时间",
     "feedback_created_at": "上次反馈于",
-    "empty": "暂无数据",
-    "settings": {
-      "screen_width": "页面宽度",
-      "screen_width_choices": {
-        "narrow": "窄（1024像素）",
-        "medium": "适中（1280像素）",
-        "wide": "宽（1536像素）",
-        "full": "满屏"
-      }
-    },
     "buttons": {
-      "close": "关闭",
-      "signout": "退出登录",
-      "signin": "登录"
-    }
+      "signout": "退出登录"
+    },
+    "read_more": "查看更多",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "搜索..."
+  },
+  "placeholders": {
+    "search": ""
   }
 }

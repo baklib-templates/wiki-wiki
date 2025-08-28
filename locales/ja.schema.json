@@ -194,10 +194,6 @@
           "video_url": {
             "label": "ビデオURL",
             "info": "ビデオリストページでの表示に使用、リストページでは不要"
-          },
-          "video_cover_url": {
-            "label": "ビデオカバー画像",
-            "info": "推奨比率1:1"
           }
         }
       },
@@ -209,8 +205,6 @@
   },
   "generic": {
     "name": "一般設定",
-    "header_name": "ヘッダーとフッターのナビゲーションメニュー",
-    "head_title": "Head HTML 設定",
     "settings": {
       "logo_url": {
         "label": "ロゴ画像",
@@ -243,17 +237,14 @@
         "info": "推奨：240px"
       },
       "show_published_at": {
-        "label": "公開時間を表示",
-        "default": true
+        "label": "公開時間を表示"
       },
       "show_author": {
-        "label": "著者を表示",
-        "default": true
+        "label": "著者を表示"
       },
       "show_card_icon": {
         "label": "ホームページにセクションアイコンを表示",
-        "info": "ページ設定でアイコンを設定することを推奨",
-        "default": true
+        "info": "ページ設定でアイコンを設定することを推奨"
       },
       "ai_search_completed_text": {
         "label": "AI回答終了文",
@@ -293,6 +284,27 @@
         "label": "ホームページの機能セクション2にHTMLコードを挿入",
         "info": "HTMLタグと限られたTailwindCSSスタイルコードをサポート",
         "placeholder": "通常、会社の他のウェブサイトへのナビゲーションリンクを挿入するために使用"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "ウィーチャット構成",
+      "weixin_app_id": {
+        "label": "開発者ID（AppID）",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'>WeChat公衆番号/設定と開発/開発インタフェース管理</a>で取得"
+      },
+      "weixin_app_secret": {
+        "label": "開発者パスワード（AppSecret）",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "ウィチャット共有を有効にするかどうか",
+        "info": "サイトページの微信共有を提供する能力</br>1.微信公衆番号にipホワイトリスト（ip:${service _ ip}）を設定してください。設定後に有効化が遅れる時間があります。</br>2.ウィーチャット共有権限がオンになっているかどうかをチェックし、ウィーチャット公式アカウント/設定と開発/開発インタフェース管理：<a href='https://mp.weixin.qq.com/cgi-bin/frame'>ウェブサービス/共有インターフェース</a>。</br>3.共有リンクがカードかどうか：カード形式から共有カード形式に入り、リンク形式から共有リンク形式に入る、ウェブページの初期リンク共有は、会社のサービス番号またはコレクション後にカード共有することができます（この規則は微信共有制限です）。"
+      },
+      "weixin_debug": {
+        "label": "debugプロンプトをオンにするかどうか",
+        "info": "このオプションは構成段階でのみ有効にしてください。オンにすると、フロントエンドサイトにアクセスする際に微信共有が正しく構成されていない場合、エラーメッセージが自動的に表示されます"
       }
     }
   }

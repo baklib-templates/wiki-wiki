@@ -8,9 +8,9 @@
   },
   "snippets": {
     "header": {
-      "sign_in_button": "로그인",
-      "logged_in_menu_title": "로그인됨",
-      "sign_out": "로그아웃"
+      "light_mode": "밝은 색",
+      "dark_mode": "어두운 색",
+      "auto_mode": "자동"
     },
     "footer": {
       "copyright": "All Rights Reserved"
@@ -33,8 +33,6 @@
     }
   },
   "templates": {
-    "index": {
-    },
     "search": {
       "placeholder": "검색...",
       "no_results": "검색 결과가 없습니다"
@@ -46,22 +44,23 @@
   },
   "ai": {
     "title": "AI 검색",
-    "started": "시작 중...",
-    "reading": "콘텐츠 읽는 중...",
     "thinking": "생각 중...",
     "completed": "AI 응답 완료.",
-    "expand": "콘텐츠 펼치기",
-    "collapse": "콘텐츠 접기",
     "canceled": "취소됨"
   },
   "generic": {
     "published_at": "게시일",
     "feedback_created_at": "마지막 피드백",
-    "empty": "데이터 없음",
     "buttons": {
-      "close": "닫기",
-      "signout": "로그아웃",
-      "signin": "로그인"
-    }
+      "signout": "로그아웃"
+    },
+    "read_more": "자세히 보기",
+    "menu": ""
+  },
+  "search": {
+    "placeholder": "검색..."
+  },
+  "placeholders": {
+    "search": ""
   }
 }

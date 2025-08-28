@@ -194,10 +194,6 @@
           "video_url": {
             "label": "비디오 URL",
             "info": "비디오 목록 페이지에서 표시에 사용, 목록 페이지에서는 불필요"
-          },
-          "video_cover_url": {
-            "label": "비디오 커버 이미지",
-            "info": "권장 비율 1:1"
           }
         }
       },
@@ -209,8 +205,6 @@
   },
   "generic": {
     "name": "일반 설정",
-    "header_name": "헤더 및 푸터 네비게이션 메뉴",
-    "head_title": "Head HTML 설정",
     "settings": {
       "logo_url": {
         "label": "로고 이미지",
@@ -243,17 +237,14 @@
         "info": "권장: 240px"
       },
       "show_published_at": {
-        "label": "게시일 표시",
-        "default": true
+        "label": "게시일 표시"
       },
       "show_author": {
-        "label": "작성자 표시",
-        "default": true
+        "label": "작성자 표시"
       },
       "show_card_icon": {
         "label": "홈페이지에 섹션 아이콘 표시",
-        "info": "페이지 설정에서 아이콘을 설정하는 것을 권장",
-        "default": true
+        "info": "페이지 설정에서 아이콘을 설정하는 것을 권장"
       },
       "ai_search_completed_text": {
         "label": "AI 답변 종료 문구",
@@ -293,6 +284,27 @@
         "label": "두 번째 기능 섹션에 HTML 코드 삽입",
         "info": "HTML 태그와 제한된 TailwindCSS 스타일 코드 지원",
         "placeholder": "일반적으로 회사의 두 번째 기능 섹션에 대한 HTML 코드를 삽입하는 데 사용"
+      }
+    }
+  },
+  "settings": {
+    "weixin_share": {
+      "title": "위챗 설정",
+      "weixin_app_id": {
+        "label": "개발자 ID(AppID)",
+        "info": "<a href='https://mp.weixin.qq.com/cgi-bin/frame'> 위챗 대중번호/설정 및 개발/개발 인터페이스 관리 </a> 에서 획득"
+      },
+      "weixin_app_secret": {
+        "label": "개발자 암호(AppSecret)",
+        "info": ""
+      },
+      "weixin_enabled": {
+        "label": "위챗 공유 사용 여부",
+        "info": "사이트 페이지 위챗 공유 능력 제공 </br>1. 위챗 대중번호에 ip 화이트리스트 (ip: ${service_ip}) 를 설정하십시오. 설정 후 일정 기간 효력이 지연됩니다.</br>2.위챗 공유 권한 설정 여부, 위챗 대중번호/설정 및 개발/개발 인터페이스 관리: <a href='https://mp.weixin.qq.com/cgi-bin/frame'> 웹 서비스 / 공유 인터페이스 </a>. </br>3. 공유 링크가 카드인지 여부: 카드 형식에서 공유 카드 형식으로, 링크 형식에서 공유 링크 형식으로,웹 페이지의 초기 링크 공유는 회사의 서비스 번호나 소장 후에 카드 공유를 진행할 수 있습니다 (이 규칙은 위챗 공유 제한입니다)."
+      },
+      "weixin_debug": {
+        "label": "debug 프롬프트 설정 여부",
+        "info": "구성 단계에서만 이 옵션을 켜십시오.오픈 후 프런트엔드 사이트에 액세스할 때 위챗 공유를 제대로 구성하지 않으면 오류 메시지가 자동으로 표시됩니다."
       }
     }
   }
