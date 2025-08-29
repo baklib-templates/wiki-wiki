@@ -3419,9 +3419,6 @@
   .object-cover {
     object-fit: cover;
   }
-  .p-0 {
-    padding: calc(var(--spacing) * 0);
-  }
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
@@ -5423,6 +5420,10 @@
     &:after {
       rotate: 225deg;
     }
+  }
+  :where(li:not(.menu-title) > *:not(ul, details, .menu-title, .btn)), :where(li:not(.menu-title) > details > summary:not(.menu-title)) {
+    text-wrap: unset !important;
+    white-space: pre-wrap !important;
   }
 }
 .search-highlight-block {
