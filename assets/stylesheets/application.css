@@ -3684,6 +3684,9 @@
   .break-all {
     word-break: break-all;
   }
+  .whitespace-pre-wrap {
+    white-space: pre-wrap;
+  }
   .text-\[--color\] {
     color: --color;
   }
@@ -3927,6 +3930,9 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
+  }
+  .\[line-break\:loose\] {
+    line-break: loose;
   }
   .ring-inset {
     --tw-ring-inset: inset;
