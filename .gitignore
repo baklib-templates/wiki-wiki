@@ -1,4 +1,4 @@
-/node_modules
+node_modules
 .DS_Store
 .baklib_theme_i18nrc.json
 baidu-translate-cache.json

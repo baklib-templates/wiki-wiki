@@ -1,0 +1,7 @@
+- static page: /s/nav_tree: turbo 加载的导航树
+  - 适用于页面数较多，分段加载的场景
+- partial; _nav_tree: 递归加载的导航树
+  - 适用于页面数较少，一次性加载的场景
+- partial: _nav_tree_switch, node: site
+  - 根据子页面数量，自动选择加载方式
+  - use render '_nav_tree' or turbo_frame '/s/nav_tree'

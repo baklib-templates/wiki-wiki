@@ -16,11 +16,13 @@
 
 		<!-- 中间内容 -->
     <div class="px-0 lg:px-4 overflow-hidden">
-      {% if page.settings.is_video_list %}
-        {% render 'page_video_list', page: page %}
-      {% else %}
-        {% render 'page', page: page %}
-      {% endif %}
+      <turbo-frame id="main-content-frame">
+        {% if page.settings.is_video_list %}
+          {% render 'page_video_list', page: page %}
+        {% else %}
+          {% render 'page', page: page %}
+        {% endif %}
+      </turbo-frame>
     </div>
 	</div>
 </div>

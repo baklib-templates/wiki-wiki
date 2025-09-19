@@ -2,8 +2,8 @@
 	<div class="w-full max-w-[var(--max-content-width)] mx-auto grid grid-cols-1 lg:grid-cols-[var(--left-sidebar-width)_1fr] gap-6 md:pt-4 group">
 		<!-- 左侧导航树 -->
 		<aside class="hidden lg:block">
-			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box">
-				<turbo-frame id="nav_tree_frame" src="/s/nav_tree" loading="lazy">
+			<div class="sticky top-[calc(var(--header-height)_+_1rem)] max-h-[calc(100vh-var(--header-height)-4rem)] max-w-full w-full overflow-auto bg-base-200 rounded-box custom-menu">
+				<turbo-frame id="page_nav_tree_frame_/" src="/s/page/nav_tree" loading="lazy">
 					<div class="flex items-center justify-center h-20 text-base-content/60">
 						<span class="loading loading-spinner loading-md"></span>
 					</div>

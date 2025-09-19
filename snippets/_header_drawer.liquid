@@ -17,25 +17,28 @@
         </svg>
       </label>
     </div>
-    <div class="drawer-side">
+    <div class="drawer-side z-[999]">
       <label
         for="header-drawer-left"
         aria-label="close sidebar"
         class="drawer-overlay"
       ></label>
       <div class="bg-base-200 text-base-content min-h-full w-90">
-        <div class='card bg-white py-4 h-dvh overflow-auto rounded-l-none dark:bg-slate-800 dark:text-slate-200'>
-          <label class="block font-mono text-lg font-semibold px-4 mb-3 text-slate-500">{{ site.name }}</label>
+        <div class='card flex flex-col bg-white py-4 h-dvh rounded-l-none dark:bg-slate-800 dark:text-slate-200'>
+          <div class="px-4 flex-0 flex justify-center items-center space-x-2">
+            {% render 'header_logo' %}
+		        <span class="md:hidden text-xl font-bold">{{ site.name }}</span>
+          </div>
 
           {% if header_menu_html %}
-            <div class="space-y-2 flex flex-col px-4 pt-4 underline border-t border-slate-200">
+            <div class="space-y-2 flex flex-col px-4 pt-4 underline border-t border-slate-200 dark:border-slate-700">
               {{ header_menu_html }}
             </div>
           {% endif %}
 
-          <div class='border-t border-slate-200 mt-4 pt-2'>
-            <turbo-frame id="nav_tree_frame" src="/s/nav_tree" loading="lazy">
-              <div class="flex items-center justify-center h-20 text-base-content/60">
+          <div class='flex-1 overflow-y-auto min-h-0 border-t border-slate-200 dark:border-slate-700 mt-4 pt-2 custom-menu' @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false" data-turbo="false">
+            <turbo-frame id="page_nav_tree_frame_/" src="/s/page/nav_tree?turbo" loading="lazy" class='w-full'>
+              <div class="flex items-center justify-center h-20 text-base-content/60 w-full">
                 <span class="loading loading-spinner loading-md"></span>
               </div>
             </turbo-frame>
