@@ -11,7 +11,12 @@
 			</div>
 		</aside>
 
-		<turbo-frame id="main-content-frame" class='w-full' data-autoscroll-block='start'>
+		<turbo-frame id="main-content-frame" class='w-full' x-init="
+               $el.addEventListener('turbo:before-fetch-request', () => {
+                 $el.scrollTop = 0
+                 window.scrollTo({ top: 0, behavior: 'instant' })
+               })
+             ">
 			<div
 				data-controller="toc"
 				data-toc-header-selector-value=".js--header"
