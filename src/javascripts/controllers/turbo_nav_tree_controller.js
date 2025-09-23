@@ -108,7 +108,7 @@ export default class extends Controller {
     const tf = document.createElement("turbo-frame")
     tf.classList.add("w-full")
     const idPrefix = this.hasIdPrefixValue ? this.idPrefixValue : "nav_tree_frame_"
-    tf.id = `${idPrefix}${node.path}`
+    tf.id = `${idPrefix}${node.path.replaceAll('/', '_')}`
 
     const urlBase = this.urlValue.split("?")[0]
     const params = new URLSearchParams()

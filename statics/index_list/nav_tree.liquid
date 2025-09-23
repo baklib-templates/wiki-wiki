@@ -1,7 +1,7 @@
 {% layout none %}
 
 {% assign parent_path = params.parent_path | default: '/' %}
-<turbo-frame id="index_list_nav_tree_frame_{{ parent_path }}" class='w-full'>
+<turbo-frame id="index_list_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
   {% assign page1 = site.pages[parent_path] %}
   {% assign nav_tree = page1 | nav_tree: 2 %}
   {% assign depth = params.depth | presence | default: page1.depth %}
@@ -13,14 +13,11 @@
     data-turbo-nav-tree-parent-path-value='{{ parent_path }}'
     data-turbo-nav-tree-url-value='/s/index_list/nav_tree'
     data-turbo-nav-tree-id-prefix-value='index_list_nav_tree_frame_'
-    data-turbo-nav-tree-link-turbo-frame-value="main-content-frame"
-    data-turbo-nav-tree-link-turbo-frame-action-value="advance"
-    data-turbo-nav-tree-link-turbo-value="false"
   >
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}
         {{#hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200" data-action="click->turbo-nav-tree#toggle">
+          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all" data-action="click->turbo-nav-tree#toggle">
             <svg
               class="shrink-0 cursor-pointer mr-2"
               width="24"
@@ -47,7 +44,7 @@
           </div>
         {{/hasChildren}}
         {{^hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200">
+          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all">
             <svg
               class="shrink-0 mr-2"
               width="24"

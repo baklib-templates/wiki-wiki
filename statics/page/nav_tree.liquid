@@ -1,9 +1,9 @@
 {% layout none %}
 
 {% assign parent_path = params.parent_path | default: '/' %}
-<turbo-frame id="page_nav_tree_frame_{{ parent_path }}" class='w-full'>
+<turbo-frame id="page_nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
   {% assign page1 = site.pages[parent_path] %}
-  {% assign nav_tree = page1 | nav_tree: 2 %}
+  {% assign nav_tree = page1 | nav_tree: 1 %}
   {% assign depth = params.depth | presence | default: page1.depth %}
 
   <div
@@ -18,7 +18,7 @@
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}
         {{#hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200" data-action="click->turbo-nav-tree#toggle">
+          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all" data-action="click->turbo-nav-tree#toggle">
             <a href="{{path}}"
               data-turbo-frame="main-content-frame" data-turbo-action='advance'
               class="line-clamp-2 hover:underline"
@@ -36,7 +36,7 @@
           </div>
         {{/hasChildren}}
         {{^hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200">
+          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all">
             <a href="{{path}}"
               data-turbo-frame="main-content-frame" data-turbo-action='advance'
               class="line-clamp-2 hover:underline"

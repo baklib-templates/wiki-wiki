@@ -35,7 +35,7 @@ export default class extends Controller {
       this.element.classList.add("has-toc");
     } else {
       this.element.classList.remove("has-toc");
-      this.menuTarget.remove();
+      this.menuTarget.style.display = 'none'
     }
   }
 

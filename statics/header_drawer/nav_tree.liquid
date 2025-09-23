@@ -1,7 +1,7 @@
 {% layout none %}
 
 {% assign parent_path = params.parent_path | default: '/' %}
-<turbo-frame id="nav_tree_frame_{{ parent_path }}" class='w-full'>
+<turbo-frame id="nav_tree_frame_{{ parent_path | replace: '/', '_' }}" class='w-full'>
   {% assign page1 = site.pages[parent_path] %}
   {% assign nav_tree = page1 | nav_tree: 2 %}
   {% assign depth = params.depth | presence | default: page1.depth %}

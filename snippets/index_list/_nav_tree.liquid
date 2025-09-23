@@ -3,12 +3,11 @@
   data-turbo-nav-tree-nav-tree-value='{{ site.nav_tree | to_json | escape }}'
   data-turbo-nav-tree-depth-value='0'
   data-turbo-nav-tree-current-path-value='{{ page.path }}'
-  data-turbo-nav-tree-link-turbo-value="false"
 >
-  <template data-turbo-nav-tree-target="item">
+  <template data-turbo-nav-tree-target="itemTemplate">
     {% raw %}
       {{#hasChildren}}
-        <div class="flex items-center p-2 hover:bg-accent-50 rounded-sm w-full" data-action="click->turbo-nav-tree#toggle">
+        <div class="flex items-center p-2 hover:bg-accent-50 rounded-sm w-full break-all" data-action="click->turbo-nav-tree#toggle">
           <svg
             class="shrink-0 cursor-pointer mr-2"
             width="24"
@@ -35,7 +34,7 @@
         </div>
       {{/hasChildren}}
       {{^hasChildren}}
-        <div class="flex items-center p-2 hover:bg-accent-50 rounded-sm w-full">
+        <div class="flex items-center p-2 hover:bg-accent-50 rounded-sm w-full break-all">
           <svg
             class="shrink-0 mr-2"
             width="24"
