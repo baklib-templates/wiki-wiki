@@ -86,8 +86,8 @@
             data-controller="responsive-attr"
             data-responsive-attr-breakpoints-value='{"sm": 640, "md": 768, "lg": 1024, "xl": 1280, "2xl": 1536}'
           >
-            <div class="flex-1 order-2 md:order-1">
-              <turbo-frame id="frame--search-results">
+            <div class="flex-1 order-2 md:order-1 overflow-hidden">
+              <turbo-frame id="frame--search-results-list">
                 {% if total_size > 0 %}
                   <ul class="space-y-3">
                     {% if search.page_number == 1 and extends_size > 0 %}
@@ -104,26 +104,22 @@
                     {% endif %}
                     {% for page in items %}
                       <li class="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700">
-                        <div class="flex gap-1">
-                          <div>
-                            <div class="flex space-x-2 items-start">
-                              <div class="shrink-0 pt-[1px]">
-                                <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
-                              </div>
-                              <div class='flex-1'>
-                                <a class="block text-lg text-slate-800 search-highlight-block hover:underline dark:text-slate-100 break-all" href="{{ page.url }}" data-turbo-frame="_top">
-                                  {{ page.highlighted_search_title }}
-                                </a>
-                                <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter break-all">{{ page.url }}</a>
-                                {% unless page.highlighted_search_content == empty %}
-                                  <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block break-all" x-cloak>{{ page.highlighted_search_content }}
-                                  </p>
-                                {% endunless %}
-                                <div class="flex justify-between items-center text-gray-600">
-                                  <div class="hidden overflow-x-auto text-sm md:block">
-                                    {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
-                                  </div>
-                                </div>
+                        <div class="flex items-start space-x-2 ">
+                          <div class="flex-0 pt-[1px]">
+                            <span class="inline-flex justify-center items-center w-5 h-5 text-xs rounded-full bg-primary-100">{{ forloop.index }}</span>
+                          </div>
+                          <div class='flex-1 group overflow-hidden min-w-0'>
+                            <a class="block text-lg text-slate-800 search-highlight-block group-hover:underline dark:text-slate-100 break-all" href="{{ page.url }}" data-turbo-frame="_top">
+                              {{ page.highlighted_search_title }}
+                            </a>
+                            <a href="{{ page.url }}" data-turbo-frame="_top" class="block text-xs text-gray-500 font-inter break-all">{{ page.url }}</a>
+                            {% unless page.highlighted_search_content == empty %}
+                              <p class="my-3 text-sm line-clamp-3 text-slate-400 search-highlight-block break-all" x-cloak>{{ page.highlighted_search_content }}
+                              </p>
+                            {% endunless %}
+                            <div class="w-full min-w-0 text-gray-600 overflow-x-auto">
+                              <div class="hidden text-sm md:block">
+                                {% render 'breadcrumb', breadcrumb: page.breadcrumb %}
                               </div>
                             </div>
                           </div>
@@ -142,7 +138,7 @@
                         if(aiSearchContainer && aiSearch){
                           aiSearchContainer.classList.remove('hidden');
                           aiSearch.dataset.aiSearchMessageValue = "{{ search.keywords | escape_once }}";
-                        }else{
+                        }else if (aiSearchContainer) {
                           aiSearchContainer.classList.add('hidden');
                         }
                       }, 10);
