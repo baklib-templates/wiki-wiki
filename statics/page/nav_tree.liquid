@@ -18,16 +18,17 @@
     <template data-turbo-nav-tree-target="itemTemplate">
       {% raw %}
         {{#hasChildren}}
-          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all" data-action="click->turbo-nav-tree#toggle">
+          <div class="flex items-center p-2 hover:bg-accent-100 dark:hover:bg-accent-300 rounded-sm w-full text-base-content dark:hover:text-base-200 break-all">
             <a href="{{path}}"
               data-turbo-frame="main-content-frame" data-turbo-action='advance'
               class="line-clamp-2 hover:underline"
               data-action="click->turbo-nav-tree#click"
+              data-turbo-nav-tree-only-open-param="true"
               >
               {{link_text}}
             </a>
             <!-- 有子节点时显示 toggle 按钮 -->
-            <div turbo-nav-tree-item-target-icon class="inline-block ml-auto mr-1 {{#open}}rotate-90{{/open}}">
+            <div turbo-nav-tree-item-target-icon data-action="click->turbo-nav-tree#toggle" class="inline-block ml-auto mr-1 {{#open}}rotate-90{{/open}}">
               <svg class="w-4 h-4 opacity-70 transition-transform duration-200"
                   fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M9 6l6 6-6 6"/>

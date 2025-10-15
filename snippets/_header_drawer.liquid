@@ -36,8 +36,8 @@
             </div>
           {% endif %}
 
-          <div class='flex-1 overflow-y-auto min-h-0 border-t border-slate-200 dark:border-slate-700 mt-4 pt-2 custom-menu' @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false" data-turbo="false">
-            <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree?turbo" loading="lazy" class='w-full'>
+          <div class='flex-1 overflow-y-auto min-h-0 border-t border-slate-200 dark:border-slate-700 mt-4 pt-2 custom-menu' @click="if($event.target.closest('a')) $event.target.closest('.drawer').querySelector('#header-drawer-left').checked = false">
+            <turbo-frame id="page_nav_tree_frame__" src="/s/page/nav_tree" loading="lazy" class='w-full'>
               <div class="flex items-center justify-center h-20 text-base-content/60 w-full">
                 <span class="loading loading-spinner loading-md"></span>
               </div>
