@@ -175,7 +175,7 @@ export default class extends Controller {
         const heading = this.headings[i];
 
         const link = links.find(
-          (link) => link.dataset.tocAnchorParam === heading.querySelector("[js-position]").id,
+          (link) => link.dataset.tocAnchorParam === heading.querySelector("[js-position]")?.id,
         );
 
         if (link && this.isHeadingInView(heading)) {
