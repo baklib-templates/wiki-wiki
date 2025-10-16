@@ -184,14 +184,13 @@ export default class extends Controller {
         }
       }
 
-      // 添加样式, 移除其他标签的active样式
-      links.forEach((link) => link.classList.remove("text-primary", "font-bold"));
-
       if (activeLink) {
+        // 添加样式, 移除其他标签的active样式
+        links.forEach((link) => link.classList.remove("text-primary", "font-bold"));
         activeLink.classList.add("text-primary", "font-bold");
         activeLink.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "nearest" });
       }
-    }, 50);
+    }, 1);
   }
 
   // 判断heading的边界是否在视图区域

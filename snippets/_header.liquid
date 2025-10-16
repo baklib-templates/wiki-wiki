@@ -1,7 +1,7 @@
 {% if site.settings.header_type.value == '0' %}
 {% else %}
-  {% assign header_bg_color = site.settings.header_bg_color || '#fff' %}
-  {% assign header_text_color = site.settings.header_text_color || '#000' %}
+  {% assign header_bg_color = site.settings.header_bg_color | presence | default: '#fff' %}
+  {% assign header_text_color = site.settings.header_text_color | presence | default: '#000' %}
 {% endif %}
 
 <header
