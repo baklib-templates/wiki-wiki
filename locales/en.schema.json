@@ -42,7 +42,7 @@
             "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
           },
           "show_channels_section": {
-            "label": "1. First Section",
+            "label": "First Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "channels_section_title": {
@@ -50,7 +50,7 @@
             "default": "Getting Started"
           },
           "show_topic_channel": {
-            "label": "2. Featured Topics Section",
+            "label": "Featured Topics Section",
             "info": "If unchecked, this section will not be displayed on the homepage; please check the 'Is Featured Topic' option in page settings to display it on the homepage"
           },
           "topic_channel_title": {
@@ -58,7 +58,7 @@
             "default": "Featured Topics"
           },
           "show_newest_section": {
-            "label": "3. Latest Articles Section",
+            "label": "Latest Articles Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "newest_section_title": {
@@ -66,7 +66,7 @@
             "default": "Latest Articles"
           },
           "show_hottest_section": {
-            "label": "4. Hot Topics Section",
+            "label": "Hot Topics Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "hottest_section_title": {
@@ -114,7 +114,7 @@
             "info": "After setting, popular searches will be displayed below the search box. Use line breaks to set multiple keywords"
           },
           "show_channels_section": {
-            "label": "1. Navigation Section",
+            "label": "Navigation Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "channels_section_title": {
@@ -122,7 +122,7 @@
             "default": "Navigation"
           },
           "show_newest_section": {
-            "label": "2. Latest Articles Section",
+            "label": "Latest Articles Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "newest_section_title": {
@@ -130,7 +130,7 @@
             "default": "Latest Articles"
           },
           "show_topic_channel": {
-            "label": "3. Featured Topics Section",
+            "label": "Featured Topics Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "topic_channel_title": {
@@ -138,7 +138,7 @@
             "default": "Featured Topics"
           },
           "show_hottest_section": {
-            "label": "4. Popular Articles Section",
+            "label": "Popular Articles Section",
             "info": "If unchecked, this section will not be displayed on the homepage"
           },
           "hottest_section_title": {
@@ -300,7 +300,7 @@
       },
       "weixin_enabled": {
         "label": "Do you want to enable WeChat sharing",
-        "info": "Provide the ability to share site pages on WeChat</br>1. Please configure the IP whitelist (ip: ${service_ip}) in the WeChat official account. After configuration, there will be a period of delay in effectiveness. </br>2. Check whether WeChat sharing permission is enabled, WeChat official account/setting and development/development interface management:<a href='https://mp.weixin.qq.com/cgi-bin/frame> Web service/sharing interface</a>.</br>3. Whether the sharing link is a card: enter the sharing card form from the card form, and enter the sharing link form from the link form; The initial link sharing on the webpage can be done through the company's service account or by bookmarking and sharing cards (this rule is a WeChat sharing restriction)."
+        "info": "Provide the ability to share site pages on WeChat</br>Please configure the IP whitelist (ip: ${service_ip}) in the WeChat official account. After configuration, there will be a period of delay in effectiveness. </br>Check whether WeChat sharing permission is enabled, WeChat official account/setting and development/development interface management:<a href='https://mp.weixin.qq.com/cgi-bin/frame> Web service/sharing interface</a>.</br>Whether the sharing link is a card: enter the sharing card form from the card form, and enter the sharing link form from the link form; The initial link sharing on the webpage can be done through the company's service account or by bookmarking and sharing cards (this rule is a WeChat sharing restriction)."
       },
       "weixin_debug": {
         "label": "Do you want to enable debug prompt",

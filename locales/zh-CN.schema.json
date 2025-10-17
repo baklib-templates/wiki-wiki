@@ -42,7 +42,7 @@
             "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
           },
           "show_channels_section": {
-            "label": "1. 第一个板块",
+            "label": "第一个板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "channels_section_title": {
@@ -50,7 +50,7 @@
             "default": "新手入门"
           },
           "show_topic_channel": {
-            "label": "2. 专题推荐板块",
+            "label": "专题推荐板块",
             "info": "不勾选，首页将不会显示此板块; 请在页面设置勾选“是否为专题栏目”选项以显示在首页"
           },
           "topic_channel_title": {
@@ -58,7 +58,7 @@
             "default": "专题推荐"
           },
           "show_newest_section": {
-            "label": "3. 最新文章板块",
+            "label": "最新文章板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "newest_section_title": {
@@ -66,7 +66,7 @@
             "default": "最新文章"
           },
           "show_hottest_section": {
-            "label": "4. 热门话题板块",
+            "label": "热门话题板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "hottest_section_title": {
@@ -114,7 +114,7 @@
             "info": "设置以后，搜索框下方会显示热门搜索。换行设置多个关键词"
           },
           "show_channels_section": {
-            "label": "1. 栏目导览板块",
+            "label": "栏目导览板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "channels_section_title": {
@@ -122,7 +122,7 @@
             "default": "栏目导览"
           },
           "show_newest_section": {
-            "label": "2. 最新文章板块",
+            "label": "最新文章板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "newest_section_title": {
@@ -130,7 +130,7 @@
             "default": "最新文章"
           },
           "show_topic_channel": {
-            "label": "3. 专题推荐板块",
+            "label": "专题推荐板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "topic_channel_title": {
@@ -138,7 +138,7 @@
             "default": "专题推荐"
           },
           "show_hottest_section": {
-            "label": "4. 热门文章板块",
+            "label": "热门文章板块",
             "info": "不勾选，首页将不会显示此板块"
           },
           "hottest_section_title": {
@@ -300,7 +300,7 @@
       },
       "weixin_enabled": {
         "label": "是否启用微信分享",
-        "info": "提供站点页面微信分享的能力</br>1. 请在微信公众号中配置ip白名单（ip: ${service_ip}）, 配置后将有一段时间的生效延迟。</br>2. 检查是否开启微信分享权限，微信公众号/设置与开发/开发接口管理: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>网页服务/分享接口</a>。</br>3. 分享链接是否为卡片：从卡片形式进入分享卡片形式，链接形式进入分享链接形式；网页初始链接分享可由公司的服务号中或收藏后进行卡片分享（此规则为微信分享限制）。"
+        "info": "提供站点页面微信分享的能力</br>请在微信公众号中配置ip白名单（ip: ${service_ip}）, 配置后将有一段时间的生效延迟。</br>检查是否开启微信分享权限，微信公众号/设置与开发/开发接口管理: <a href='https://mp.weixin.qq.com/cgi-bin/frame'>网页服务/分享接口</a>。</br>分享链接是否为卡片：从卡片形式进入分享卡片形式，链接形式进入分享链接形式；网页初始链接分享可由公司的服务号中或收藏后进行卡片分享（此规则为微信分享限制）。"
       },
       "weixin_debug": {
         "label": "是否开启debug提示",

@@ -42,7 +42,7 @@
             "info": "設置以後，搜尋框下方會顯示熱門搜尋。換行設置多個關鍵詞"
           },
           "show_channels_section": {
-            "label": "1. 第一個板塊",
+            "label": "第一個板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "channels_section_title": {
@@ -50,7 +50,7 @@
             "default": "新手入門"
           },
           "show_topic_channel": {
-            "label": "2. 專題推薦板塊",
+            "label": "專題推薦板塊",
             "info": "不勾選，首頁將不會顯示此板塊; 請在頁面設置勾選“是否為專題欄目”選項以顯示在首頁"
           },
           "topic_channel_title": {
@@ -58,7 +58,7 @@
             "default": "專題推薦"
           },
           "show_newest_section": {
-            "label": "3. 最新文章板塊",
+            "label": "最新文章板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "newest_section_title": {
@@ -66,7 +66,7 @@
             "default": "最新文章"
           },
           "show_hottest_section": {
-            "label": "4. 熱門話題板塊",
+            "label": "熱門話題板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "hottest_section_title": {
@@ -114,7 +114,7 @@
             "info": "設置以後，搜尋框下方會顯示熱門搜尋。換行設置多個關鍵詞"
           },
           "show_channels_section": {
-            "label": "1. 欄目導覽板塊",
+            "label": "欄目導覽板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "channels_section_title": {
@@ -122,7 +122,7 @@
             "default": "欄目導覽"
           },
           "show_newest_section": {
-            "label": "2. 最新文章板塊",
+            "label": "最新文章板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "newest_section_title": {
@@ -130,7 +130,7 @@
             "default": "最新文章"
           },
           "show_topic_channel": {
-            "label": "3. 專題推薦板塊",
+            "label": "專題推薦板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "topic_channel_title": {
@@ -138,7 +138,7 @@
             "default": "專題推薦"
           },
           "show_hottest_section": {
-            "label": "4. 熱門文章板塊",
+            "label": "熱門文章板塊",
             "info": "不勾選，首頁將不會顯示此板塊"
           },
           "hottest_section_title": {

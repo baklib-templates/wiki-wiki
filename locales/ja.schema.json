@@ -42,7 +42,7 @@
             "info": "設定すると、検索ボックスの下に人気の検索が表示されます。改行で複数のキーワードを設定します"
           },
           "show_channels_section": {
-            "label": "1. 最初のセクション",
+            "label": "最初のセクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "channels_section_title": {
@@ -50,7 +50,7 @@
             "default": "はじめに"
           },
           "show_topic_channel": {
-            "label": "2. 特集トピックセクション",
+            "label": "特集トピックセクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません; ページ設定で「特集トピックかどうか」をチェックして、ホームページに表示されるようにします"
           },
           "topic_channel_title": {
@@ -58,7 +58,7 @@
             "default": "特集トピック"
           },
           "show_newest_section": {
-            "label": "3. 最新記事セクション",
+            "label": "最新記事セクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "newest_section_title": {
@@ -66,7 +66,7 @@
             "default": "最新記事"
           },
           "show_hottest_section": {
-            "label": "4. 人気トピックセクション",
+            "label": "人気トピックセクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "hottest_section_title": {
@@ -114,7 +114,7 @@
             "info": "設定すると、検索ボックスの下に人気の検索が表示されます。改行で複数のキーワードを設定します"
           },
           "show_channels_section": {
-            "label": "1. ナビゲーションセクション",
+            "label": "ナビゲーションセクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "channels_section_title": {
@@ -122,7 +122,7 @@
             "default": "ナビゲーション"
           },
           "show_newest_section": {
-            "label": "2. 最新記事セクション",
+            "label": "最新記事セクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "newest_section_title": {
@@ -130,7 +130,7 @@
             "default": "最新記事"
           },
           "show_topic_channel": {
-            "label": "3. 特集トピックセクション",
+            "label": "特集トピックセクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "topic_channel_title": {
@@ -138,7 +138,7 @@
             "default": "特集トピック"
           },
           "show_hottest_section": {
-            "label": "4. 人気記事セクション",
+            "label": "人気記事セクション",
             "info": "チェックを外すと、このセクションはホームページに表示されません"
           },
           "hottest_section_title": {

@@ -156,9 +156,15 @@ export default class extends Controller {
   }
 
   toggle(event) {
-    const { onlyOpen = false } = event.params
-
     const target = event.currentTarget
+    let onlyOpen = false
+    // 嵌套 click，外层收集toggle时，这时在内层不想点击关闭的元素上添加only-open属性
+    if (target == event.target) {
+      onlyOpen = event.params?.onlyOpen
+    } else {
+      onlyOpen = event.target.getAttribute('data-turbo-nav-tree-only-open-param') == 'true'
+    }
+
     const li = target.closest("li")
     // 若点击的容器为a链接，在turbo时nav_tree不会重新加载，为了保持子项目一直展开就可以使用此属性
     // data-turbo-nav-tree-only-open-param="true"

@@ -42,7 +42,7 @@
             "info": "설정하면 검색창 아래에 인기 검색어가 표시됩니다. 줄바꿈으로 여러 키워드를 설정합니다"
           },
           "show_channels_section": {
-            "label": "1. 첫 번째 섹션",
+            "label": "첫 번째 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "channels_section_title": {
@@ -50,7 +50,7 @@
             "default": "시작하기"
           },
           "show_topic_channel": {
-            "label": "2. 주제 추천 섹션",
+            "label": "주제 추천 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다; 페이지 설정에서 '주제 채널 여부' 옵션을 체크하여 홈페이지에 표시되도록 합니다"
           },
           "topic_channel_title": {
@@ -58,7 +58,7 @@
             "default": "주제 추천"
           },
           "show_newest_section": {
-            "label": "3. 최신 글 섹션",
+            "label": "최신 글 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "newest_section_title": {
@@ -66,7 +66,7 @@
             "default": "최신 글"
           },
           "show_hottest_section": {
-            "label": "4. 인기 주제 섹션",
+            "label": "인기 주제 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "hottest_section_title": {
@@ -114,7 +114,7 @@
             "info": "설정하면 검색창 아래에 인기 검색어가 표시됩니다. 줄바꿈으로 여러 키워드를 설정합니다"
           },
           "show_channels_section": {
-            "label": "1. 네비게이션 섹션",
+            "label": "네비게이션 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "channels_section_title": {
@@ -122,7 +122,7 @@
             "default": "네비게이션"
           },
           "show_newest_section": {
-            "label": "2. 최신 글 섹션",
+            "label": "최신 글 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "newest_section_title": {
@@ -130,7 +130,7 @@
             "default": "최신 글"
           },
           "show_topic_channel": {
-            "label": "3. 주제 추천 섹션",
+            "label": "주제 추천 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "topic_channel_title": {
@@ -138,7 +138,7 @@
             "default": "주제 추천"
           },
           "show_hottest_section": {
-            "label": "4. 인기 글 섹션",
+            "label": "인기 글 섹션",
             "info": "체크를 해제하면 이 섹션은 홈페이지에 표시되지 않습니다"
           },
           "hottest_section_title": {
@@ -300,7 +300,7 @@
       },
       "weixin_enabled": {
         "label": "위챗 공유 사용 여부",
-        "info": "사이트 페이지 위챗 공유 능력 제공 </br>1. 위챗 대중번호에 ip 화이트리스트 (ip: ${service_ip}) 를 설정하십시오. 설정 후 일정 기간 효력이 지연됩니다.</br>2.위챗 공유 권한 설정 여부, 위챗 대중번호/설정 및 개발/개발 인터페이스 관리: <a href='https://mp.weixin.qq.com/cgi-bin/frame'> 웹 서비스 / 공유 인터페이스 </a>. </br>3. 공유 링크가 카드인지 여부: 카드 형식에서 공유 카드 형식으로, 링크 형식에서 공유 링크 형식으로,웹 페이지의 초기 링크 공유는 회사의 서비스 번호나 소장 후에 카드 공유를 진행할 수 있습니다 (이 규칙은 위챗 공유 제한입니다)."
+        "info": "사이트 페이지 위챗 공유 능력 제공 </br>위챗 대중번호에 ip 화이트리스트 (ip: ${service_ip}) 를 설정하십시오. 설정 후 일정 기간 효력이 지연됩니다.</br>2.위챗 공유 권한 설정 여부, 위챗 대중번호/설정 및 개발/개발 인터페이스 관리: <a href='https://mp.weixin.qq.com/cgi-bin/frame'> 웹 서비스 / 공유 인터페이스 </a>. </br>공유 링크가 카드인지 여부: 카드 형식에서 공유 카드 형식으로, 링크 형식에서 공유 링크 형식으로,웹 페이지의 초기 링크 공유는 회사의 서비스 번호나 소장 후에 카드 공유를 진행할 수 있습니다 (이 규칙은 위챗 공유 제한입니다)."
       },
       "weixin_debug": {
         "label": "debug 프롬프트 설정 여부",
