@@ -2782,6 +2782,9 @@
   .w-\[80w\] {
     width: 80w;
   }
+  .w-auto {
+    width: auto;
+  }
   .w-full {
     width: 100%;
   }
