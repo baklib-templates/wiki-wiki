@@ -38,8 +38,12 @@ export default class extends Controller {
   ]
 
   connect() {
-    this.currentPath = this.hasCurrentPathValue ? this.currentPath : window.location.pathname;
+    this.currentPath = this.hasCurrentPathValue ? this.currentPathValue : window.location.pathname;
     this.menuContainer = this.rootContainer();
+    if (!this.menuContainer) {
+      console.log('turbo_nav_tree_controller: menuContainer null')
+      return
+    }
 
     if (this.element.dataset.rendered === "true") {
       this.refreshActiveState();
@@ -86,7 +90,7 @@ export default class extends Controller {
         const isActive = this.expandValue ? true : this.isPathActive(node)
         const shouldOpen = isActive || this.hasActiveChild(node)
         const useRenderChildren = node.children?.length > 0
-        const useRenderTurboFrame = node.children?.length == 0 && node.children_count > 0
+        const useRenderTurboFrame = node.children?.length == 0 && node.children_count > 0 && this.hasUrlValue
 
         // --- item 内容 ---
         const itemHtml = this.renderItem(node, depth, shouldOpen, isActive)
@@ -171,18 +175,10 @@ export default class extends Controller {
     // 添加过渡动画
     if (status) {
       childrenContainer.hidden = false;
-      childrenContainer.classList.add("opacity-0");
-      requestAnimationFrame(() => {
-        childrenContainer.classList.remove("opacity-0");
-        childrenContainer.classList.add("opacity-100");
-      });
+      childrenContainer.classList.remove("opacity-0");
     } else {
       childrenContainer.hidden = true;
-      childrenContainer.classList.add("opacity-100");
-      requestAnimationFrame(() => {
-        childrenContainer.classList.remove("opacity-100");
-        childrenContainer.classList.add("opacity-0");
-      });
+      childrenContainer.classList.add("opacity-0");
     }
 
     const itemTargetIcon = li.querySelector("[turbo-nav-tree-item-target-icon]");
@@ -208,7 +204,7 @@ export default class extends Controller {
 
   // 单个 item 渲染
   renderItem(node, depth, open = false, isActive = false) {
-    const hasChildren = node.children_count > 0
+    const hasChildren = this.hasUrlValue ? node.children_count : node.children?.length > 0
 
     // 动态拼接 a 标签属性
     let aAttrs = []
@@ -269,6 +265,8 @@ export default class extends Controller {
 
   // 激活判断
   isPathActive(node, isPrefix = true) {
+    if (!this.currentPath) return false
+
     if (isPrefix) {
       const currentParts = this.currentPath.split('/').filter(Boolean)
       const nodeParts = node.path.split('/').filter(Boolean)
@@ -311,7 +309,7 @@ export default class extends Controller {
     if (this.hasRootContainerValue) {
       return this.element.closest(this.rootContainerValue)
     } else {
-      return this.getParents(this.element.querySelector('li'), 'ul').at(-1)
+      return this.getParents(this.element.querySelector('li'), 'ul')?.at(-1)
     }
   }
 }

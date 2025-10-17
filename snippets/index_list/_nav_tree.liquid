@@ -1,8 +1,9 @@
 <div
   data-controller="turbo-nav-tree"
-  data-turbo-nav-tree-nav-tree-value='{{ site.nav_tree | to_json | escape }}'
+  data-turbo-nav-tree-nav-tree-value='{{ nav_tree | to_json | escape }}'
   data-turbo-nav-tree-depth-value='0'
-  data-turbo-nav-tree-current-path-value='{{ page.path }}'
+  data-turbo-nav-tree-current-path-value=""
+  data-turbo-nav-tree-root-container-value=".custom-menu"
 >
   <template data-turbo-nav-tree-target="itemTemplate">
     {% raw %}
