@@ -11,7 +11,7 @@ export default class extends Controller {
   connect() {
     const validOptions = this.hasContentTarget && this.hasLinksTarget && this.hasMenuTarget;
     if (!validOptions) {
-      if (this.menuTarget) this.menuTarget.remove();
+      if (this.hasMenuTarget) this.menuTarget.remove();
       return
     }
 
