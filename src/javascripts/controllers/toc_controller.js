@@ -24,9 +24,21 @@ export default class extends Controller {
 
   disconnect() {
     window.removeEventListener("scroll", this.#hightLightActiveLink.bind(this));
+
+    if (this.hightLightTimer) clearTimeout(this.hightLightTimer);
+  }
+
+  #setTempNode(node) {
+    node.setAttribute("data-toc-temp", '');
+  }
+
+  #clearTempNode() {
+    this.element.querySelectorAll('[data-toc-temp]').forEach((el) => el.remove());
+    this.linksTarget.replaceChildren();
   }
 
   #generateDirectory() {
+    this.#clearTempNode()
     const directory = this.#buildDirectoryTree(this.headings);
     if (directory.children.length > 0) {
       this.#renderDirectory(directory, this.linksTarget);
@@ -57,8 +69,24 @@ export default class extends Controller {
       heading.style.position = "relative";
       // 解决锚点定位的问题（顶部为sticky时）
       const top = this.headerHeight + Number(this.offsetValue);
-      heading.insertAdjacentHTML("beforeend", `<div js-position style="position: absolute; top: -${top}px; left: 0; width: 0; height: 0" id="${id}"></div>`)
-      heading.insertAdjacentHTML("beforeend", '<a name="' + id + '"></a>')
+
+      // 创建用于定位的占位元素，并记录以便 later cleanup
+      const posDiv = document.createElement('div');
+      posDiv.setAttribute('js-position', '');
+      posDiv.style.position = 'absolute';
+      posDiv.style.top = `-${top}px`;
+      posDiv.style.left = '0';
+      posDiv.style.width = '0';
+      posDiv.style.height = '0';
+      posDiv.id = id;
+      heading.appendChild(posDiv);
+      this.#setTempNode(posDiv);
+
+      // 创建命名锚点
+      const anchorEl = document.createElement('a');
+      anchorEl.name = id;
+      heading.appendChild(anchorEl);
+      this.#setTempNode(anchorEl);
 
       const node = { level, id, text: heading.textContent, children: [] };
 
@@ -127,6 +155,9 @@ export default class extends Controller {
       `;
 
       clipboardDiv.innerHTML = htmlStr;
+
+      // 记录复制容器（其内部的 input/button 会随着容器一起被移除）
+      this.#setTempNode(clipboardDiv);
 
       // 在最后一个子元素之后添加复制按钮
       // 这样可以确保按钮跟随文本，无论标题有多少行

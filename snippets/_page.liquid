@@ -68,7 +68,7 @@
 
     <div class="items-center justify-between space-y-3 lg:flex lg:space-y-0 lg:space-x-6 print:hidden">
       {% if prev_page %}
-        <a href="{{ prev_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+        <a href="{{ prev_page.path }}" data-turbo-frame="_top" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
           <div class="mb-2 text-base-content/40 text-sm">{{ 'snippets.page.prev_page' | t }}</div>
           <div class="text-base text-primary dark:text-primary-200">
             <div class="flex items-center space-x-1 line-clamp-1">
@@ -82,7 +82,7 @@
       {% endif %}
       <!-- Next link -->
       {% if next_page %}
-        <a href="{{ next_page.path }}" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
+        <a href="{{ next_page.path }}" data-turbo-frame="_top" class="block flex-1 rounded-lg bg-base-200 p-3 hover:bg-base-300">
           <div class="mb-2 text-base-content/40 md:text-right text-sm">{{ 'snippets.page.next_page' | t}}</div>
           <div class="text-base text-primary dark:text-primary-200">
             <div class="flex items-center space-x-1 lg:justify-end line-clamp-1">
